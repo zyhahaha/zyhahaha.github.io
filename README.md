@@ -1,2 +1,5 @@
 # zyhahaha.github.io
-blog
+  blog
+
+### shell
+  hexo generate -d  -- 生成网站并部署到GitHub上
