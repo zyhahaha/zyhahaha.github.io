@@ -1,0 +1,31 @@
+/* cv */
+.main-content {
+  padding: 0.2rem;
+  background-color: #fff;
+  box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.15);
+}
+.main-content h1 {
+  margin-left: -0.2rem;
+  margin-bottom: 0.2rem;
+  padding-left: 0.15rem;
+  border-left: 0.05rem solid #e38fa9;
+  text-align: left;
+  font-size: 0.18rem;
+  font-weight: bold;
+}
+.main-content .section {
+  margin-bottom: 0.2rem;
+}
+.main-content .section-content {
+  border-color: #ddd;
+  border: 2px solid;
+  border-radius: 5px;
+  background-color: #f5f5f5;
+  /* margin-bottom: 0.2rem; */
+}
+.main-content .section-content p {
+  padding: 0.1rem 0.15rem;
+}
+.main-content .section-content p.grap-line {
+  border-bottom: 1px solid #ddd;
+}

@@ -1,0 +1,46 @@
+.fl {
+  float: left;
+}
+.fr {
+  float: right;
+}
+
+/* test */
+.row{
+  display: inline-block;
+  height: 100%;
+  background-color: #000;
+  vertical-align: top;
+  color: #fff;
+  text-align: center;
+}
+.line-content{
+  height: 20px;
+  line-height: 20px;
+  background-color: #ccc;
+}
+.line-content .row-1{
+  width: 8px;
+  /* margin-right: 2px; */
+}
+.line-content .row-2{
+  width: 3px;
+}
+.line-content .row-3{
+  width: 50px;
+}
+
+/* line header */
+.line-header {
+  height: 20px;
+  line-height: 20px;
+}
+.line-header .row-1 {
+  width: 5px;
+}
+.line-header .row-2 {
+  width: 70px;
+}
+.line-header .row-3 {
+  width: 5px;
+}

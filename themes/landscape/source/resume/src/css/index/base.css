@@ -1,0 +1,178 @@
+span,
+a {
+  font-size: calc(12rem / 14);
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.col-xs-1,
+.col-sm-1,
+.col-md-1,
+.col-lg-1,
+.col-xs-2,
+.col-sm-2,
+.col-md-2,
+.col-lg-2,
+.col-xs-3,
+.col-sm-3,
+.col-md-3,
+.col-lg-3,
+.col-xs-4,
+.col-sm-4,
+.col-md-4,
+.col-lg-4,
+.col-xs-5,
+.col-sm-5,
+.col-md-5,
+.col-lg-5,
+.col-xs-6,
+.col-sm-6,
+.col-md-6,
+.col-lg-6,
+.col-xs-7,
+.col-sm-7,
+.col-md-7,
+.col-lg-7,
+.col-xs-8,
+.col-sm-8,
+.col-md-8,
+.col-lg-8,
+.col-xs-9,
+.col-sm-9,
+.col-md-9,
+.col-lg-9,
+.col-xs-10,
+.col-sm-10,
+.col-md-10,
+.col-lg-10,
+.col-xs-11,
+.col-sm-11,
+.col-md-11,
+.col-lg-11,
+.col-xs-12,
+.col-sm-12,
+.col-md-12,
+.col-lg-12 {
+  padding: 0;
+  margin: 0;
+}
+body {
+  background: url('../images/whitebg.jpg') repeat;
+  font-family: 'Microsoft Yahei';
+  color: #787978;
+}
+html,
+body {
+  font-size: 14px;
+}
+a {
+  color: #948c76;
+  text-decoration: none;
+}
+a:hover {
+  color: #948c76;
+  text-decoration: underline;
+}
+p {
+  margin-bottom: 0;
+  /*padding-right:1em;*/
+  text-align: justify;
+}
+li {
+  list-style: none;
+}
+
+strong {
+  color: #80633f;
+}
+h3 {
+  font-size: 16px;
+}
+
+/* ########## main ######### */
+.content {
+  padding: 4.29rem 0;
+  margin: 0 auto;
+  width: 100%;
+}
+#top {
+  width: 45px;
+  height: 45px;
+  background: #cccccc;
+  border-radius: 5px;
+  position: fixed;
+  right: 20px;
+  bottom: 10%;
+  cursor: pointer;
+  text-align: center;
+  line-height: 45px;
+  display: none;
+  z-index: 1000;
+  opacity: 0.6;
+}
+#top:hover {
+  opacity: 1;
+}
+
+.fadein {
+  transform: translateY(0);
+  -webkit-transform: translateY(0);
+  opacity: 1;
+  transition: 1s;
+}
+
+.center {
+  text-align: center;
+}
+
+.beian {
+  font-size: 12px;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@-webkit-keyframes rotate {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@media screen and (max-width: 980px) {
+  .anima-box li:nth-child(2n + 1) {
+    clear: both;
+  }
+}
+@media screen and (max-width: 768px) {
+  .my-sort,
+  #artical-detail h4 {
+    margin-bottom: 3em;
+  }
+  .ar-content {
+    padding-bottom: 4em;
+  }
+}
+@media only screen and (max-width: 450px) {
+  .art-detail {
+    max-height: 5em;
+    line-height: 18px;
+    overflow: hidden;
+  }
+  .ar-content {
+    padding-left: 1.5em;
+  }
+  .my-artical {
+    padding-left: 5%;
+  }
+}
