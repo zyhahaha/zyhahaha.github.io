@@ -1,5 +1,74 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background: url('../images/whitebg.jpg') repeat;
+  font-family: 'Microsoft Yahei';
+  color: #787978;
+  font-size: 0.24rem;
+}
+.header-box {
+  padding-top: 1rem;
+  padding-bottom: 0.8rem;
+  text-align: center;
+}
+.header-box img {
+  display: inline-block;
+  width: 1.4rem;
+  height: 1.4rem;
+  border: 1px solid #000;
+  border-radius: 50%;
+}
+.myid {
+  color: #948c76;
+  margin-bottom: 0.8rem;
+  text-align: center;
+}
+.myid p {
+  display: inline-block;
+  background: #f7f3ee;
+  font-size: 0.24rem;
+  font-weight: 400;
+  padding: 0.1rem 0.15rem;
+  /* margin: 0.2rem 0; */
+}
+.my-sort {
+  margin: 0 0 1.2rem;
+  text-align: center;
+}
+.my-sort a {
+  margin: 0 0.2rem;
+}
+
+/* top */
+#top {
+  width: 45px;
+  height: 45px;
+  background: #cccccc;
+  border-radius: 5px;
+  position: fixed;
+  right: 20px;
+  bottom: 10%;
+  cursor: pointer;
+  text-align: center;
+  line-height: 45px;
+  display: none;
+  z-index: 1000;
+  opacity: 0.6;
+}
+#top:hover {
+  opacity: 1;
+}
+
+
+
+/* ### main ### */
 /* cv */
 .main-content {
+  max-width: 800px;
+  margin: auto;
   padding: 0.2rem;
   background-color: #fff;
   box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.15);
@@ -10,7 +79,7 @@
   padding-left: 0.15rem;
   border-left: 0.05rem solid #e38fa9;
   text-align: left;
-  font-size: 0.18rem;
+  font-size: 0.24rem;
   font-weight: bold;
 }
 .main-content .section {
