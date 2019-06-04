@@ -7,8 +7,11 @@ tags:
   - linux
 ---
 
-Linux Deploy是可以在安卓端安装的linux;
+[github](https://github.com/meefik/linuxdeploy)
+
+[Android APP](https://github.com/meefik/linuxdeploy/releases/tag/2.3.0)
+
 
 ``` bash
-$ test
+$ ssh root@192.168.1.1
 ```
