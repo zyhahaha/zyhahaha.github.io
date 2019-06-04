@@ -1,8 +1,12 @@
 ---
-title: server-deployment
+title: 前后端服务器部署
 date: 2019-06-02 22:28:31
 tags: linux
 ---
+
+
+
+	
 
 ### nginx
 
