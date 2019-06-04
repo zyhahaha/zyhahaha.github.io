@@ -16,5 +16,9 @@
     "hexo-renderer-marked": "^0.3.2",
     "hexo-renderer-stylus": "^0.3.3",
     "hexo-server": "^0.3.3"
+  },
+  "devDependencies": {
+    "hexo-generator-baidu-sitemap": "^0.1.6",
+    "hexo-generator-sitemap": "^1.2.0"
   }
 }
