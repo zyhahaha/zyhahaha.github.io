@@ -13,7 +13,7 @@ timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://www.zyhahaha.com
+url: http://blog.zyhahaha.com
 root: /
 permalink: :title.html
 permalink_defaults:
@@ -82,3 +82,9 @@ deploy:
   repo: git@github.com:zyhahaha/zyhahaha.github.io.git
   branch: master
   message: message
+
+search:
+  path: search.xml
+  field: post
+  format: html
+  limit: 10000
