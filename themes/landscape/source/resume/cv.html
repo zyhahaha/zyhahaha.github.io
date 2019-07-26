@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
   <head>
     <meta charset="UTF-8" />
     <meta
@@ -7,7 +7,7 @@
       content="width=device-width,initial-scale=1.0,maximum-scale=1.0, user-scalable=0;"
     />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>test</title>
+    <title>cv</title>
     <link rel="stylesheet" href="./src/css/cv.css" />
   </head>
   <body>
@@ -91,6 +91,42 @@
       // $(document).ready(function() {
       //   $('.header-box').addClass('fadein');
       // });
+      var el = document.getElementsByClassName('myid')[0];
+      var downTime = '';
+      el.addEventListener('click', function(){
+        alert(downTime);
+      })
+
+      var together = new Date();
+      together.setFullYear(2018, 3, 18);
+      together.setHours(18);
+      together.setMinutes(30);
+      together.setSeconds(0);
+      together.setMilliseconds(0);
+      downTime = timeElapse(together);
+
+      function timeElapse(dateTim) {
+        var current = Date();
+        var seconds = (Date.parse(current) - Date.parse(dateTim)) / 1000;
+        var days = Math.floor(seconds / (3600 * 24));
+        seconds = seconds % (3600 * 24);
+        var hours = Math.floor(seconds / 3600);
+        if (hours < 10) {
+          hours = "0" + hours;
+        }
+        seconds = seconds % 3600;
+        var minutes = Math.floor(seconds / 60);
+        if (minutes < 10) {
+          minutes = "0" + minutes;
+        }
+        seconds = seconds % 60;
+        if (seconds < 10) {
+          seconds = "0" + seconds;
+        }
+        var result =
+          "第" + days + "天" + hours + "小时" + minutes + "分钟" + seconds + "秒";
+        return result;
+      }
     </script>
   </body>
 </html>
