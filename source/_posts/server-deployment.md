@@ -1,18 +1,17 @@
 ---
-title: 前后端服务器部署
+title: 前端静态资源服务器部署
 date: 2019-06-02 22:28:31
 tags: linux
 ---
 
 ### 准备
 
-服务器、域名、dns解析
+服务器、域名、dns解析、cdn服务、https证书
 
 ### 目标
 
-了解前后端交互，后端接口的实现与原理。
 在linux环境下的前端静态资源部署。
-linux基础命令，一些常用服务的安装与使用。
+cdn、https的部署
 
 ### nginx
 
@@ -23,26 +22,28 @@ linux基础命令，一些常用服务的安装与使用。
 	$ sudo apt-get install nginx
 ```
 
-### nodejs
+### cdn
+内容分发网络
 
-``` bash
-	$ wget https://nodejs.org/dist/v10.15.3/node-v10.15.3-linux-x64.tar.xz
-	  wget https://nodejs.org/dist/v10.15.3/node-v10.15.3-linux-armv7l.tar.xz
-	$ tar x -f node-v10.15.3-linux-x64.tar.xz
-	$ ln -s /home/zhaoyang/nodejs/node-v10.15.3-linux-x64/bin/node /usr/local/node
-```
-
-### mysql
-
-``` bash
-	$ apt-get update
-	$ sudo apt-get install mysql-server mysql-client
-```
-	
-### mongodb
-
-``` bash
-	$ apt-get update
-	$ apt-get install mongodb-server
-```
-
+### https部署
+server {
+    listen 443;
+    server_name www.zhaoyang.com; #// 你的域名
+    ssl on;
+    root /home/jrkj/site/jrkj/; #// 前台文件存放文件夹，可改成别的
+    index index.html index.htm; #// 上面配置的文件夹里面的index.html
+    ssl_certificate  cert/2751021_www.zhaoyang.com.pem; #// 改成你的证书的名字
+    ssl_certificate_key cert/2751021_www.zhaoyang.com.key; #// 你的证书的名字
+    ssl_session_timeout 5m;
+    ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4;
+    ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+    ssl_prefer_server_ciphers on;
+    location / {
+        index index.html index.htm;
+    }
+}
+#server {
+#    listen 80;
+#    server_name bjubi.com;// 你的域名
+#    rewrite ^(.*)$ https://$host$1 permanent;// 把http的域名请求转成https
+#}
