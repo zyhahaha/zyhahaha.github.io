@@ -11,6 +11,8 @@ tags: linux
 在linux环境下的前端静态资源部署；
 cdn、https的部署。
 
+<!-- more -->
+
 ### nginx
 最常用的静态资源服务器
 
