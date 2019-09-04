@@ -6,6 +6,9 @@ categories:
 tags: 
   - linux
 ---
+linux deploy软件
+
+<!-- more -->
 
 [github](https://github.com/meefik/linuxdeploy)
 
