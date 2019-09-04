@@ -6,6 +6,7 @@
     "version": "3.9.0"
   },
   "scripts": {
+    "server": "hexo server",
     "publish": "hexo generate -d"
   },
   "dependencies": {

@@ -42,8 +42,3 @@ server {
         index index.html index.htm;
     }
 }
-#server {
-#    listen 80;
-#    server_name bjubi.com;// 你的域名
-#    rewrite ^(.*)$ https://$host$1 permanent;// 把http的域名请求转成https
-#}
