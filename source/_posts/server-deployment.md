@@ -5,22 +5,22 @@ tags: linux
 ---
 
 ### 准备
-
 服务器、域名、dns解析、cdn服务、https证书
 
 ### 目标
-
-在linux环境下的前端静态资源部署。
-cdn、https的部署
+在linux环境下的前端静态资源部署；
+cdn、https的部署。
 
 ### nginx
-
 最常用的静态资源服务器
 
 ``` bash
 	$ sudo apt-get update
 	$ sudo apt-get install nginx
 ```
+
+### dns解析
+域名解析
 
 ### cdn
 内容分发网络
