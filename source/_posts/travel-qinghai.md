@@ -12,3 +12,4 @@ tags: travel
 ![icon](./images/qinghai/2.jpg)
 ![icon](./images/qinghai/3.jpg)
 ![icon](./images/qinghai/4.jpg)
+![icon](./images/qinghai/5.jpg)
