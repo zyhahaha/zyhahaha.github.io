@@ -28,6 +28,7 @@ cdn、https的部署。
 内容分发网络
 
 ### https部署
+```
 server {
     listen 443;
     server_name www.zhaoyang.com; #// 你的域名
@@ -44,3 +45,4 @@ server {
         index index.html index.htm;
     }
 }
+```
