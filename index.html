@@ -44,9 +44,9 @@
       <nav id="main-nav">
         <a id="main-nav-toggle" class="nav-icon"></a>
         
-          <a class="main-nav-link" href="/">Home</a>
+          <a class="main-nav-link" href="/">首页</a>
         
-          <a class="main-nav-link" href="/archives">Archives</a>
+          <a class="main-nav-link" href="/archives">归档</a>
         
       </nav>
       <nav id="sub-nav">
@@ -63,6 +63,55 @@
 </header>
       <div class="outer">
         <section id="main">
+  
+    <article id="post-microservice" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/microservice.html" class="article-date">
+  <time datetime="2019-09-14T15:22:41.000Z" itemprop="datePublished">2019-09-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/microservice.html">微服务</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ol>
+<li>ResultFul API</li>
+<li>消息队列RabbitMQ</li>
+<li>服务发现Consul</li>
+<li>熔断机制</li>
+<li>服务降级</li>
+<li>限流</li>
+</ol>
+<h3 id="服务发现-Consul"><a href="#服务发现-Consul" class="headerlink" title="服务发现 Consul"></a>服务发现 Consul</h3><p>  服务发现分为三个角色，提供者、消费者、服务中心。服务中心连接提供者和消费者。提供者将自己的服务地址注册到服务中心，消费者从服务中心获取自己想要的服务地址，然后消费这个服务。<br>  服务中心就是一个字典，有很多key、value键值对，key是服务名称、value是提供者地址。服务注册就是往字典put名称和地址，服务获取就是get服务名称和服务地址。<br>  当某个提供者挂掉时，通知服务中心注销该服务，通知消费者重新获取服务。<br>  当新服务加入时，在服务中心注册该服务，并且通知消费者可以使用该服务。</p>
+<h3 id="消息队列-RabbitMQ"><a href="#消息队列-RabbitMQ" class="headerlink" title="消息队列 RabbitMQ"></a>消息队列 RabbitMQ</h3><p>  异步处理：提高系统响应性能；如：用户下单后快速响应请求，后面的派单之类的异步处理可以在后面进行。</p>
+<h3 id="熔断机制"><a href="#熔断机制" class="headerlink" title="熔断机制"></a>熔断机制</h3><p>  当某个服务不可用，在超过一定的失败次数后进行熔断，后面请求该服务的处理直接返回失败状态，提高响应。之后会放少量的请求到该服务来验证该服务是否恢复正常，当该服务正常响应的到一定的次数，再关闭熔断。</p>
+<h3 id="服务降级"><a href="#服务降级" class="headerlink" title="服务降级"></a>服务降级</h3><p>  当某个功能不可用时，我们的系统不能因为这个功能点而奔溃。于是要进行降级，系统自动关闭该功能点，如：电商平台的推荐服务挂掉了，系统会关掉该功能以保障整个电商系统可以正常运行。</p>
+<h3 id="限流"><a href="#限流" class="headerlink" title="限流"></a>限流</h3><p>  在某个功能恢复正常后，用户可能会大量的请求该功能，我们要进行限流处理，不然系统可能会再次奔溃。进入一种奔溃到恢复再到奔溃的死循环中。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blog.zyhahaha.com/microservice.html" data-id="ck0jpb6bq0004g4r0w80mflrf" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
   
     <article id="post-frontend-direction" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -87,154 +136,17 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>行业的发展必然会带来职业的细分，在前端领域也是一样。</p>
-<h3 id="目前前端行业大概分为下面几个方向："><a href="#目前前端行业大概分为下面几个方向：" class="headerlink" title="目前前端行业大概分为下面几个方向："></a>目前前端行业大概分为下面几个方向：</h3><pre><code>1、界面展示、用户体验方向： 会如js、css、h5、微信小程序、vue等；
-2、偏后端的nodejs，全栈： nodejs、java等，懂数据库、nginx、linux等；
-3、音视频富媒体方向： audio、video、flv.js、video.js；
-4、动画、游戏方向：openGL、webGL、cocos2dx、canvas等；
-5、数据可视化方向： canvas、d3、echart等；
-</code></pre><p>每个人的性格不同、经历不同，自然适合的方向也会不一样。有设计背景或兴趣的同学可以专注于用户体验方向，喜欢逻辑、工程化的则更适合偏后端的方向。如果对物理引擎、数据算法等颇有造诣，对游戏、动画感兴趣的同学可以往这个游戏或者动画方向发展。</p>
-<p>说了这么多只是因为作为前端工程师真的不能只靠天天写页面过日子，如果只会写写页面、调调数据，那么在未来的技术革命中竞争力会越来越小，迟早有一天会被淘汰，我们要懂得<strong>未雨绸缪</strong>。</p>
-<h3 id="我的专注方向"><a href="#我的专注方向" class="headerlink" title="我的专注方向"></a>我的专注方向</h3><p>我目前主要<strong>专注页面展示、用户体验和可访问性方向</strong>，在工作之余会往<strong>nodejs、服务器全栈方向</strong>付出些时间，希望未来可以做一个全栈大佬，在公司可以hold住整个项目。<strong>当然我不会舍本逐末，只有在前端这个领域到达一定深度，我才会进行全面的全栈发展。</strong>后面三个方向的市场需求不大，培养这些方向的能力也比较困难，所以如果没有这些方面的兴趣的的话很难坚持学习下去。不过作为前端还是需要去了解一下，毕竟都是属于前端的范畴，不必太过深入即可。</p>
-<p>选择这个方向当然与我的经历和兴趣是分不开的，我在大学快要结束之际就像众多的即将毕业的其他同学一样，对未来很迷茫，因为是计算机专业，并且在慕课上了解到有web前端这个岗位，于是自学了一段时间。在实习的时候有幸进到一家十几人的外包公司，虽然公司不大或者说很小，加我一共就4个开发，每个人都身担数个岗位，但是这个机会让我成功的进入到了这个行业，同事前辈对我也很好，我也很感激在这里我很谢谢你们。在这个公司里我主要是做前端和nodejs后端的工作，在这个时候前端很火，我也不想也没有能力把时间花在全栈方向，在下家公司我选择了纯前端开发，但是对后端开发有一点的基础和兴趣，所以当我可以稳住前端开发之后，我开始分出一部分的时间来研究<strong>nodejs、linux、mysql、nginx</strong>这些后端技能。</p>
-<h4 id="1、用户体验"><a href="#1、用户体验" class="headerlink" title="1、用户体验"></a>1、用户体验</h4><p>前端承上启下，和用户接触。</p>
-<h4 id="2、前端基础：html、css、javascript"><a href="#2、前端基础：html、css、javascript" class="headerlink" title="2、前端基础：html、css、javascript"></a>2、前端基础：html、css、javascript</h4><p>html与css：<strong>html标签、页面布局、css盒模型；</strong><br>javascript：<strong>DOM事件、原型链、面向对象；</strong><br>进阶基础：<strong>http协议、前端通信、安全、算法、页面渲染机制、js运行机制、页面性能、错误监控；</strong></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://blog.zyhahaha.com/frontend-direction.html" data-id="ck05e3tkx00006or01pd9veih" class="article-share-link">分享</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-travel-gouqi-island" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/travel-gouqi-island.html" class="article-date">
-  <time datetime="2019-06-04T09:12:31.000Z" itemprop="datePublished">2019-06-04</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/travel/">travel</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/travel-gouqi-island.html">旅游-枸杞岛</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>枸杞岛</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://blog.zyhahaha.com/travel-gouqi-island.html" data-id="ck05e3tli00086or09rm32urz" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/travel/">travel</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-travel-zhangjiajie" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/travel-zhangjiajie.html" class="article-date">
-  <time datetime="2019-06-04T09:11:15.000Z" itemprop="datePublished">2019-06-04</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/travel/">travel</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+          <p class="article-more-link">
+            <a href="/frontend-direction.html#more">阅读全文</a>
+          </p>
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/travel-zhangjiajie.html">旅游-张家界</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>张家界</p>
-
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blog.zyhahaha.com/travel-zhangjiajie.html" data-id="ck05e3tlm000a6or0xi14rxhp" class="article-share-link">分享</a>
+      <a data-url="http://blog.zyhahaha.com/frontend-direction.html" data-id="ck0jpb6c5000cg4r0kkcmldb4" class="article-share-link">分享</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/travel/">travel</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-travel-qinghai" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/travel-qinghai.html" class="article-date">
-  <time datetime="2019-06-02T14:33:16.000Z" itemprop="datePublished">2019-06-02</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/travel/">travel</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/travel-qinghai.html">旅游-青海</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>青海的一次旅游</p>
-<p><img src="./images/1.jpg" alt="icon"></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://blog.zyhahaha.com/travel-qinghai.html" data-id="ck05e3tlq000e6or0olh74sco" class="article-share-link">分享</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/travel/">travel</a></li></ul>
-
     </footer>
   </div>
   
@@ -265,11 +177,15 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>javascript promise正确用法及常见的错误用法。</p>
-
+        
+          <p class="article-more-link">
+            <a href="/javascript-promise.html#more">阅读全文</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blog.zyhahaha.com/javascript-promise.html" data-id="ck05e3tla00056or05ch2lpkv" class="article-share-link">分享</a>
+      <a data-url="http://blog.zyhahaha.com/javascript-promise.html" data-id="ck0jpb6bo0003g4r02mv39mxv" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
@@ -305,16 +221,15 @@
       
         <h3 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h3><p>服务器、域名、dns解析、cdn服务、https证书</p>
 <h3 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h3><p>在linux环境下的前端静态资源部署；<br>cdn、https的部署。</p>
-<h3 id="nginx"><a href="#nginx" class="headerlink" title="nginx"></a>nginx</h3><p>最常用的静态资源服务器</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get update</span><br><span class="line">$ sudo apt-get install nginx</span><br></pre></td></tr></table></figure>
-<h3 id="dns解析"><a href="#dns解析" class="headerlink" title="dns解析"></a>dns解析</h3><p>域名解析</p>
-<h3 id="cdn"><a href="#cdn" class="headerlink" title="cdn"></a>cdn</h3><p>内容分发网络</p>
-<h3 id="https部署"><a href="#https部署" class="headerlink" title="https部署"></a>https部署</h3><p>server {<br>    listen 443;<br>    server_name <a href="http://www.zhaoyang.com" target="_blank" rel="noopener">www.zhaoyang.com</a>; #// 你的域名<br>    ssl on;<br>    root /home/jrkj/site/jrkj/; #// 前台文件存放文件夹，可改成别的<br>    index index.html index.htm; #// 上面配置的文件夹里面的index.html<br>    ssl_certificate  cert/2751021_<a href="http://www.zhaoyang.com.pem" target="_blank" rel="noopener">www.zhaoyang.com.pem</a>; #// 改成你的证书的名字<br>    ssl_certificate_key cert/2751021_<a href="http://www.zhaoyang.com.key" target="_blank" rel="noopener">www.zhaoyang.com.key</a>; #// 你的证书的名字<br>    ssl_session_timeout 5m;<br>    ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4;<br>    ssl_protocols TLSv1 TLSv1.1 TLSv1.2;<br>    ssl_prefer_server_ciphers on;<br>    location / {<br>        index index.html index.htm;<br>    }<br>}</p>
-
+        
+          <p class="article-more-link">
+            <a href="/server-deployment.html#more">阅读全文</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blog.zyhahaha.com/server-deployment.html" data-id="ck05e3tln000b6or05kjda9dv" class="article-share-link">分享</a>
+      <a data-url="http://blog.zyhahaha.com/server-deployment.html" data-id="ck0jpb6bw0006g4r0uexkuzf7" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li></ul>
@@ -352,13 +267,16 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><a href="https://github.com/meefik/linuxdeploy" target="_blank" rel="noopener">github</a></p>
-<p><a href="https://github.com/meefik/linuxdeploy/releases/tag/2.3.0" target="_blank" rel="noopener">Android APP</a></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh root@192.168.1.1</span><br></pre></td></tr></table></figure>
+        <p>linux deploy软件</p>
+        
+          <p class="article-more-link">
+            <a href="/linux-deploy.html#more">阅读全文</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blog.zyhahaha.com/linux-deploy.html" data-id="ck05e3tlc00066or0bx7ouh5y" class="article-share-link">分享</a>
+      <a data-url="http://blog.zyhahaha.com/linux-deploy.html" data-id="ck0jpb6bz0007g4r0ot8tanq8" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li></ul>
@@ -370,10 +288,151 @@
 
 
   
+    <article id="post-travel-qinghai" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/travel-qinghai.html" class="article-date">
+  <time datetime="2019-05-06T14:33:16.000Z" itemprop="datePublished">2019-05-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/travel/">travel</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/travel-qinghai.html">旅游-青海</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>今年五一的时候去了趟青海，来看看中国最大的内陆湖，请了一天假开始了一共四天旅行。我们一下飞机立马赶上了去张掖火车，去见识一下只在电视上看过的丹霞地貌。然后去了4000多米的雪山，还有这次旅行的主角青海。这次旅行很值，不过去的有点早，天气有点冷，青草刚刚露头，以后有机会还会去第二次。</p>
+        
+          <p class="article-more-link">
+            <a href="/travel-qinghai.html#more">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blog.zyhahaha.com/travel-qinghai.html" data-id="ck0jpb6c8000dg4r0knhmp8nx" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/travel/">travel</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-travel-gouqi-island" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/travel-gouqi-island.html" class="article-date">
+  <time datetime="2018-08-27T10:12:31.000Z" itemprop="datePublished">2018-08-27</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/travel/">travel</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/travel-gouqi-island.html">旅游-枸杞岛</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>今年女朋友本命年生日，我们在上海工作正好离舟山比较近，于是就计划了一次小岛旅行。</p>
+        
+          <p class="article-more-link">
+            <a href="/travel-gouqi-island.html#more">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blog.zyhahaha.com/travel-gouqi-island.html" data-id="ck0jpb6c10008g4r0nua72bl3" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/travel/">travel</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-travel-zhangjiajie" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/travel-zhangjiajie.html" class="article-date">
+  <time datetime="2018-04-10T09:11:15.000Z" itemprop="datePublished">2018-04-10</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/travel/">travel</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/travel-zhangjiajie.html">旅游-张家界</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>带女神来张家界玩，一路张家界、凤凰古城、到长沙转了一天才回的上海。</p>
+        
+          <p class="article-more-link">
+            <a href="/travel-zhangjiajie.html#more">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blog.zyhahaha.com/travel-zhangjiajie.html" data-id="ck0jpb6cc000fg4r008ahkqir" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/travel/">travel</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-hexo-guide" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/hexo-guide.html" class="article-date">
-  <time datetime="2019-05-04T07:17:55.000Z" itemprop="datePublished">2019-05-04</time>
+  <time datetime="2017-02-13T07:17:55.000Z" itemprop="datePublished">2017-02-13</time>
 </a>
     
   </div>
@@ -392,60 +451,16 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="代办列表"><a href="#代办列表" class="headerlink" title="代办列表"></a>代办列表</h3><ul>
-<li style="list-style: none"><input type="checkbox"> 不勾选</li>
-<li style="list-style: none"><input type="checkbox" checked> 勾选</li>
-</ul>
-<h4 id="插入链接"><a href="#插入链接" class="headerlink" title="插入链接"></a>插入链接</h4><p><a href="www.baidu.com">百度</a></p>
-<h4 id="插入图片"><a href="#插入图片" class="headerlink" title="插入图片"></a>插入图片</h4><p><img src="http://mouapp.com/Mou_128.png" alt="icon"></p>
-<p><strong>粗体</strong></p>
-<p><em>斜体</em></p>
-<h4 id="代码框"><a href="#代码框" class="headerlink" title="代码框"></a>代码框</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<h4 id="多行代码框"><a href="#多行代码框" class="headerlink" title="多行代码框"></a>多行代码框</h4><pre><code>第一行
-第二行
-第三行
-</code></pre><h4 id="分割线"><a href="#分割线" class="headerlink" title="分割线"></a>分割线</h4><hr>
-<h4 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h4><table>
-<thead>
-<tr>
-<th>Tables</th>
-<th style="text-align:center">Are</th>
-<th style="text-align:right">Cool</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>col 3 is</td>
-<td style="text-align:center">right-aligned</td>
-<td style="text-align:right">$1600</td>
-</tr>
-<tr>
-<td>col 2 is</td>
-<td style="text-align:center">centered</td>
-<td style="text-align:right">$12</td>
-</tr>
-<tr>
-<td>zebra stripes</td>
-<td style="text-align:center">are neat</td>
-<td style="text-align:right">$1</td>
-</tr>
-</tbody>
-</table>
-<h1 id="一级标题"><a href="#一级标题" class="headerlink" title="一级标题"></a>一级标题</h1><h2 id="二级标题"><a href="#二级标题" class="headerlink" title="二级标题"></a>二级标题</h2><h3 id="三级标题"><a href="#三级标题" class="headerlink" title="三级标题"></a>三级标题</h3><h4 id="无序列表"><a href="#无序列表" class="headerlink" title="无序列表"></a>无序列表</h4><ul>
-<li>1</li>
-<li>2</li>
-<li>3</li>
-</ul>
-<h4 id="有序列表"><a href="#有序列表" class="headerlink" title="有序列表"></a>有序列表</h4><ol>
-<li>1</li>
-<li>2</li>
-<li>3</li>
-</ol>
-
+        <p>markdown语法</p>
+        
+          <p class="article-more-link">
+            <a href="/hexo-guide.html#more">阅读全文</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blog.zyhahaha.com/hexo-guide.html" data-id="ck05e3tl900046or0db5u56h5" class="article-share-link">分享</a>
+      <a data-url="http://blog.zyhahaha.com/hexo-guide.html" data-id="ck0jpb6ba0000g4r0jbk14g4v" class="article-share-link">分享</a>
       
       
     </footer>
@@ -458,7 +473,7 @@
     <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/hello-world.html" class="article-date">
-  <time datetime="2019-05-01T14:21:01.000Z" itemprop="datePublished">2019-05-01</time>
+  <time datetime="2017-02-12T14:21:01.000Z" itemprop="datePublished">2017-02-12</time>
 </a>
     
   </div>
@@ -478,19 +493,15 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
+        
+          <p class="article-more-link">
+            <a href="/hello-world.html#more">阅读全文</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blog.zyhahaha.com/hello-world.html" data-id="ck05e3tl500026or037jkn9li" class="article-share-link">分享</a>
+      <a data-url="http://blog.zyhahaha.com/hello-world.html" data-id="ck0jpb6bl0002g4r0cj6dv9tr" class="article-share-link">分享</a>
       
       
     </footer>
@@ -530,7 +541,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a></li></ul>
     </div>
   </div>
 
@@ -543,23 +554,23 @@
       <ul>
         
           <li>
+            <a href="/microservice.html">微服务</a>
+          </li>
+        
+          <li>
             <a href="/frontend-direction.html">前端方向</a>
           </li>
         
           <li>
-            <a href="/travel-gouqi-island.html">旅游-枸杞岛</a>
-          </li>
-        
-          <li>
-            <a href="/travel-zhangjiajie.html">旅游-张家界</a>
-          </li>
-        
-          <li>
-            <a href="/travel-qinghai.html">旅游-青海</a>
-          </li>
-        
-          <li>
             <a href="/javascript-promise.html">javascript-promise</a>
+          </li>
+        
+          <li>
+            <a href="/server-deployment.html">前端项目的服务器部署</a>
+          </li>
+        
+          <li>
+            <a href="/linux-deploy.html">linux-deploy</a>
           </li>
         
       </ul>
@@ -582,9 +593,9 @@
     </div>
     <nav id="mobile-nav">
   
-    <a href="/" class="mobile-nav-link">Home</a>
+    <a href="/" class="mobile-nav-link">首页</a>
   
-    <a href="/archives" class="mobile-nav-link">Archives</a>
+    <a href="/archives" class="mobile-nav-link">归档</a>
   
 </nav>
     

@@ -1,42 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[微服务]]></title>
+    <url>%2Fmicroservice.html</url>
+    <content type="text"><![CDATA[ResultFul API 消息队列RabbitMQ 服务发现Consul 熔断机制 服务降级 限流 服务发现 Consul 服务发现分为三个角色，提供者、消费者、服务中心。服务中心连接提供者和消费者。提供者将自己的服务地址注册到服务中心，消费者从服务中心获取自己想要的服务地址，然后消费这个服务。 服务中心就是一个字典，有很多key、value键值对，key是服务名称、value是提供者地址。服务注册就是往字典put名称和地址，服务获取就是get服务名称和服务地址。 当某个提供者挂掉时，通知服务中心注销该服务，通知消费者重新获取服务。 当新服务加入时，在服务中心注册该服务，并且通知消费者可以使用该服务。 消息队列 RabbitMQ 异步处理：提高系统响应性能；如：用户下单后快速响应请求，后面的派单之类的异步处理可以在后面进行。 熔断机制 当某个服务不可用，在超过一定的失败次数后进行熔断，后面请求该服务的处理直接返回失败状态，提高响应。之后会放少量的请求到该服务来验证该服务是否恢复正常，当该服务正常响应的到一定的次数，再关闭熔断。 服务降级 当某个功能不可用时，我们的系统不能因为这个功能点而奔溃。于是要进行降级，系统自动关闭该功能点，如：电商平台的推荐服务挂掉了，系统会关掉该功能以保障整个电商系统可以正常运行。 限流 在某个功能恢复正常后，用户可能会大量的请求该功能，我们要进行限流处理，不然系统可能会再次奔溃。进入一种奔溃到恢复再到奔溃的死循环中。]]></content>
+  </entry>
+  <entry>
     <title><![CDATA[前端方向]]></title>
     <url>%2Ffrontend-direction.html</url>
     <content type="text"><![CDATA[行业的发展必然会带来职业的细分，在前端领域也是一样。 目前前端行业大概分为下面几个方向：1、界面展示、用户体验方向： 会如js、css、h5、微信小程序、vue等； 2、偏后端的nodejs，全栈： nodejs、java等，懂数据库、nginx、linux等； 3、音视频富媒体方向： audio、video、flv.js、video.js； 4、动画、游戏方向：openGL、webGL、cocos2dx、canvas等； 5、数据可视化方向： canvas、d3、echart等； 每个人的性格不同、经历不同，自然适合的方向也会不一样。有设计背景或兴趣的同学可以专注于用户体验方向，喜欢逻辑、工程化的则更适合偏后端的方向。如果对物理引擎、数据算法等颇有造诣，对游戏、动画感兴趣的同学可以往这个游戏或者动画方向发展。 说了这么多只是因为作为前端工程师真的不能只靠天天写页面过日子，如果只会写写页面、调调数据，那么在未来的技术革命中竞争力会越来越小，迟早有一天会被淘汰，我们要懂得未雨绸缪。 我的专注方向我目前主要专注页面展示、用户体验和可访问性方向，在工作之余会往nodejs、服务器全栈方向付出些时间，希望未来可以做一个全栈大佬，在公司可以hold住整个项目。当然我不会舍本逐末，只有在前端这个领域到达一定深度，我才会进行全面的全栈发展。后面三个方向的市场需求不大，培养这些方向的能力也比较困难，所以如果没有这些方面的兴趣的的话很难坚持学习下去。不过作为前端还是需要去了解一下，毕竟都是属于前端的范畴，不必太过深入即可。 选择这个方向当然与我的经历和兴趣是分不开的，我在大学快要结束之际就像众多的即将毕业的其他同学一样，对未来很迷茫，因为是计算机专业，并且在慕课上了解到有web前端这个岗位，于是自学了一段时间。在实习的时候有幸进到一家十几人的外包公司，虽然公司不大或者说很小，加我一共就4个开发，每个人都身担数个岗位，但是这个机会让我成功的进入到了这个行业，同事前辈对我也很好，我也很感激在这里我很谢谢你们。在这个公司里我主要是做前端和nodejs后端的工作，在这个时候前端很火，我也不想也没有能力把时间花在全栈方向，在下家公司我选择了纯前端开发，但是对后端开发有一点的基础和兴趣，所以当我可以稳住前端开发之后，我开始分出一部分的时间来研究nodejs、linux、mysql、nginx这些后端技能。 1、用户体验前端承上启下，和用户接触。 2、前端基础：html、css、javascripthtml与css：html标签、页面布局、css盒模型；javascript：DOM事件、原型链、面向对象；进阶基础：http协议、前端通信、安全、算法、页面渲染机制、js运行机制、页面性能、错误监控；]]></content>
-  </entry>
-  <entry>
-    <title><![CDATA[旅游-枸杞岛]]></title>
-    <url>%2Ftravel-gouqi-island.html</url>
-    <content type="text"><![CDATA[枸杞岛]]></content>
-      <categories>
-        <category>travel</category>
-      </categories>
-      <tags>
-        <tag>travel</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[旅游-张家界]]></title>
-    <url>%2Ftravel-zhangjiajie.html</url>
-    <content type="text"><![CDATA[张家界]]></content>
-      <categories>
-        <category>travel</category>
-      </categories>
-      <tags>
-        <tag>travel</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[旅游-青海]]></title>
-    <url>%2Ftravel-qinghai.html</url>
-    <content type="text"><![CDATA[青海的一次旅游]]></content>
-      <categories>
-        <category>travel</category>
-      </categories>
-      <tags>
-        <tag>travel</tag>
-      </tags>
   </entry>
   <entry>
     <title><![CDATA[javascript-promise]]></title>
@@ -49,7 +21,7 @@
   <entry>
     <title><![CDATA[前端项目的服务器部署]]></title>
     <url>%2Fserver-deployment.html</url>
-    <content type="text"><![CDATA[准备服务器、域名、dns解析、cdn服务、https证书 目标在linux环境下的前端静态资源部署；cdn、https的部署。 nginx最常用的静态资源服务器 12$ sudo apt-get update$ sudo apt-get install nginx dns解析域名解析 cdn内容分发网络 https部署server { listen 443; server_name www.zhaoyang.com; #// 你的域名 ssl on; root /home/jrkj/site/jrkj/; #// 前台文件存放文件夹，可改成别的 index index.html index.htm; #// 上面配置的文件夹里面的index.html ssl_certificate cert/2751021_www.zhaoyang.com.pem; #// 改成你的证书的名字 ssl_certificate_key cert/2751021_www.zhaoyang.com.key; #// 你的证书的名字 ssl_session_timeout 5m; ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4; ssl_protocols TLSv1 TLSv1.1 TLSv1.2; ssl_prefer_server_ciphers on; location / { index index.html index.htm; }}]]></content>
+    <content type="text"><![CDATA[准备服务器、域名、dns解析、cdn服务、https证书 目标在linux环境下的前端静态资源部署；cdn、https的部署。 nginx最常用的静态资源服务器 12$ sudo apt-get update$ sudo apt-get install nginx dns解析域名解析 cdn内容分发网络 https部署12345678910111213141516server &#123; listen 443; server_name www.zhaoyang.com; #// 你的域名 ssl on; root /home/jrkj/site/jrkj/; #// 前台文件存放文件夹，可改成别的 index index.html index.htm; #// 上面配置的文件夹里面的index.html ssl_certificate cert/2751021_www.zhaoyang.com.pem; #// 改成你的证书的名字 ssl_certificate_key cert/2751021_www.zhaoyang.com.key; #// 你的证书的名字 ssl_session_timeout 5m; ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4; ssl_protocols TLSv1 TLSv1.1 TLSv1.2; ssl_prefer_server_ciphers on; location / &#123; index index.html index.htm; &#125;&#125;]]></content>
       <tags>
         <tag>linux</tag>
       </tags>
@@ -57,7 +29,7 @@
   <entry>
     <title><![CDATA[linux-deploy]]></title>
     <url>%2Flinux-deploy.html</url>
-    <content type="text"><![CDATA[github Android APP 1$ ssh root@192.168.1.1]]></content>
+    <content type="text"><![CDATA[linux deploy软件 github Android APP 1$ ssh root@192.168.1.1]]></content>
       <categories>
         <category>linux</category>
       </categories>
@@ -66,9 +38,42 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[旅游-青海]]></title>
+    <url>%2Ftravel-qinghai.html</url>
+    <content type="text"><![CDATA[今年五一的时候去了趟青海，来看看中国最大的内陆湖，请了一天假开始了一共四天旅行。我们一下飞机立马赶上了去张掖火车，去见识一下只在电视上看过的丹霞地貌。然后去了4000多米的雪山，还有这次旅行的主角青海。这次旅行很值，不过去的有点早，天气有点冷，青草刚刚露头，以后有机会还会去第二次。]]></content>
+      <categories>
+        <category>travel</category>
+      </categories>
+      <tags>
+        <tag>travel</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[旅游-枸杞岛]]></title>
+    <url>%2Ftravel-gouqi-island.html</url>
+    <content type="text"><![CDATA[今年女朋友本命年生日，我们在上海工作正好离舟山比较近，于是就计划了一次小岛旅行。]]></content>
+      <categories>
+        <category>travel</category>
+      </categories>
+      <tags>
+        <tag>travel</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[旅游-张家界]]></title>
+    <url>%2Ftravel-zhangjiajie.html</url>
+    <content type="text"><![CDATA[带女神来张家界玩，一路张家界、凤凰古城、到长沙转了一天才回的上海。]]></content>
+      <categories>
+        <category>travel</category>
+      </categories>
+      <tags>
+        <tag>travel</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[hexo markdown语法]]></title>
     <url>%2Fhexo-guide.html</url>
-    <content type="text"><![CDATA[代办列表 不勾选 勾选 插入链接百度 插入图片 粗体 斜体 代码框1$ hexo generate 多行代码框第一行 第二行 第三行 分割线 表格 Tables Are Cool col 3 is right-aligned $1600 col 2 is centered $12 zebra stripes are neat $1 一级标题二级标题三级标题无序列表 1 2 3 有序列表 1 2 3]]></content>
+    <content type="text"><![CDATA[markdown语法 代办列表 不勾选 勾选 插入链接百度 插入图片 粗体 斜体 代码框1$ hexo generate 多行代码框第一行 第二行 第三行 分割线 表格 Tables Are Cool col 3 is right-aligned $1600 col 2 is centered $12 zebra stripes are neat $1 一级标题二级标题三级标题无序列表 1 2 3 有序列表 1 2 3]]></content>
   </entry>
   <entry>
     <title><![CDATA[Hello World]]></title>
