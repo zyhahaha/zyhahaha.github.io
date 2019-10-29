@@ -31,7 +31,7 @@
 <body>
   <div id="container">
     <div id="wrap">
-      <header id="header">
+      <header id="header" style="display: none;">
   <div id="banner"></div>
   <div id="header-outer" class="outer">
     <!-- <div id="header-title" class="inner">
@@ -63,6 +63,55 @@
 </header>
       <div class="outer">
         <section id="main">
+  
+    <article id="post-web-secure" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/web-secure.html" class="article-date">
+  <time datetime="2019-09-15T07:26:27.000Z" itemprop="datePublished">2019-09-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/web-secure.html">web安全</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ol>
+<li>CSRF</li>
+<li>XSS</li>
+<li>越权</li>
+<li>SQL注入</li>
+<li>Cookies安全策略</li>
+<li>HTTP/HTTPS传输安全</li>
+<li>中间人攻击</li>
+<li>OAuth 2.0</li>
+</ol>
+<h3 id="CSRF"><a href="#CSRF" class="headerlink" title="CSRF"></a>CSRF</h3><p>  跨站请求伪造</p>
+<h3 id="XSS"><a href="#XSS" class="headerlink" title="XSS"></a>XSS</h3><p>  跨站脚本攻击</p>
+<h3 id="中间人攻击"><a href="#中间人攻击" class="headerlink" title="中间人攻击"></a>中间人攻击</h3><p>  代理</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blog.zyhahaha.com/web-secure.html" data-id="ck2bxcktw000ilkr0dfnt4rfa" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
   
     <article id="post-microservice" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -99,11 +148,11 @@
 <h3 id="熔断机制"><a href="#熔断机制" class="headerlink" title="熔断机制"></a>熔断机制</h3><p>  当某个服务不可用，在超过一定的失败次数后进行熔断，后面请求该服务的处理直接返回失败状态，提高响应。之后会放少量的请求到该服务来验证该服务是否恢复正常，当该服务正常响应的到一定的次数，再关闭熔断。</p>
 <h3 id="服务降级"><a href="#服务降级" class="headerlink" title="服务降级"></a>服务降级</h3><p>  当某个功能不可用时，我们的系统不能因为这个功能点而奔溃。于是要进行降级，系统自动关闭该功能点，如：电商平台的推荐服务挂掉了，系统会关掉该功能以保障整个电商系统可以正常运行。</p>
 <h3 id="限流"><a href="#限流" class="headerlink" title="限流"></a>限流</h3><p>  在某个功能恢复正常后，用户可能会大量的请求该功能，我们要进行限流处理，不然系统可能会再次奔溃。进入一种奔溃到恢复再到奔溃的死循环中。</p>
-
+<h3 id="test"><a href="#test" class="headerlink" title="test"></a>test</h3>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blog.zyhahaha.com/microservice.html" data-id="ck0jpb6bq0004g4r0w80mflrf" class="article-share-link">分享</a>
+      <a data-url="http://blog.zyhahaha.com/microservice.html" data-id="ck2bxckte0008lkr0hh2yrdz4" class="article-share-link">分享</a>
       
       
     </footer>
@@ -144,7 +193,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blog.zyhahaha.com/frontend-direction.html" data-id="ck0jpb6c5000cg4r0kkcmldb4" class="article-share-link">分享</a>
+      <a data-url="http://blog.zyhahaha.com/frontend-direction.html" data-id="ck2bxckso0002lkr0962g7a5j" class="article-share-link">分享</a>
       
       
     </footer>
@@ -185,7 +234,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blog.zyhahaha.com/javascript-promise.html" data-id="ck0jpb6bo0003g4r02mv39mxv" class="article-share-link">分享</a>
+      <a data-url="http://blog.zyhahaha.com/javascript-promise.html" data-id="ck2bxckt20005lkr0ogrrt00a" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
@@ -229,7 +278,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blog.zyhahaha.com/server-deployment.html" data-id="ck0jpb6bw0006g4r0uexkuzf7" class="article-share-link">分享</a>
+      <a data-url="http://blog.zyhahaha.com/server-deployment.html" data-id="ck2bxcktk000alkr0215h7mco" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li></ul>
@@ -276,7 +325,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blog.zyhahaha.com/linux-deploy.html" data-id="ck0jpb6bz0007g4r0ot8tanq8" class="article-share-link">分享</a>
+      <a data-url="http://blog.zyhahaha.com/linux-deploy.html" data-id="ck2bxckt70006lkr0ce39efxu" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li></ul>
@@ -323,7 +372,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blog.zyhahaha.com/travel-qinghai.html" data-id="ck0jpb6c8000dg4r0knhmp8nx" class="article-share-link">分享</a>
+      <a data-url="http://blog.zyhahaha.com/travel-qinghai.html" data-id="ck2bxcktm000blkr0unl3t9t2" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/travel/">travel</a></li></ul>
@@ -370,7 +419,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blog.zyhahaha.com/travel-gouqi-island.html" data-id="ck0jpb6c10008g4r0nua72bl3" class="article-share-link">分享</a>
+      <a data-url="http://blog.zyhahaha.com/travel-gouqi-island.html" data-id="ck2bxcktp000elkr0e3rfya2e" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/travel/">travel</a></li></ul>
@@ -417,7 +466,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blog.zyhahaha.com/travel-zhangjiajie.html" data-id="ck0jpb6cc000fg4r008ahkqir" class="article-share-link">分享</a>
+      <a data-url="http://blog.zyhahaha.com/travel-zhangjiajie.html" data-id="ck2bxckts000glkr0nhqt6lea" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/travel/">travel</a></li></ul>
@@ -460,48 +509,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blog.zyhahaha.com/hexo-guide.html" data-id="ck0jpb6ba0000g4r0jbk14g4v" class="article-share-link">分享</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/hello-world.html" class="article-date">
-  <time datetime="2017-02-12T14:21:01.000Z" itemprop="datePublished">2017-02-12</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/hello-world.html">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-        
-          <p class="article-more-link">
-            <a href="/hello-world.html#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://blog.zyhahaha.com/hello-world.html" data-id="ck0jpb6bl0002g4r0cj6dv9tr" class="article-share-link">分享</a>
+      <a data-url="http://blog.zyhahaha.com/hexo-guide.html" data-id="ck2bxcksd0000lkr0grwnkjel" class="article-share-link">分享</a>
       
       
     </footer>
@@ -512,6 +520,11 @@
 
   
 
+
+  <nav id="page-nav">
+    
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">下一页 &raquo;</a>
+  </nav>
 
 </section>
         
@@ -554,6 +567,10 @@
       <ul>
         
           <li>
+            <a href="/web-secure.html">web安全</a>
+          </li>
+        
+          <li>
             <a href="/microservice.html">微服务</a>
           </li>
         
@@ -567,10 +584,6 @@
         
           <li>
             <a href="/server-deployment.html">前端项目的服务器部署</a>
-          </li>
-        
-          <li>
-            <a href="/linux-deploy.html">linux-deploy</a>
           </li>
         
       </ul>

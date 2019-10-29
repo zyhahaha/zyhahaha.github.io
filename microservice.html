@@ -14,7 +14,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="ResultFul API 消息队列RabbitMQ 服务发现Consul 熔断机制 服务降级 限流  服务发现 Consul  服务发现分为三个角色，提供者、消费者、服务中心。服务中心连接提供者和消费者。提供者将自己的服务地址注册到服务中心，消费者从服务中心获取自己想要的服务地址，然后消费这个服务。  服务中心就是一个字典，有很多key、value键值对，key是服务名称、value是提供者地">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-09-15T07:06:30.526Z">
+<meta property="og:updated_time" content="2019-09-19T13:00:41.025Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="微服务">
 <meta name="twitter:description" content="ResultFul API 消息队列RabbitMQ 服务发现Consul 熔断机制 服务降级 限流  服务发现 Consul  服务发现分为三个角色，提供者、消费者、服务中心。服务中心连接提供者和消费者。提供者将自己的服务地址注册到服务中心，消费者从服务中心获取自己想要的服务地址，然后消费这个服务。  服务中心就是一个字典，有很多key、value键值对，key是服务名称、value是提供者地">
@@ -35,7 +35,7 @@
 <body>
   <div id="container">
     <div id="wrap">
-      <header id="header">
+      <header id="header" style="display: none;">
   <div id="banner"></div>
   <div id="header-outer" class="outer">
     <!-- <div id="header-title" class="inner">
@@ -101,11 +101,11 @@
 <h3 id="熔断机制"><a href="#熔断机制" class="headerlink" title="熔断机制"></a>熔断机制</h3><p>  当某个服务不可用，在超过一定的失败次数后进行熔断，后面请求该服务的处理直接返回失败状态，提高响应。之后会放少量的请求到该服务来验证该服务是否恢复正常，当该服务正常响应的到一定的次数，再关闭熔断。</p>
 <h3 id="服务降级"><a href="#服务降级" class="headerlink" title="服务降级"></a>服务降级</h3><p>  当某个功能不可用时，我们的系统不能因为这个功能点而奔溃。于是要进行降级，系统自动关闭该功能点，如：电商平台的推荐服务挂掉了，系统会关掉该功能以保障整个电商系统可以正常运行。</p>
 <h3 id="限流"><a href="#限流" class="headerlink" title="限流"></a>限流</h3><p>  在某个功能恢复正常后，用户可能会大量的请求该功能，我们要进行限流处理，不然系统可能会再次奔溃。进入一种奔溃到恢复再到奔溃的死循环中。</p>
-
+<h3 id="test"><a href="#test" class="headerlink" title="test"></a>test</h3>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blog.zyhahaha.com/microservice.html" data-id="ck0jpb6bq0004g4r0w80mflrf" class="article-share-link">分享</a>
+      <a data-url="http://blog.zyhahaha.com/microservice.html" data-id="ck2bxckte0008lkr0hh2yrdz4" class="article-share-link">分享</a>
       
       
     </footer>
@@ -113,6 +113,15 @@
   
     
 <nav id="article-nav">
+  
+    <a href="/web-secure.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          web安全
+        
+      </div>
+    </a>
   
   
     <a href="/frontend-direction.html" id="article-nav-older" class="article-nav-link-wrap">
@@ -166,6 +175,10 @@
       <ul>
         
           <li>
+            <a href="/web-secure.html">web安全</a>
+          </li>
+        
+          <li>
             <a href="/microservice.html">微服务</a>
           </li>
         
@@ -179,10 +192,6 @@
         
           <li>
             <a href="/server-deployment.html">前端项目的服务器部署</a>
-          </li>
-        
-          <li>
-            <a href="/linux-deploy.html">linux-deploy</a>
           </li>
         
       </ul>
