@@ -1,6 +1,6 @@
 ---
 title: qBittorrent安装（Debian 11 OR Ubuntu18）
-date: 2022-08-02 16:55:42
+date: 2021-05-02 16:55:42
 categories:
   - 工具
 tags: 
