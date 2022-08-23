@@ -1,6 +1,6 @@
 ---
 title: 前端项目的服务器部署
-date: 2019-06-02 22:28:31
+date: 2019-12-02 22:28:31
 categories:
   - Linux
 tags: 
