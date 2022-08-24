@@ -10,3 +10,5 @@ tags:
 JavaScript Promise正确用法及其常见的错误用法。
 
 <!-- more -->
+
+未完待续，有时间再写

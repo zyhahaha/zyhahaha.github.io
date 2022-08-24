@@ -1,5 +1,5 @@
 ---
-title: 前端项目的服务器部署
+title: Web项目服务器部署
 date: 2021-12-05 22:28:31
 categories:
   - Linux
@@ -7,16 +7,16 @@ tags:
   - Linux
 ---
 
-前端项目的服务器部署
+作为一名Web开发，服务器部署肯定是一项必备技能，首先部署线上项目服务器肯定是要有的，不管是云服务器还是实体服务器都可以。
 
-<!-- more -->
-
-### 准备
-服务器、域名、dns解析、cdn服务、https证书
+### 前置条件
+必备：服务器、域名、DNS解析服务商
+非必备：CDN服务商、HTTPS证书（[SSL](https://blog.123123.store/ssl.html)）
 
 ### 目标
-在linux环境下的前端静态资源部署；
-cdn、https的部署。
+在Linux环境下的前端静态资源部署；
+CDN加速；
+HTTPS证书部署；
 
 <!-- more -->
 
@@ -32,9 +32,9 @@ cdn、https的部署。
 域名解析
 
 ### cdn
-内容分发网络
+推荐使用七牛云的CDN服务，每个月有10GB的免费额度
 
-### https部署
+### HTTPS部署
 ```
 server {
     listen 443;
