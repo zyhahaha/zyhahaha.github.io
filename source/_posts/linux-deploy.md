@@ -1,6 +1,6 @@
 ---
 title: Linux Deploy（在手机上运行Linux服务器）
-date: 2020-12-07 22:18:41
+date: 2021-07-20 22:18:41
 categories:
   - Linux
 tags: 
