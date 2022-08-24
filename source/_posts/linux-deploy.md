@@ -20,31 +20,34 @@ Android APP下载地址：https://github.com/meefik/linuxdeploy/releases/tag/2.3
 <!-- more -->
 
 下面就以我这台八年前的手机为例：
+
 ![华为G750](https://resource.123123.store/blog/linux-deploy/linux-deploy-phone.jpeg)
 
 通过上面的相关链接下载app，安装打开后页面是这样的
+
 ![软件界面](https://resource.123123.store/blog/linux-deploy/linux-deploy-default.jpeg)
 
 点击**右下角图标**进入以下配置界面，配置需要安装的**Linux发行版、镜像大小、用户名密码**、最下面有个开启**SSH服务**一定要勾选，不然没法远程访问（截图没截到，往下翻就看到了）。
+
 ![配置界面](https://resource.123123.store/blog/linux-deploy/linux-deploy-config.jpeg)
 
 通过一系列的配置、安装（*安装时间可能要十几分钟到半个小时*）后，点击**启动**按钮，出现以下页面代码启动成功
+
 ![启动成功](https://resource.123123.store/blog/linux-deploy/linux-deploy-start.jpeg)
 
 之后可以通过电脑SSH远程访问手机服务器
+
 ![MobaXterm](https://resource.123123.store/blog/linux-deploy/linux-deploy-ssh.jpg)
 ![查看服务器配置](https://resource.123123.store/blog/linux-deploy/linux-deploy-df.jpg)
 ![查看服务器CPU](https://resource.123123.store/blog/linux-deploy/linux-deploy-cpu.jpg)
 
 8核、2GB内存、2GB硬盘，硬盘有点小，可以挂载SD卡扩展空间（*可以看到df -h后，有一个sdcard1的30GB空间可用*），有时间我会细说一下怎么挂载SD卡。
 
-``` bash
-$ ssh root@192.168.1.1
-```
-
 ### 注意事项
 大家安装的时候看好版本，Android版本跟软件版本要对应上，低版本的系统用不了高版本的软件，反之亦然。
 
 对了还有一个重中之重的一个问题：安装这个软件**系统需要ROOT**⊙﹏⊙∥，如果无法ROOT的话，只能用另外一个替代方案了：[Termux](https://termux.dev/en/)
+
 ![Termux](https://termux.dev/assets/globals/home/htop_framed.png)
+
 有时间我会写一下Termux相关的教程，由于不需要ROOT相对而言Termux肯定在权限方面是不如**Linux Deploy**，不过作为一台Web服务器还是够的。
