@@ -1,6 +1,6 @@
 ---
 title: linux-deploy
-date: 2018-06-02 22:18:41
+date: 2020-12-07 22:18:41
 categories:
   - Linux
 tags: 

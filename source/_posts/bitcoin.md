@@ -1,6 +1,6 @@
 ---
 title: Linux环境比特币安装（Debian 11 OR Ubuntu18）
-date: 2021-07-05 17:28:58
+date: 2021-07-21 17:28:58
 tags: BTC
 ---
 
