@@ -22,6 +22,7 @@ HTTPS证书部署；
 
 ### DNS解析
 域名可以到各大[域名提供商](https://wanwang.aliyun.com/)那购买，这里就不详细说明。有了域名之后需要把域名解析到服务器上，这样用户才能访问我们部署在服务器上的资源，我用的是阿里云的[DNS解析服务](https://dns.console.aliyun.com/#/pdns/dashboard)，每个月有一定的免费额度，对于普通用户来说完全够用。
+![DNS解析](http://cdn.resource.123123.store/blog/server-deploy/server-deploy-dns.jpg)
 
 ### Nginx
 最常用的静态资源服务器
