@@ -62,8 +62,10 @@ sudo chown -R 777 /data
 ```
 
 ### 挂载NFS网络硬盘
-$ sudo apt-get install nfs-common
-$ mount -t nfs -o vers=3,nolock 10.187.128.183:/64fc2ca4-2d2a-4152-a97f-bee2df87d9f5 /mnt
+``` bash
+sudo apt-get install nfs-common
+mount -t nfs -o vers=3,nolock 10.187.128.183:/64fc2ca4-2d2a-4152-a97f-bee2df87d9f5 /mnt
+```
 
 ### 参考
 https://blog.csdn.net/qq_37358732/article/details/107568654
