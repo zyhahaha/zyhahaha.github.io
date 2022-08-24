@@ -7,4 +7,4 @@ tags:
   - PC
 ---
 
-default
+Default
