@@ -10,12 +10,14 @@ tags:
 Nuxt项目测试、生产**环境变量配置**，首先使用[cross-env](https://www.cnblogs.com/jiaoshou/p/12187504.html)（一款跨平台设置和使用环境变量的脚本）配置环境变量。
 
 #### 第一步：修改package.json文件（通过cross-env添加环境变量MODE）
-``` javascript
+``` json
 "scripts": {
     "test-start": "cross-env MODE=test nuxt start",
     "test": "cross-env MODE=test nuxt build",
 }
 ```
+
+<!-- more -->
 
 #### 第二步：创建env.js文件（各环境配置字典）
 ``` javascript
