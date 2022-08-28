@@ -17,6 +17,10 @@ tags:
 
 <!-- more -->
 
+### 使用手机USB共享网络
+我有一台小主机的电容被弄掉了，导致网口不能用，主板上的无线网卡也有点问题，本来打算放弃的。某天手机给windows电脑共享网络的时候，想起来通过USB应该也可以给Linux主机共享网络。
+参考博客：https://blog.csdn.net/ROSEBUD7_K/article/details/126092515
+
 ### 最低硬件要求
 CPU：1核1GHz、21世纪的CPU（只要不是上个世纪19xx年的CPU）
 无桌面系统：内存512MB、硬盘2GB
