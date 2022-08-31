@@ -28,4 +28,18 @@ nest new project-name
 * 基础的注册登录，JWT跨域认证解决方案（*一种基于 Token 的认证授权机制*）；
 * 通过阿里云SDK修改DNS解析地址；
 
+### PM2开机自启
+``` bash
+# 启动项目
+pm2 start xxxx
+# 保存pm2程序配置
+pm2 save
+# 生成开机自启动服务
+pm2 startup
+# 开机服务
+systemctl enable pm2-root
+# 重启
+reboot
+```
+
 未完待续，有时间再写
