@@ -23,7 +23,11 @@ CPU：1核1GHz、21世纪的CPU（只要不是上个世纪19xx年的CPU）
 桌面系统：内存1GB、硬盘10GB
 基本是个正常主机都可以安装，如果是特殊设备刷机（机顶盒、路由器等）可以自行查看debian安装手册
 
+### 制作启动盘
+制作启动盘的软件推荐使用UltraISO，然后到Debian官网下载ISO镜像，具体操作网上有很多，我这里就介绍一下关键词。
+
 ### 更新系统时间
+Debian安装成功后需要校正时间，否则访问网络会有一点点问题。
 ``` bash
 date # 查看当前的系统时间
 sudo apt-get update # 更新源
@@ -32,6 +36,7 @@ sudo ntpdate ntp1.aliyun.com # 更新系统时间
 ```
 
 ### 添加sudo
+系统安装后默认是没有sudo的，需要自行安装。
 ``` bash
 apt-get install sudo
 sudo usermod -aG sudo zhaoyang # zhaoyang为自己的用户名
