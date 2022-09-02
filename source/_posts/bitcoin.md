@@ -90,6 +90,12 @@ bitcoin-cli stop
 
 一些其他命令
 ``` bash
+# 创建钱包
+bitcoin-cli createwallet "zhaoyang"
+# 生成钱包地址
+bitcoin-cli getnewaddress "test"  #"test"是输入的账号label
+# 获取所有钱包地址及其账号名
+bitcoin-cli listreceivedbyaddress 1 true
 # 查看网络状态：
 bitcoin-cli getnetworkinfo
 # 查看网络节点：
@@ -163,8 +169,8 @@ Result:
 "txid"                  (string) 唯一标识tx_id
  
 Examples:
-> bitcoin-cli sendtoaddress "1M72Sfpbz1BPpXFHz9m3CdqATR44Jvaydd" 0.1
-> curl --user myusername --data-binary '{"jsonrpc": "1.0", "id":"curltest", "method": "sendtoaddress", "params": ["1M72Sfpbz1BPpXFHz9m3CdqATR44Jvaydd", 0.1] }' -H 'content-type: text/plain;' http://127.0.0.1:8332/
+> bitcoin-cli sendtoaddress "bc1q7wuvm9q4s0gr9mtqtn2wamjx0462hg43g8h8ak" 0.1
+> curl --user myusername --data-binary '{"jsonrpc": "1.0", "id":"curltest", "method": "sendtoaddress", "params": ["bc1q7wuvm9q4s0gr9mtqtn2wamjx0462hg43g8h8ak", 0.1] }' -H 'content-type: text/plain;' http://127.0.0.1:8332/
 ```
 
 ### Github地址
