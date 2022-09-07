@@ -181,3 +181,8 @@ https://bitcoincore.org/en/download/
 
 ### 下载地址
 https://bitcoincore.org/bin/
+
+### 门罗币
+官网（下载钱包）：https://www.getmonero.org/downloads/
+下载挖矿程序：https://github.com/xmrig/xmrig/releases
+矿池：mine.c3pool.com:13333
