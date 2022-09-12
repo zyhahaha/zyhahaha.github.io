@@ -53,6 +53,12 @@ dhclient usb0
 # 第三部：确认网络接口，usb0已分配IP地址代表配置成功
 ```
 
+### 限制CPU
+``` bash
+sudo apt-get update; sudo apt-get install -y cpulimit
+sudo cpulimit -e xmrig -l 75 -b
+```
+
 ### 跑分
 
 安装必要程序
