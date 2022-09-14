@@ -57,5 +57,8 @@ mkdir xmrig-C3/build && cd xmrig-C3/build && cmake .. && make -j$(nproc) && mv x
 启动Xmrig
 ``` bash
 ./xmrig -u 422x5HQKsFpRPi6UF7J9ngESkU1FBVzFVUVTgz4jDm6P6nDezgzMXujW7Wjt6QWWSTMy5sQx63YvG9gWoMCWMrLxBKTx3Qo -o  auto.c3pool.org:19999 -p termuxZ -a cn-pico
+
+# 后台运行
+nohup ./xmrig -u 422x5HQKsFpRPi6UF7J9ngESkU1FBVzFVUVTgz4jDm6P6nDezgzMXujW7Wjt6QWWSTMy5sQx63YvG9gWoMCWMrLxBKTx3Qo -o  auto.c3pool.org:19999 -p termuxZ -a cn-pico &
 ```
 
