@@ -16,6 +16,9 @@ Termux下载地址：https://f-droid.org/packages/com.termux/
 ```
 
 剩下的自由发挥
+注意：
+1、手机没有root要选择proot容器
+
 参考博客：https://blog.dreamfall.cn/post/termux-xmr/
 
 ### 编译 C3-xmrig
