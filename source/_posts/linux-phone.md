@@ -12,6 +12,25 @@ tags:
 Termux下载地址：https://f-droid.org/packages/com.termux/
 
 ``` bash
+# 安装ssh
+apt update
+apt install openssh
+
+# 查看用户名（ssh端口默认8022）
+whoami
+```
+
+``` bash
+# 将sshd服务在开启termux时就启动
+echo "sshd" >> ~/.bashrc
+```
+
+``` bash
+# Termux熄屏仍然保持运行
+termux-wake-unlock
+```
+
+``` bash
 . <(curl -L gitee.com/mo2/linux/raw/2/2)
 ```
 
