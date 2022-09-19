@@ -32,6 +32,9 @@ termux-wake-unlock
 
 ``` bash
 . <(curl -L gitee.com/mo2/linux/raw/2/2)
+
+# 查看Linux发行版
+lsb_release -a
 ```
 
 剩下的自由发挥
