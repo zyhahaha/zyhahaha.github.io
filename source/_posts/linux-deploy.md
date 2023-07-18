@@ -48,6 +48,6 @@ Android APP下载地址：https://github.com/meefik/linuxdeploy/releases/tag/2.3
 
 对了还有一个重中之重的一个问题：安装这个软件**系统需要ROOT**⊙﹏⊙∥，如果无法ROOT的话，只能用另外一个替代方案了：[Termux](https://termux.dev/en/)
 
-![Termux](https://termux.dev/assets/globals/home/htop_framed.png)
+<!-- ![Termux](https://termux.dev/assets/globals/home/htop_framed.png) -->
 
 有时间我会写一下Termux相关的教程，由于不需要ROOT相对而言Termux肯定在权限方面是不如**Linux Deploy**，不过作为一台Web服务器还是够的。
