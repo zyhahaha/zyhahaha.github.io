@@ -23,7 +23,7 @@ HTTPS证书部署；
 ### DNS域名解析
 域名可以到各大[域名提供商](https://wanwang.aliyun.com/)那购买，这里就不详细说明。有了域名之后需要把域名解析到服务器上，这样用户才能访问我们部署在服务器上的资源，我用的是阿里云的[DNS解析服务](https://dns.console.aliyun.com/#/pdns/dashboard)，每个月有一定的**免费额度**，对于普通用户来说完全够用。
 
-![DNS解析](https://resource.123123.store/blog/server-deploy/server-deploy-dns.jpg)
+![DNS解析](http://119.96.189.81:7788/blog/server-deploy/server-deploy-dns.jpg)
 
 可以看到子域名、CDN这些都需要用到DNS解析，而且还可以把域名解析到**Ipv6**地址上（*这个功能大家能想到啥？*）感兴趣可以看我[另一篇博客](https://blog.123123.store/linux-deploy.html)通过Ipv6手机提供公网访问。
 
