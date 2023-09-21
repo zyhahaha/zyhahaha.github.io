@@ -49,15 +49,15 @@ docker run -d -e LISTEN_ADDR=":28888" --name=wxedge2 \
   onething1/wxedge
 ```
 
-### 注册网心云
-https://act.walk-live.com/acts/invite?inviteid=51845cd2
-这个是拉新链接，邀请人和被邀请人均可获得优惠券
+### 相关链接
+    注册网心云：这个是拉新链接，邀请人和被邀请人均可获得优惠券
+    https://act.walk-live.com/acts/invite?inviteid=51845cd2
+    
+    安装网心云：
+    可到应用市场下载，也可以通过上面的链接注册下载。
 
-### 安装网心云
-可到应用市场下载，也可以通过上面的链接注册下载。
-
-### 官网
-https://www.onethingcloud.com/
+    官网：
+    https://www.onethingcloud.com/
 
 ### Docker Hub
 https://hub.docker.com/r/onething1/wxedge
