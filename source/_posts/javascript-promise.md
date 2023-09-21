@@ -1,6 +1,6 @@
 ---
 title: JavaScript Promise个人理解
-date: 2020-07-12 22:30:00
+date: 2019-07-12 22:30:00
 categories:
   - Javascript
 tags: 

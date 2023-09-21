@@ -1,6 +1,6 @@
 ---
 title: Linux Termux（在手机上运行Linux服务器）
-date: 2022-09-13 22:17:40
+date: 2022-08-13 22:17:40
 categories:
   - Linux
 tags: 
@@ -19,6 +19,8 @@ apt install openssh
 # 查看用户名（ssh端口默认8022）
 whoami
 ```
+
+<!-- more -->
 
 ``` bash
 # 将sshd服务在开启termux时就启动
