@@ -27,7 +27,8 @@ tags:
 
 #### 安装Docker
 ``` bash
-curl -sSL https://get.daocloud.io/docker | sh
+curl -fsSL https://get.docker.com -o get-docker.sh
+sudo sh get-docker.sh
 ```
 
 #### 拉取Docker镜像并启动
@@ -58,6 +59,10 @@ docker run -d -e LISTEN_ADDR=":28888" --name=wxedge2 \
 
     官网：
     https://www.onethingcloud.com/
+
+### 特别提示
+App上推荐的产品统统不要买，包括各种硬件设备，就跟以前的玩客云一样。
+想玩就玩**X86 Docker**版（*官方叫法：容器魔方*），也就是本文介绍的这种部署方式，不用买设备，直接用闲置服务器跑。
 
 ### Docker Hub
 https://hub.docker.com/r/onething1/wxedge
