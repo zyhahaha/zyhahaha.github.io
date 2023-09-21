@@ -38,6 +38,9 @@ HTTPS证书部署；
 
 2. 配置
 ``` bash
+$ cd /etc/nginx/conf.d
+$ vim sites.conf
+
 server {
   listen 80;
   server_name zyhahaha.github.io;
