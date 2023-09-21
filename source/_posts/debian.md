@@ -1,6 +1,6 @@
 ---
 title: Debian
-date: 2021-07-05 21:45:46
+date: 2022-07-05 21:45:46
 categories:
   - 个人爱好
 tags: 

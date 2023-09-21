@@ -1,6 +1,6 @@
 ---
 title: Nuxt多环境配置
-date: 2022-08-26 16:00:10
+date: 2018-08-26 16:00:10
 categories:
   - Javascript
 tags: 
