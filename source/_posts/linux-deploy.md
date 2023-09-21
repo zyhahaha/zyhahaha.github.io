@@ -21,25 +21,25 @@ Android APP下载地址：https://github.com/meefik/linuxdeploy/releases/tag/2.3
 
 下面就以我这台八年前的手机为例：
 
-![华为G750](http://119.96.189.81:7788/blog/linux-deploy/linux-deploy-phone.jpeg)
+![华为G750](https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/linux-deploy/linux-deploy-phone.jpeg)
 
 通过上面的相关链接下载app，安装打开后页面是这样的
 
-![软件界面](http://119.96.189.81:7788/blog/linux-deploy/linux-deploy-default.jpeg)
+![软件界面](https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/linux-deploy/linux-deploy-default.jpeg)
 
 点击**右下角图标**进入以下配置界面，配置需要安装的**Linux发行版、镜像大小、用户名密码**、最下面有个开启**SSH服务**一定要勾选，不然没法远程访问（截图没截到，往下翻就看到了）。
 
-![配置界面](http://119.96.189.81:7788/blog/linux-deploy/linux-deploy-config.jpeg)
+![配置界面](https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/linux-deploy/linux-deploy-config.jpeg)
 
 通过一系列的配置、安装（*安装时间可能要十几分钟到半个小时*）后，点击**启动**按钮，出现以下页面代码启动成功
 
-![启动成功](http://119.96.189.81:7788/blog/linux-deploy/linux-deploy-start.jpeg)
+![启动成功](https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/linux-deploy/linux-deploy-start.jpeg)
 
 之后可以通过电脑SSH远程访问手机服务器
 
-![MobaXterm](http://119.96.189.81:7788/blog/linux-deploy/linux-deploy-ssh.jpg)
-![查看服务器配置](http://119.96.189.81:7788/blog/linux-deploy/linux-deploy-df.jpg)
-![查看服务器CPU](http://119.96.189.81:7788/blog/linux-deploy/linux-deploy-cpu.jpg)
+![MobaXterm](https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/linux-deploy/linux-deploy-ssh.jpg)
+![查看服务器配置](https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/linux-deploy/linux-deploy-df.jpg)
+![查看服务器CPU](https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/linux-deploy/linux-deploy-cpu.jpg)
 
 8核、2GB内存、2GB硬盘，硬盘有点小，可以挂载SD卡扩展空间（*可以看到df -h后，有一个sdcard1的30GB空间可用*），有时间我会细说一下怎么挂载SD卡。
 
