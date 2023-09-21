@@ -26,8 +26,8 @@ JoySSL会提供多种Web服务器的SSL证书及对应的部署文档，大家�
 
 ### 配置SSL证书（Nginx）
 这里我以Nginx为例，最后会得到两个文件，分别是 *.key*、*.crt*格式的。
-1、将证书文件和 KEY 文件都上传到服务器（推荐放到 etc/nginx/cert/文件夹下）
-2、修改 nginx 配置文件如下(默认配置文件一般是在/etc/nginx/目录下)：
+1. 将证书文件和 KEY 文件都上传到服务器（推荐放到 etc/nginx/cert/文件夹下）
+2. 修改 nginx 配置文件如下(默认配置文件一般是在/etc/nginx/目录下)：
 ``` bash
 # ssl配置
 server {
