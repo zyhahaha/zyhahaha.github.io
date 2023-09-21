@@ -20,29 +20,29 @@ tags: BTC
 安装bitcoincore全节点需要400GB的硬盘空间，如果硬盘空间不足可以安装bitcoincore轻节点，如何选择全节点还是轻节点在后面会说。
 使用轻节点需要大约7GB的硬盘空间
 
-1、下载bitcoin（https://bitcoincore.org/en/download/）
+1. 下载bitcoin
+https://bitcoincore.org/en/download/
 ``` bash
 wget https://bitcoincore.org/bin/bitcoin-core-0.21.0/bitcoin-0.21.0-x86_64-linux-gnu.tar.gz
 ```
 
-2、下载解压后
+2. 下载解压后
 ``` bash
 tar xzf bitcoin-0.21.0-x86_64-linux-gnu.tar.gz
 ```
 
-3、使用图形界面安装
+3. 使用图形界面安装
 ``` bash
 sudo install -m 0755 -o root -g root -t /usr/local/bin bitcoin-0.21.0/bin/*
-```
-``` bash
+
 /usr/local/bin/bitcoin-qt
 ```
 
-4、安装完成，开始同步区块（这个时候可以关闭GUI程序，剩下的使用命令行操作）
+4. 安装完成，开始同步区块（这个时候可以关闭GUI程序，剩下的使用命令行操作）
 
 ### bitcoin配置
 
-1、bitcoin的默认配置目录为 ~/.bitcoin/bitcoin.conf，填写以下配置
+1. bitcoin的默认配置目录为 ~/.bitcoin/bitcoin.conf，填写以下配置
 ``` bash
 # ~/.bitcoin/bitcoin.conf
 datadir=/opt/btc/datadir
@@ -121,7 +121,6 @@ ls wallets/
 database  db.log  wallet.dat
 ```
 ``` bash
-
 bitcoind.pid bitcoind   运行的进程文件
  
 blocks  区块链数据文件
@@ -184,6 +183,6 @@ https://bitcoincore.org/en/download/
 https://bitcoincore.org/bin/
 
 ### 门罗币
-官网（下载钱包）：https://www.getmonero.org/downloads/
-下载挖矿程序：https://github.com/xmrig/xmrig/releases
-矿池：mine.c3pool.com:13333
+1. 官网（下载钱包）：https://www.getmonero.org/downloads/
+2. 下载挖矿程序：https://github.com/xmrig/xmrig/releases
+3. 矿池：mine.c3pool.com:13333
