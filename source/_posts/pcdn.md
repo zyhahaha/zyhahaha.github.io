@@ -39,7 +39,7 @@ docker run -d --name=wxedge \
   -v /data/wxedge_storage:/storage:rw  \
   onething1/wxedge
 ```
-注意：/data/wxedge_storage需要改成自己的本地路径
+注意：/data/wxedge_storage需要改成自己的本地路径（*当然不该也行*）
 
 #### 多实例
 ``` bash
@@ -59,6 +59,12 @@ docker run -d -e LISTEN_ADDR=":28888" --name=wxedge2 \
 
     官网：
     https://www.onethingcloud.com/
+
+### 最后一步
+安装完App后，浏览器访问 你服务器IP:18888，会出现下面的界面，再通过App扫一扫浏览器的二维码添加设备。
+![浏览器打开 IP:18888](https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/pcdn/qrcode.jpg)
+![App扫一扫](https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/pcdn/scan.jpg)
+![设备列表](https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/pcdn/device.jpg)
 
 ### 特别提示
 App上推荐的产品统统不要买，包括各种硬件设备，就跟以前的玩客云一样。
