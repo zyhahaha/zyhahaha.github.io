@@ -20,6 +20,9 @@ tags:
 
 **个人观点：** *这个也就是玩玩，别指望它赚多少钱。用自己电脑做CDN节点，一方面要24小时开机，费电、费硬盘、占网络*；
 
+### 声明
+本文不是教你赚钱的教程，我写文章的初衷是分享一些有意思的工具、软件、想法等。欢迎各位志同道合，爱折腾的朋友一起探讨。
+
 <!-- more -->
 
 #### 安装Docker
@@ -45,6 +48,16 @@ docker run -d -e LISTEN_ADDR=":28888" --name=wxedge2 \
   -v /home/zyhahaha/wxy:/storage:rw  \
   onething1/wxedge
 ```
+
+### 注册网心云
+https://act.walk-live.com/acts/invite?inviteid=51845cd2
+这个是拉新链接，邀请人和被邀请人均可获得优惠券
+
+### 安装网心云
+可到应用市场下载，也可以通过上面的链接注册下载。
+
+### 官网
+https://www.onethingcloud.com/
 
 ### Docker Hub
 https://hub.docker.com/r/onething1/wxedge
