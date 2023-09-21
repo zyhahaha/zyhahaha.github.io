@@ -25,7 +25,7 @@ HTTPS证书部署；
 
 ![DNS解析](https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/server-deploy/server-deploy-dns.jpg)
 
-可以看到子域名、CDN这些都需要用到DNS解析，而且还可以把域名解析到**Ipv6**地址上（*这个功能大家能想到啥？*）感兴趣可以看我[另一篇博客](https://blog.123123.store/linux-deploy.html)通过Ipv6手机提供公网访问。
+可以看到子域名、CDN这些都需要用到DNS解析，而且还可以把域名解析到**Ipv6**地址上（*这个功能大家能想到啥？*）感兴趣可以看我[另一篇博客](https://zyhahaha.github.io/linux-deploy.html)通过Ipv6手机提供公网访问。
 
 ### Nginx
 通过DNS服务把域名解析到我们的服务器上面，那么我们要怎么提供Web服务呢，这里就要用到Nginx Web服务，下面简单说一下配置步骤：
@@ -40,7 +40,7 @@ HTTPS证书部署；
 ``` bash
 server {
   listen 80;
-  server_name blog.123123.store;
+  server_name zyhahaha.github.io;
 
   location / {
           root /home/zyhahaha/sites/zyhahaha.github.io;
@@ -59,4 +59,4 @@ server {
 关于CDN服务，这里推荐使用七牛云的[CDN服务](https://portal.qiniu.com/cdn/overview)，每个月有10GB的免费额度
 
 ### HTTPS部署
-关于HTTPS部署我最近专门开了[一篇文章](https://blog.123123.store/ssl.html)叙述，大家感兴趣的可以去看一下。
+关于HTTPS部署我最近专门开了[一篇文章](https://zyhahaha.github.io/ssl.html)叙述，大家感兴趣的可以去看一下。

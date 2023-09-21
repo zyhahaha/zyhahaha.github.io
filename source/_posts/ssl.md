@@ -30,7 +30,7 @@ JoySSL会提供多种Web服务器的SSL证书及对应的部署文档，大家�
 # ssl配置
 server {
     listen 443;
-    server_name blog.123123.store; #修改为您证书绑定的域名。
+    server_name zyhahaha.github.io; #修改为您证书绑定的域名。
     ssl on; #设置为 on 启用 SSL 功能。
     root html;
     index index.html index.htm;
@@ -59,7 +59,7 @@ nginx -s reload
 ``` bash
 server {
     listen 80;
-    server_name blog.123123.store;
+    server_name zyhahaha.github.io;
     return 301 https://$server_name$request_uri;
 }
 ```
