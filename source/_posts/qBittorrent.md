@@ -87,6 +87,8 @@ sudo systemctl status qbittorrent-nox
 
 默认登陆网址：ip:8080
 
+![DNS解析](https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/qBittorrent/web-ui.jpg)
+
 ### 最后
 你可能会好奇，我们安装的不是*qbittorrent*吗，怎么安装命令是*qbittorrent-nox*。
 解释一下这个**nox**就是**No x-server**，因为qbittorrent是默认使用x-server提供图形界面服务的，想要使用Web版，还要关闭、配置，太麻烦，这里我们干脆直接使用nox版本。
