@@ -80,4 +80,4 @@ node index.js
 5. delete-hash.js *删除已经处理的磁力链接任务*
 
 ### 结束
-![frontend](https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/dht/frontend.png)
+![frontend](https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/dht/frontend.jpg)
