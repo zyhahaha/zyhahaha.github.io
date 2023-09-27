@@ -8,7 +8,7 @@ tags:
 ---
 
 一直很好奇那些资源站、磁力链接网站是怎么做到这么多资源的，经过一番专研，我自建了一个磁力链接网站，这里给大家分享一下它是怎么实现的。
-经过这篇文章的讲解，大家也可以搭建属于自己的磁力链接网站。
+经过这篇文章的讲解，大家也可以搭建属于自己的**磁力链接网站**。
 
 ### 前置条件
 1. 至少一台linux服务器（*最好两台*）
@@ -46,9 +46,10 @@ spider.listen(6339)
 
 ### 把磁力链接hash存入数据库
 这一步是最简单的一步，因为我的后端代码包含一些敏感信息就没有开源，大家自己搭建一个后端，提供基础的增删改查功能，用于保存磁力链接数据。
-这里我推荐用**Nestjs**作为后端框架，感兴趣的可以看我另外一篇文章：https://zyhahaha.github.io/nestjs.html
 
-我们只需要保存**ensureHash**事件返回的hash即可
+这里我推荐用**Nestjs**作为后端框架，感兴趣的可以看我**另外一篇文章**：https://zyhahaha.github.io/nestjs.html
+
+我们只需要保存**ensureHash**事件返回的hash即可：
 ``` javascript
 spider.on('ensureHash', (hash, addr)=> {
   // 保存磁力链接到数据库
@@ -66,18 +67,18 @@ spider.on('ensureHash', (hash, addr)=> {
 
 通过qbittorrent下载种子，获取磁力链接内容，实现自动化下载、获取、存入数据库。
 市面上有这么多磁力链接下载软件，我为啥选择**qbittorrent**呢，因为qbittorrent提供了所有操作的**Web Api**，我们可以用脚本调用Web Api来自动下载资源、获取资源内容、删除已经下好的任务。
-具体代码在parse-hash-v2文件夹内
+具体代码在parse-hash-v2文件夹内：
 ``` bash
 cd parse-hash-v2
 
 node index.js
 ```
 简述各脚本的用处：
-1. query-remote-hash-list.js *获取数据库内的磁力链接*
-2. add-hash.js *把磁力链接添加入qbittorrent任务*
-3. query-local-hash-list.js *获取qbittorrent内下载完成的任务*
-4. update-remote-hash.js *把上一步获取的种子内容更新到数据库中*
-5. delete-hash.js *删除已经处理的磁力链接任务*
+1. query-remote-hash-list.js **获取数据库内的磁力链接**
+2. add-hash.js **把磁力链接添加入qbittorrent任务**
+3. query-local-hash-list.js **获取qbittorrent内下载完成的任务**
+4. update-remote-hash.js **把上一步获取的种子内容更新到数据库中**
+5. delete-hash.js **删除已经处理的磁力链接任务**
 
 ### 数据就绪提供客户端用于浏览
 程序跑了一会慢慢数据就来了，我这个程序跑了**10天左右**，总数据已经有**400多万**，已解析的数据也有78万左右（*解析比较慢*）。
