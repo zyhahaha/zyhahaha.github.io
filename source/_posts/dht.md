@@ -34,7 +34,7 @@ tags:
 ![Github仓库](https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/dht/github.jpg)
 
 
-下面我说一下调用方式。
+下面说一下调用方式。
 ``` javascript
 const spider = new (require('./lib/spider'))
 
@@ -64,8 +64,8 @@ spider.on('ensureHash', (hash, addr)=> {
 那么如何获取种子呢，这里就需要用到qbittorrent，可以用它通过磁力链接来下载种子。
 ![qbittorrent](https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/dht/qbittorrent.png)
 
-通过qbittorrent下载种子，获取磁力链接内容，如何实现自动化下载、获取、存入数据库。
-市面上有这么多磁力链接下载软件，我为啥选择qbittorrent呢，因为qbittorrent提供了Web Api，我们可以用脚本调用Web Api来自动下载资源、获取资源内容、删除已经下好的任务。
+通过qbittorrent下载种子，获取磁力链接内容，实现自动化下载、获取、存入数据库。
+市面上有这么多磁力链接下载软件，我为啥选择**qbittorrent**呢，因为qbittorrent提供了所有操作的**Web Api**，我们可以用脚本调用Web Api来自动下载资源、获取资源内容、删除已经下好的任务。
 具体代码在parse-hash-v2文件夹内
 ``` bash
 cd parse-hash-v2
@@ -79,5 +79,13 @@ node index.js
 4. update-remote-hash.js *把上一步获取的种子内容更新到数据库中*
 5. delete-hash.js *删除已经处理的磁力链接任务*
 
-### 结束
+### 数据就绪提供客户端用于浏览
+程序跑了一会慢慢数据就来了，我这个程序跑了**10天左右**，总数据已经有**400多万**，已解析的数据也有78万左右（*解析比较慢*）。
+
+现在有了数据，我们需要提供一个前端页面来显示我们的成果，可以是一个网页，也可以是一个App。
+
+这里我用**React Native**写了一个App，**已开源**。感兴趣的开源下载代码改巴改巴自己用。
+
 ![frontend](https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/dht/frontend.jpg)
+
+### 结束
