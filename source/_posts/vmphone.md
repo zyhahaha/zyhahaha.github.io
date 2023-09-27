@@ -18,16 +18,16 @@ tags:
 直接安装运行即可，这里说一下它的应用场景：
 游戏辅助脚本、**虚拟定位**、**谷歌服务**、国外应用等
 
+![虚拟机桌面](https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/vmphone/desktop.jpg)
+
 举个例子：
-众所周知**国外版抖音（TikTok）**正常情况下在我们手机上是运行不起来的，运行不起来的原因不言而喻。
+众所周知国外版抖音（**TikTok**）正常情况下在我们手机上是运行不起来的，运行不起来的原因不言而喻。
 那运行不起来的原理是什么：
 1. 网络环境不支持
 2. 使用地区不支持
 
 网络环境如何解决？答案是科学上网。
 上面说到虚拟机支持**虚拟定位**，第二个使用地区不支持的问题也迎刃而解。
-
-![虚拟机桌面](https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/vmphone/desktop.jpg)
 
 如何修改定位，点击右侧的悬浮球打开设置 -> 国家 -> 修改
 
