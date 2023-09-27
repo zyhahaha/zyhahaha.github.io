@@ -74,11 +74,11 @@ cd parse-hash-v2
 node index.js
 ```
 简述各脚本的用处：
-1. query-remote-hash-list.js **获取数据库内的磁力链接**
-2. add-hash.js **把磁力链接添加入qbittorrent任务**
-3. query-local-hash-list.js **获取qbittorrent内下载完成的任务**
-4. update-remote-hash.js **把上一步获取的种子内容更新到数据库中**
-5. delete-hash.js **删除已经处理的磁力链接任务**
+1. query-remote-hash-list.js *获取数据库内的磁力链接*
+2. add-hash.js *把磁力链接添加入qbittorrent任务*
+3. query-local-hash-list.js *获取qbittorrent内下载完成的任务*
+4. update-remote-hash.js *把上一步获取的种子内容更新到数据库中*
+5. delete-hash.js *删除已经处理的磁力链接任务*
 
 ### 数据就绪提供客户端用于浏览
 程序跑了一会慢慢数据就来了，我这个程序跑了**10天左右**，总数据已经有**400多万**，已解析的数据也有78万左右（*解析比较慢*）。
@@ -87,6 +87,6 @@ node index.js
 
 这里我用**React Native**写了一个App，**已开源**。感兴趣的开源下载代码改巴改巴自己用。
 
-![frontend](https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/dht/frontend.jpg)
+![客户端](https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/dht/frontend-v2.jpg)
 
 ### 结束
