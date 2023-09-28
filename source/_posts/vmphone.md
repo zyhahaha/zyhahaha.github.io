@@ -20,7 +20,10 @@ tags:
 
 ![虚拟机桌面](https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/vmphone/desktop.jpg)
 
-举个例子：
+##### 场景一：运行游戏脚本
+![运行游戏脚本](https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/vmphone/game.png)
+
+再举个例子：
 众所周知国外版抖音（**TikTok**）正常情况下在我们手机上是运行不起来的，运行不起来的原因不言而喻。
 那运行不起来的原理是什么：
 1. 网络环境不支持
