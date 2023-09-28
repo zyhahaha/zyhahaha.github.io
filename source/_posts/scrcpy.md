@@ -19,7 +19,7 @@ scrcpy可以通过adb调试的方式把安卓手机屏幕投放到电脑上，�
 ### 前置条件
 * 电脑下载scrcpy软件（https://github.com/Genymobile/scrcpy）
 * 安卓5.0以上，打开**开发者选项**，打开**USB调试**
-* USB连接电脑，手机同意USB调试
+* USB连接电脑，手机同意USB调试，信任此电脑
 
 <!-- more -->
 
