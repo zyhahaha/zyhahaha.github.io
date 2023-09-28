@@ -20,7 +20,20 @@ tags:
 * DockerHub https://hub.docker.com/r/kodcloud/kodbox
 * 可运行Docker的计算机一台
 
-
 <!-- more -->
 
-##### Docker
+### 安装开始
+**可道云kodbox**基于PHP，数据库使用的是Mysql，用户可以自己装安装PHP、Mysql环境来进行安装，也可以通过Docker快速安装。
+这里介绍Docker的安装流程（Docker安装比较简单，不需要安装环境）：
+
+#### 安装Docker
+``` bash
+curl -fsSL https://get.docker.com -o get-docker.sh
+sudo sh get-docker.sh
+```
+
+#### 拉取Docker镜像并启动
+``` bash
+mkdir /data
+docker run -d -p 80:80 -v /data:/var/www/html kodcloud/kodbox
+```
