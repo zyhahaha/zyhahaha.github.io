@@ -49,3 +49,9 @@ scrcpy.exe
 ![cmd](https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/scrcpy/cmd.jpg)
 
 ![phone](https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/scrcpy/phone.jpg)
+
+快捷键：
+1. Alt + O 手机息屏，电脑继续控制手机（*摸鱼更安心*）
+2. Alt + F 切换全屏
+3. Alt + 上下键  调节音量
+
