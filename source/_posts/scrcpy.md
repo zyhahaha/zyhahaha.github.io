@@ -37,7 +37,7 @@ https://github.com/Genymobile/scrcpy
 首先准备一个安卓5.0以上的手机（*现在的手机基本支持*），打开**开发者选项**（怎么打开就不细说了，很简单自行百度），打开**USB调试**。
 如果在后续投屏时电脑无法操作手机，可能是你手机还有个**USB模拟点击**选项，这个选项也要打开。
 
-### 开始投屏
+### 开始投屏（有线连接）
 手机usb连接电脑，cmd进入scrcpy文件夹目录
 ``` bash
 # adb查看设备
@@ -55,3 +55,20 @@ scrcpy.exe
 2. Alt + F 切换全屏
 3. Alt + 上下键  调节音量
 
+### 无线连接（WIFI）
+
+无线连接的前提是已经有线连接过设备，并且手机与电脑在同一局域网下，以上操作成功后按Ctrl + C结束投屏。
+下面开始通过WIFI无线操作：
+
+``` bash
+# 找到你手机的IP地址，确认在同一局域网下
+ping ip地址
+
+# 比如你手机的IP地址为192.168.0.69
+scrcpy --tcpip = 192.168.0.69
+```
+
+![WIFI连接](https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/scrcpy/wifi-connect.jpg)
+
+### 结束
+更多功能持续探索中
