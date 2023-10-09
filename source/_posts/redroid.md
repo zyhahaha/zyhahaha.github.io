@@ -55,6 +55,16 @@ docker run -itd --rm --memory-swappiness=0 \
     redroid.gpu.mode=guest
 ```
 
+OR
+
+``` bash
+docker run -itd --rm --privileged \
+    --pull always \
+    -v ~/data:/data \
+    -p 5555:5555 \
+    redroid/redroid:11.0.0-latest
+```
+
 ### adb连接
 ``` bash
 # 如果是远程机器，localhost改为对应的ip
