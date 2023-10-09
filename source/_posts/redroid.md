@@ -29,6 +29,18 @@ sudo systemctl start docker
 sudo systemctl enable docker
 ```
 
+##### docker镜像
+``` bash
+vim /etc/docker/daemon.json
+
+{
+ "registry-mirrors": ["https://docker.mirrors.tuna.tsinghua.edu.cn"]
+}
+
+sudo systemctl daemon-reload
+sudo systemctl restart docker
+```
+
 ##### 安装依赖
 
 ``` bash
@@ -78,4 +90,58 @@ snap install scrcpy
 
 ### 三、Redroid安装完成，开始安装Magisk
 参考文档：https://gist.github.com/assiless/a23fb52e8c6156db0474ee8973c4be66
+
+##### 设置环境变量
+``` bash
+echo -e "\n
+export image=redroid/redroid:11.0.0-amd64
+export image_tar=${HOME}/redroid:11.0.0-amd64" >> ${HOME}/.bashrc
+source ${HOME}/.bashrc
+```
+
+##### 使用docker安装
+``` bash
+
+```
+
+``` bash
+
+```
+
+``` bash
+
+```
+``` bash
+
+```
+
+``` bash
+
+```
+
+``` bash
+
+```
+``` bash
+
+```
+
+``` bash
+
+```
+
+``` bash
+
+```
+``` bash
+
+```
+
+``` bash
+
+```
+
+``` bash
+
+```
 
