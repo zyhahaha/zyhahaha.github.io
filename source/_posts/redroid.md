@@ -49,7 +49,7 @@ docker run -itd --rm --memory-swappiness=0 \
     --privileged --pull always \
     -v /data:/data \
     -p 5556:5555 \
-    redroid/redroid:8.1.0-latest \
+    redroid/redroid:11.0.0-latest \
     androidboot.hardware=mt6891 ro.secure=0 ro.boot.hwc=GLOBAL ro.ril.oem.imei=861503068361145 ro.ril.oem.imei1=861503068361145 ro.ril.oem.imei2=861503068361148 ro.ril.miui.imei0=861503068361148 ro.product.manufacturer=Xiaomi ro.build.product=chopin \
     redroid.width=720 redroid.height=1280 \
     redroid.gpu.mode=guest
