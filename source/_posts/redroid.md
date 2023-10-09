@@ -19,7 +19,7 @@ tags:
 
 <!-- more -->
 
-### 安装
+### 一、安装
 
 ##### 安装docker
 
@@ -75,3 +75,7 @@ adb connect localhost:5555
 ``` bash
 snap install scrcpy
 ```
+
+### 三、Redroid安装完成，开始安装Magisk
+参考文档：https://gist.github.com/assiless/a23fb52e8c6156db0474ee8973c4be66
+
