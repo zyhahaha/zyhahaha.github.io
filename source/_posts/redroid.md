@@ -118,7 +118,7 @@ sudo docker load -i redroidBak.tar
 
 ##### Setting Up
 ``` bash
-mkdir ~/MagiskOnRedroid
+sudo mkdir ~/MagiskOnRedroid
 cd ~/MagiskOnRedroid
 ```
 
