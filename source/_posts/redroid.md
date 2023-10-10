@@ -8,6 +8,7 @@ tags:
 ---
 
 使用Redroid在服务器上搭建云手机
+https://hub.docker.com/r/redroid/redroid
 
 ### 前置条件
 * 云服务器
@@ -105,6 +106,7 @@ source ${HOME}/.bashrc
 sudo docker pull $image
 # 导出镜像
 sudo docker save --output redroidBak.tar $image
+# sudo docker save --output redroidBak.tar redroid/redroid:11.0.0-latest
 ```
 
 ``` bash
