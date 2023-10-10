@@ -95,8 +95,8 @@ snap install scrcpy
 ##### 设置环境变量
 ``` bash
 echo -e "\n
-export image=redroid/redroid:11.0.0-amd64
-export image_tar=${HOME}/redroid:11.0.0-amd64" >> ${HOME}/.bashrc
+export image=redroid/redroid:11.0.0-latest
+export image_tar=${HOME}/redroid:11.0.0-latest" >> ${HOME}/.bashrc
 source ${HOME}/.bashrc
 ```
 
@@ -247,7 +247,7 @@ sudo docker run -itd --rm --privileged \
   -v ~/setup.sh:/setup.sh \
   -v ~/magisk.tar:/magisk.tar \
   -p 5555:5555 \
-  redroid/redroid:11.0.0-amd64 \
+  redroid/redroid:11.0.0-latest \
   ro.secure=0
 )
 ```
