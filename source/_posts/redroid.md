@@ -31,7 +31,7 @@ sudo systemctl enable docker
 
 ##### docker镜像
 ``` bash
-vim /etc/docker/daemon.json
+sudo vim /etc/docker/daemon.json
 
 {
  "registry-mirrors": ["https://docker.mirrors.tuna.tsinghua.edu.cn"]
