@@ -128,13 +128,13 @@ find -maxdepth 1 -iname "magisk*" -not -name "*.apk" -exec rm -r {} \;
 magisk_file="app-debug.apk"
 # download Magisk 9b61bdfc(25201) debug as you did i guess
 if [ ! -f $magisk_file ]; then
-  wget "https://cdn.jsdelivr.net/gh/topjohnwu/magisk-files@1cea72840fbf690f9a95512d03721f6a710fe02e/app-debug.apk"
+  sudo wget "https://cdn.jsdelivr.net/gh/topjohnwu/magisk-files@1cea72840fbf690f9a95512d03721f6a710fe02e/app-debug.apk"
 fi
 # because my machine x64 i will choose x86_64
-unzip -j $magisk_file "lib/x86_64/libmagisk64.so" -d magisk
-unzip -j $magisk_file "lib/x86_64/libbusybox.so" -d magisk
-mv -v magisk/libmagisk64.so magisk/magisk
-mv -v magisk/libbusybox.so magisk/busybo
+sudo unzip -j $magisk_file "lib/x86_64/libmagisk64.so" -d magisk
+sudo unzip -j $magisk_file "lib/x86_64/libbusybox.so" -d magisk
+sudo mv -v magisk/libmagisk64.so magisk/magisk
+sudo mv -v magisk/libbusybox.so magisk/busybo
 # $ tree ~/MagiskOnRedroid
 # .
 # ├── app-debug.apk
