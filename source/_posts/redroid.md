@@ -86,7 +86,23 @@ adb connect localhost:5555
 
 ### 安装scrcpy
 ``` bash
+# snap方式安装（snap安装比较慢）
 snap install scrcpy
+
+# apt方式安装（版本比较旧）
+apt install scrcpy
+
+#
+scrcpy -s localhost:5555
+```
+
+### scrcpy连接设备
+``` bash
+# 单个设备连接
+scrcpy
+
+# 多设备时通过指定ip连接
+scrcpy -s localhost:5555
 ```
 
 ### 三、Redroid安装完成，开始安装Magisk
