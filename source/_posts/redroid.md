@@ -10,6 +10,9 @@ tags:
 使用Redroid在服务器上搭建云手机
 https://hub.docker.com/r/redroid/redroid
 
+在Windows10上安装：
+https://github.com/remote-android/redroid-doc/blob/master/deploy/wsl.md
+
 ### 前置条件
 * 云服务器
 * scrcpy的使用方法（*见我的另外一篇文章*）
