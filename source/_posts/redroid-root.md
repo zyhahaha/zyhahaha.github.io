@@ -1,6 +1,6 @@
 ---
 title: Redroid Root
-date: 2023-05-28 22:09:03
+date: 2023-05-28 22:09:13
 categories:
   - 个人爱好
 tags: 
@@ -68,7 +68,7 @@ scrcpy
 scrcpy -s localhost:5555
 ```
 
-### 三、Redroid安装完成，开始安装Magisk
+### Redroid安装完成，开始安装Magisk
 参考文档：https://gist.github.com/assiless/a23fb52e8c6156db0474ee8973c4be66
 
 ##### 设置环境变量
