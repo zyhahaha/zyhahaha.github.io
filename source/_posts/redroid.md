@@ -26,7 +26,7 @@ tags:
 ![选择Arm实例](https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/oracle-cloud/config.jpg)
 
 ### 前置条件
-* 云服务器（建议2C4G以上）
+* 云服务器（建议2C4G以上）*Amd64、Arm架构都行，Arm架构最佳*
 * scrcpy的使用方法
 
 ### 我的环境
@@ -83,24 +83,24 @@ sudo apt install adb
 
 ##### 运行docker 安装redroid
 ``` bash
-docker run -itd --rm --memory-swappiness=0 \
-    --privileged --pull always \
-    -v /data:/data \
-    -p 5556:5555 \
-    redroid/redroid:11.0.0-latest \
-    androidboot.hardware=mt6891 ro.secure=0 ro.boot.hwc=GLOBAL ro.ril.oem.imei=861503068361145 ro.ril.oem.imei1=861503068361145 ro.ril.oem.imei2=861503068361148 ro.ril.miui.imei0=861503068361148 ro.product.manufacturer=Xiaomi ro.build.product=chopin \
-    redroid.width=720 redroid.height=1280 \
-    redroid.gpu.mode=guest
-```
-
-OR
-
-``` bash
 docker run -itd --rm --privileged \
     --pull always \
     -v ~/data:/data \
     -p 5555:5555 \
     redroid/redroid:11.0.0-latest
+```
+
+如果需要给云手机加一些**手机属性**，让云手机跟像手机来规避一些游戏的风控，可以执行下面的命令来**启动容器**。
+
+``` bash
+docker run -itd --rm --memory-swappiness=0 \
+    --privileged --pull always \
+    -v /data:/data \
+    -p 5555:5555 \
+    redroid/redroid:11.0.0-latest \
+    androidboot.hardware=mt6891 ro.secure=0 ro.boot.hwc=GLOBAL ro.ril.oem.imei=861503068361145 ro.ril.oem.imei1=861503068361145 ro.ril.oem.imei2=861503068361148 ro.ril.miui.imei0=861503068361148 ro.product.manufacturer=Xiaomi ro.build.product=chopin \
+    redroid.width=720 redroid.height=1280 \
+    redroid.gpu.mode=guest
 ```
 
 ### adb连接
@@ -128,5 +128,5 @@ scrcpy -s localhost:5555
 ```
 
 ### 安装应用
-安装应用直接把apk文件拖放到 scrcpy 窗口安装即可，这时终端会输出一条日志
+安装应用直接把apk文件拖放到 scrcpy 窗口安装即可，这时终端会输出一条日志。
 
