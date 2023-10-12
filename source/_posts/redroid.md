@@ -7,13 +7,11 @@ tags:
   - Linux
 ---
 
-最近玩游戏使用云手机比较多，正好手边有个闲置的云服务器，就想自己搭个云手机玩玩。
+最近玩游戏使用云手机比较多，正好手边有个**闲置的云服务器**，就想自己搭个**云手机**玩玩。
 
-写这篇文章的时候，阿里云的无影云电脑可以免费试用三个月，配置是4核8G的Ubuntu20系统。目前在闲置着，于是拿来折腾一下。
+写这篇文章的时候，阿里云的**无影云电脑**可以**免费试用三个月**，配置是**4核8G的Ubuntu20**系统（*Amd64架构*）。目前在闲置着，于是拿来折腾一下。
 
-搭建云手机使用的是Redroid方案，通过Docker部署，再通过Scrcpy远程连接控制云手机。
-
-<!-- more -->
+搭建云手机使用的是**Redroid**方案，通过**Docker**部署，再通过**Scrcpy**远程连接控制云手机。
 
 ### 前置条件
 * 云服务器（建议2C4G以上）*Amd64、Arm架构都行，Arm架构最佳*
@@ -21,7 +19,7 @@ tags:
 
 ### 我的环境
 * Ubuntu 20.04
-* 4核8G内存4M带宽（amd64）
+* 4核8G内存4M带宽（*Amd64架构*）
 
 ### 参考链接
 ``` text
@@ -35,7 +33,9 @@ https://github.com/remote-android/redroid-doc/blob/master/deploy/wsl.md
 https://blog.hanlin.press/2022/08/play-redroid-on-oracle-cloud/
 ```
 
-### 一、安装
+<!-- more -->
+
+### 一、开始安装
 
 ##### 安装docker
 
@@ -45,8 +45,9 @@ sudo systemctl start docker
 sudo systemctl enable docker
 ```
 
-##### docker镜像
+##### docker镜像（可选）
 ``` bash
+# 使用docker安装redroid太慢时，可以修改镜像源试试（不保证有效）
 sudo vim /etc/docker/daemon.json
 
 {
@@ -71,7 +72,16 @@ sudo modprobe ashmem_linux
 sudo apt install adb
 ```
 
-##### 运行docker 安装redroid
+##### 安装scrcpy
+``` bash
+# snap方式安装（snap安装比较慢）
+snap install scrcpy
+
+# apt方式安装（版本比较旧）
+apt install scrcpy
+```
+
+### 二、运行docker 安装redroid
 ``` bash
 docker run -itd --rm --privileged \
     --pull always \
@@ -95,22 +105,13 @@ docker run -itd --rm --memory-swappiness=0 \
 这个镜像约**800MB左右**，如果在拉取镜像的时候有网络问题（*dockerhub国内网速比较慢*）导致拉取失败，可以在我公众号内留言：**redroid镜像**，来获取redroid的docker镜像。
 获取镜像后可以本地导入，不用再远程拉取，不会的可以私信我出教程。
 
-### adb连接
+### 三、使用adb连接
 ``` bash
 # 如果是远程机器，localhost改为对应的ip
 adb connect localhost:5555
 ```
 
-### 安装scrcpy
-``` bash
-# snap方式安装（snap安装比较慢）
-snap install scrcpy
-
-# apt方式安装（版本比较旧）
-apt install scrcpy
-```
-
-### scrcpy连接设备
+### 四、scrcpy连接设备
 ``` bash
 # 单个设备连接
 scrcpy
@@ -119,24 +120,24 @@ scrcpy
 scrcpy -s localhost:5555
 ```
 
-### 安装应用
+### 五、安装应用
 安装应用直接把apk文件拖放到 scrcpy 窗口安装即可，这时终端会输出一条日志。
 
-### Redroid安装完成，开始安装Magisk
+### 六、Redroid安装完成，开始安装Magisk
 参考文档：https://gist.github.com/assiless/a23fb52e8c6156db0474ee8973c4be66
 
-### 云手机Root
+##### 云手机Root
 如果想管理云手机的**Root权限**，可以**刷入Magisk**（*面具*）来给需要Root权限的App授权。
 通过上面的**参考文档**可以很容易的安装**Magisk**，如果不会搞的话**给我留言**，我后面再出个Root的文章。
 
 ### 写在最后
 
-阿里云的无影云电脑是一台amd64架构的计算机，其实搭建云手机最佳方案是使用Arm架构的服务器（*减去了amd指令转arm的过程，性能好的不是一点半点*），但是目前国内云主机厂商的Arm架构服务器特别贵，而且不能免费试用。
+阿里云的**无影云电脑**是一台**amd64架构**的计算机，其实搭建云手机最佳方案是使用**Arm架构**的服务器（*省去了amd64指令转arm的过程，性能好的不是一点半点*），但是目前国内云主机厂商的Arm架构服务器特别贵，而且不能免费试用。
 
-唯一可以用的是甲骨文的云服务器（*https://cloud.oracle.com/*），它提供4核24G内存的Arm云主机，并且永久免费试用（*这配置搭建云手机吊打市面的真实手机*）。
+唯一可以用的是**甲骨文**的云服务器（*https://cloud.oracle.com/*），它提供**4核24G内存的Arm云主机**，并且永久免费试用（*这配置搭建云手机吊打市面的真实手机*）。
 
 但是由于太多人薅羊毛机器根本不够用，所以很难抢到，有感兴趣的可以去碰碰运气，注册账号的时候选择区域不要选择韩国、日本这些热门区域，根本抢不到资源。
 甲骨文账号注册提醒：需要准备一张支持外币支付的信用卡用于验证身份，很多银行都可以办理。并且不需要挂VPN代理，填写地址也要是真实地址（*建议是你的信用卡账单地址*）。注册失败的话，可以连接手机网络，切换浏览器（*或者打开浏览器的无痕模式*）多试几次。
 
-![Arm主机](https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/oracle-cloud/vm.jpg)
-![选择Arm实例](https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/oracle-cloud/config.jpg)
+![Arm主机](https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/oracle-cloud/vm.png)
+![选择Arm实例](https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/oracle-cloud/config.png)
