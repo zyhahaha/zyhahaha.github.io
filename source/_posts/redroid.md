@@ -15,7 +15,7 @@ tags:
 
 ### 前置条件
 * 云服务器（建议2C4G以上）*Amd64、Arm架构都行，Arm架构最佳*
-* scrcpy的使用方法
+* Scrcpy的使用方法
 
 ### 我的环境
 * Ubuntu 20.04
@@ -90,7 +90,7 @@ docker run -itd --rm --privileged \
     redroid/redroid:11.0.0-latest
 ```
 
-如果需要给云手机加一些**手机属性**，让云手机跟像手机来规避一些游戏的风控，可以执行下面的命令来**启动容器**。
+如果需要给云手机加一些**手机属性**，让云手机更像手机来规避一些游戏的风控，可以执行下面的命令来**启动容器**。
 
 ``` bash
 docker run -itd --rm --memory-swappiness=0 \
@@ -103,6 +103,7 @@ docker run -itd --rm --memory-swappiness=0 \
     redroid.gpu.mode=guest
 ```
 这个镜像约**800MB左右**，如果在拉取镜像的时候有网络问题（*dockerhub国内网速比较慢*）导致拉取失败，可以在我公众号内留言：**redroid镜像**，来获取redroid的docker镜像。
+
 获取镜像后可以本地导入，不用再远程拉取，不会的可以私信我出教程。
 
 ### 三、使用adb连接
@@ -123,12 +124,15 @@ scrcpy -s localhost:5555
 ### 五、安装应用
 安装应用直接把apk文件拖放到 scrcpy 窗口安装即可，这时终端会输出一条日志。
 
-### 六、Redroid安装完成，开始安装Magisk
-参考文档：https://gist.github.com/assiless/a23fb52e8c6156db0474ee8973c4be66
+### 六、Redroid安装完成，开始安装Magisk，管理云手机Root权限
 
-##### 云手机Root
 如果想管理云手机的**Root权限**，可以**刷入Magisk**（*面具*）来给需要Root权限的App授权。
 通过上面的**参考文档**可以很容易的安装**Magisk**，如果不会搞的话**给我留言**，我后面再出个Root的文章。
+
+``` text
+参考文档：
+https://gist.github.com/assiless/a23fb52e8c6156db0474ee8973c4be66
+```
 
 ### 写在最后
 
@@ -136,8 +140,11 @@ scrcpy -s localhost:5555
 
 唯一可以用的是**甲骨文**的云服务器（*https://cloud.oracle.com/*），它提供**4核24G内存的Arm云主机**，并且永久免费试用（*这配置搭建云手机吊打市面的真实手机*）。
 
-但是由于太多人薅羊毛机器根本不够用，所以很难抢到，有感兴趣的可以去碰碰运气，注册账号的时候选择区域不要选择韩国、日本这些热门区域，根本抢不到资源。
-甲骨文账号注册提醒：需要准备一张支持外币支付的信用卡用于验证身份，很多银行都可以办理。并且不需要挂VPN代理，填写地址也要是真实地址（*建议是你的信用卡账单地址*）。注册失败的话，可以连接手机网络，切换浏览器（*或者打开浏览器的无痕模式*）多试几次。
+但是由于**太多人薅羊毛**机器根本不够用，所以很难抢到，有感兴趣的可以去碰碰运气，注册账号的时候选择区域不要选择**韩国、日本**这些热门区域，根本抢不到资源。
+
+**甲骨文账号注册提醒**：需要准备一张支持外币支付的信用卡用于验证身份，很多银行都可以办理。并且不需要挂VPN代理，填写地址也要是真实地址（*建议是你的信用卡账单地址*）。
+
+注册失败的话，可以连接手机网络，切换浏览器（*或者打开浏览器的无痕模式*）多试几次。
 
 ![Arm主机](https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/oracle-cloud/vm.png)
 ![选择Arm实例](https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/oracle-cloud/config.png)
