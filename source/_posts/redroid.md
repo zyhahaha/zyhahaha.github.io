@@ -102,6 +102,8 @@ docker run -itd --rm --memory-swappiness=0 \
     redroid.width=720 redroid.height=1280 \
     redroid.gpu.mode=guest
 ```
+这个镜像约**800MB左右**，如果在拉取镜像的时候有网络问题（*dockerhub国内网速比较慢*）导致拉取失败，可以在我公众号内留言：**redroid镜像**，来获取redroid的docker镜像。
+获取镜像后可以本地导入，不用再远程拉取，不会的可以私信我出教程。
 
 ### adb连接
 ``` bash
@@ -136,4 +138,3 @@ scrcpy -s localhost:5555
 ### 云手机Root
 如果想管理云手机的**Root权限**，可以**刷入Magisk**（*面具*）来给需要Root权限的App授权。
 通过上面的**参考文档**可以很容易的安装**Magisk**，如果不会搞的话**给我留言**，我后面再出个Root的文章。
-
