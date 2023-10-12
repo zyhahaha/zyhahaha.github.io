@@ -134,6 +134,7 @@ scrcpy -s localhost:5555
 ### 六、Redroid安装完成，开始安装Magisk，管理云手机Root权限
 
 如果想管理云手机的**Root权限**，可以**刷入Magisk**（*面具*）来给需要Root权限的App授权。
+
 通过上面的**参考文档**可以很容易的安装**Magisk**，如果不会搞的话**给我留言**，我后面再出个Root的文章。
 
 ``` text
