@@ -145,10 +145,9 @@ https://gist.github.com/assiless/a23fb52e8c6156db0474ee8973c4be66
 ##### Magisk安装成功
 ![Magisk](https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/redroid/magisk.jpg)
 
-### 七、大功告成，开始使用
-
 ##### 安装Devcheck查看手机配置
 ![Devcheck](https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/redroid/devcheck.jpg)
+
 ![硬件配置](https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/redroid/devcheck-hardware.jpg)
 
 
