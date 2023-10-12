@@ -121,8 +121,12 @@ scrcpy
 scrcpy -s localhost:5555
 ```
 
+![连接成功 启动Redroid](https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/redroid/start.jpg)
+
 ### 五、安装应用
 安装应用直接把apk文件拖放到 scrcpy 窗口安装即可，这时终端会输出一条日志。
+
+![五、安装应用](https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/redroid/安装应用.jpg)
 
 ### 六、Redroid安装完成，开始安装Magisk，管理云手机Root权限
 
