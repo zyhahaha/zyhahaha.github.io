@@ -130,3 +130,10 @@ scrcpy -s localhost:5555
 ### 安装应用
 安装应用直接把apk文件拖放到 scrcpy 窗口安装即可，这时终端会输出一条日志。
 
+### Redroid安装完成，开始安装Magisk
+参考文档：https://gist.github.com/assiless/a23fb52e8c6156db0474ee8973c4be66
+
+### 云手机Root
+如果想管理云手机的**Root权限**，可以**刷入Magisk**（*面具*）来给需要Root权限的App授权。
+通过上面的**参考文档**可以很容易的安装**Magisk**，如果不会搞的话**给我留言**，我后面再出个Root的文章。
+
