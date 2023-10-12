@@ -1,5 +1,5 @@
 ---
-title: Redroid
+title: 通过Redroid搭建自己的云手机
 date: 2023-05-28 22:09:03
 categories:
   - 个人爱好
@@ -7,7 +7,23 @@ tags:
   - Linux
 ---
 
-使用Redroid在服务器上搭建云手机
+最近玩游戏使用云手机比较多，正好手边有个闲置的云服务器，就想自己搭个云手机玩玩。
+
+写这篇文章的时候，阿里云的无影云电脑可以免费试用三个月，配置是4核8G的Ubuntu20系统。目前在闲置着，于是拿来折腾一下。
+
+搭建云手机使用的是Redroid方案，通过Docker部署，再通过Scrcpy远程连接控制云手机
+
+### 前置条件
+* 云服务器（建议2C4G以上）
+* scrcpy的使用方法
+
+### 我的环境
+* Ubuntu 20.04
+* 4核8G内存4M带宽
+
+### 参考链接
+``` text
+Docker Hub地址：
 https://hub.docker.com/r/redroid/redroid
 
 在Windows10上安装：
@@ -15,14 +31,7 @@ https://github.com/remote-android/redroid-doc/blob/master/deploy/wsl.md
 
 参考博客：
 https://blog.hanlin.press/2022/08/play-redroid-on-oracle-cloud/
-
-### 前置条件
-* 云服务器
-* scrcpy的使用方法（*见我的另外一篇文章*）
-
-### 我的环境（不代表其他环境不行）
-* Ubuntu 20.04
-* 4核8G内存云主机
+```
 
 <!-- more -->
 
