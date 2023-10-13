@@ -135,7 +135,7 @@ scrcpy -s localhost:5555
 
 如果想管理云手机的**Root权限**，可以**刷入Magisk**（*面具*）来给需要Root权限的App授权。
 
-通过上面的**参考文档**可以很容易的安装**Magisk**，如果不会搞的话**给我留言**，我后面再出个Root的文章。
+通过下面的**参考文档**可以很容易的安装**Magisk**，如果不会搞的话**给我留言**，我后面再出个Root的文章。
 
 ``` text
 参考文档：
@@ -153,7 +153,7 @@ https://gist.github.com/assiless/a23fb52e8c6156db0474ee8973c4be66
 
 ### 写在最后
 
-阿里云的**无影云电脑**是一台**amd64架构**的计算机，其实搭建云手机最佳方案是使用**Arm架构**的服务器（*省去了amd64指令转arm的过程，性能好的不是一点半点*），但是目前国内云主机厂商的Arm架构服务器特别贵，而且不能免费试用。
+阿里云的**无影云电脑**是一台**amd64架构**的计算机，其实搭建云手机最佳方案是使用**Arm架构**的服务器（*省去了amd64指令转arm的过程，性能好的不是一点半点*），但是目前国内云主机厂商的Arm架构服务器特别贵，而且也没有羊毛可以薅。
 
 唯一可以用的是**甲骨文**的云服务器（*https://cloud.oracle.com/*），它提供**4核24G内存的Arm云主机**，并且永久免费试用（*这配置搭建云手机吊打市面的真实手机*）。
 
@@ -164,4 +164,5 @@ https://gist.github.com/assiless/a23fb52e8c6156db0474ee8973c4be66
 注册失败的话，可以连接手机网络，切换浏览器（*或者打开浏览器的无痕模式*）多试几次。
 
 ![Arm主机](https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/oracle-cloud/vm.png)
+
 ![选择Arm实例](https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/oracle-cloud/config.png)
