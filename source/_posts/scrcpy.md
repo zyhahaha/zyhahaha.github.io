@@ -62,11 +62,20 @@ scrcpy.exe
 下面开始通过WIFI无线操作：
 
 ``` bash
-# 找到你手机的IP地址，确认在同一局域网下
-ping ip地址
+# 找到你手机的IP地址，确认在同一局域网下 比如你手机的IP地址为192.168.0.69
+ping 192.168.0.69
 
-# 比如你手机的IP地址为192.168.0.69
-scrcpy --tcpip = 192.168.0.69
+adb tcpip 5555
+
+adb connect 192.168.0.69:5555
+
+# 拔下数据线，输入以下命令，如果能发现刚刚添加的192.168.0.69设备，说明设备可投屏
+adb devices
+
+scrcpy
+
+# 当有多个手机时，通过指定ip连接对应的手机
+# scrcpy --tcpip=192.168.0.69
 ```
 
 ![WIFI连接](https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/scrcpy/wifi-connect.jpg)
