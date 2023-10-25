@@ -80,5 +80,28 @@ scrcpy
 
 ![WIFI连接](https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/scrcpy/wifi-connect.jpg)
 
+### adb玩法
+
+``` bash
+# adb连接后
+adb shell
+
+# 查看当前分辨率
+wm size
+
+# 修改分辨率
+wm size 720x1280
+
+# 查看当前dpi
+wm density
+
+# 修改dpi
+wm density 320
+
+# 重置回默认值：分辨率、dpi
+wm size reset
+wm density reset
+```
+
 ### 结束
 更多功能持续探索中
