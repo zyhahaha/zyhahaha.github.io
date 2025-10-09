@@ -102,7 +102,7 @@ docker run -itd --rm --memory-swappiness=0 \
     redroid.width=720 redroid.height=1280 \
     redroid.gpu.mode=guest
 ```
-这个镜像约**800MB左右**，如果在拉取镜像的时候有网络问题（*dockerhub国内网速比较慢*）导致拉取失败，可以在我公众号内留言：**redroid镜像**，来获取redroid的docker镜像。
+这个镜像约**800MB左右**，如果在拉取镜像的时候有网络问题（*dockerhub国内网速比较慢*）导致拉取失败，可以在我公众号内（赵小福）留言：**redroid镜像**，来获取redroid的docker镜像。
 
 获取镜像后可以本地导入，不用再远程拉取，不会的可以私信我出教程。
 
