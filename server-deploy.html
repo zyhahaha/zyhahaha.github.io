@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>Web项目服务器部署 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="代码写完了如何部署到服务器上？这对于每位开发者而言都是一项必备技能，本文主要对项目部署流程简述一下，也是对所学知识的归纳总结。 前置条件 必备：服务器、域名（国内需备案）、DNS解析服务商 非必备：CDN服务商、HTTPS证书（SSL）  目标 在Linux环境下的前端静态资源部署； CDN加速； HTTPS证书部署；">
+<meta name="keywords" content="Linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Web项目服务器部署">
+<meta property="og:url" content="https://zyhahaha.github.io/server-deploy.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="代码写完了如何部署到服务器上？这对于每位开发者而言都是一项必备技能，本文主要对项目部署流程简述一下，也是对所学知识的归纳总结。 前置条件 必备：服务器、域名（国内需备案）、DNS解析服务商 非必备：CDN服务商、HTTPS证书（SSL）  目标 在Linux环境下的前端静态资源部署； CDN加速； HTTPS证书部署；">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/server-deploy/server-deploy-dns.jpg">
+<meta property="og:updated_time" content="2025-10-27T08:35:00.771Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Web项目服务器部署">
+<meta name="twitter:description" content="代码写完了如何部署到服务器上？这对于每位开发者而言都是一项必备技能，本文主要对项目部署流程简述一下，也是对所学知识的归纳总结。 前置条件 必备：服务器、域名（国内需备案）、DNS解析服务商 非必备：CDN服务商、HTTPS证书（SSL）  目标 在Linux环境下的前端静态资源部署； CDN加速； HTTPS证书部署；">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/server-deploy/server-deploy-dns.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <!-- <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css"> -->
+    <!-- <link href="&lt;link rel=&#34;stylesheet&#34; href=&#34;/google_resource/googleapis.css&#34;&gt;" rel="stylesheet" type="text/css"> -->
+    <link rel="stylesheet" href="/google_resource/googleapis.css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+
+  <!-- 百度统计 -->
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?a29be603d99b4cf7e04aba03fa73b2a7";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header" style="display: none;">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <!-- <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div> -->
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://zyhahaha.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-server-deploy" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/server-deploy.html" class="article-date">
+  <time datetime="2020-09-05T22:28:31.000Z" itemprop="datePublished">2020-09-05</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Linux/">Linux</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Web项目服务器部署
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>代码写完了如何部署到服务器上？这对于每位开发者而言都是一项必备技能，本文主要对项目部署流程简述一下，也是对所学知识的归纳总结。</p>
+<h3 id="前置条件"><a href="#前置条件" class="headerlink" title="前置条件"></a>前置条件</h3><ul>
+<li>必备：服务器、域名（国内需备案）、DNS解析服务商</li>
+<li>非必备：CDN服务商、HTTPS证书（<a href="https://zyhahaha.github.io/ssl.html">SSL</a>）</li>
+</ul>
+<h3 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h3><ul>
+<li>在Linux环境下的前端静态资源部署；</li>
+<li>CDN加速；</li>
+<li>HTTPS证书部署；</li>
+</ul>
+<a id="more"></a>
+<h3 id="DNS域名解析"><a href="#DNS域名解析" class="headerlink" title="DNS域名解析"></a>DNS域名解析</h3><p>域名可以到各大<a href="https://wanwang.aliyun.com/" target="_blank" rel="noopener">域名提供商</a>那购买，这里就不详细说明。有了域名之后需要把域名解析到服务器上，这样用户才能访问我们部署在服务器上的资源，我用的是阿里云的<a href="https://dns.console.aliyun.com/#/pdns/dashboard" target="_blank" rel="noopener">DNS解析服务</a>，每个月有一定的<strong>免费额度</strong>，对于普通用户来说完全够用。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/server-deploy/server-deploy-dns.jpg" alt="DNS解析"></p>
+<p>可以看到子域名、CDN这些都需要用到DNS解析，而且还可以把域名解析到<strong>Ipv6</strong>地址上（<em>这个功能大家能想到啥？</em>）感兴趣可以看我<a href="https://zyhahaha.github.io/linux-deploy.html">另一篇博客</a>通过Ipv6手机提供公网访问。</p>
+<h3 id="Nginx"><a href="#Nginx" class="headerlink" title="Nginx"></a>Nginx</h3><p>通过DNS服务把域名解析到我们的服务器上面，那么我们要怎么提供Web服务呢，这里就要用到Nginx Web服务，下面简单说一下配置步骤：</p>
+<ol>
+<li><p>安装</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get update</span><br><span class="line">$ sudo apt-get install nginx</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>配置</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> /etc/nginx/conf.d</span><br><span class="line">$ vim sites.conf</span><br><span class="line"></span><br><span class="line">server &#123;</span><br><span class="line">  listen 80;</span><br><span class="line">  server_name zyhahaha.github.io;</span><br><span class="line"></span><br><span class="line">  location / &#123;</span><br><span class="line">          root /home/zyhahaha/sites/zyhahaha.github.io;</span><br><span class="line">          index   index.html index.htm;</span><br><span class="line">          try_files <span class="variable">$uri</span> <span class="variable">$uri</span>/ @rewrites;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  location @rewrites &#123;</span><br><span class="line">          rewrite ^(.*)$ /index.html last;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="CDN"><a href="#CDN" class="headerlink" title="CDN"></a>CDN</h3><p>不知道大家买的云服务器是多少带宽，我买的是8M带宽的腾讯云服务器，换算成流量就是<strong>1MB/s</strong>，一个网页除了媒体资源外，<strong>200KB ~ 2MB</strong>不定。就按1MB算，一台用户访问响应时间约一秒，如果并发太多，就是N+1秒的响应时间，对用户体验极为不好。</p>
+<p>一般我们的前端静态资源都不会到自己的业务服务器上，往往是放到CDN服务器里（<em>不管是用CDN服务商提供的，还是自己搭建的</em>），还可以做到隐藏业务服务器的IP，一定程度上防止被攻击。</p>
+<p>关于CDN服务，这里推荐使用七牛云的<a href="https://portal.qiniu.com/cdn/overview" target="_blank" rel="noopener">CDN服务</a>，每个月有10GB的免费额度</p>
+<h3 id="HTTPS部署"><a href="#HTTPS部署" class="headerlink" title="HTTPS部署"></a>HTTPS部署</h3><p>关于HTTPS部署我最近专门开了<a href="https://zyhahaha.github.io/ssl.html">一篇文章</a>叙述，大家感兴趣的可以去看一下。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zyhahaha.github.io/server-deploy.html" data-id="cmh8vzvhu001p7uu87ue0sm9q" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/ssl.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          网站HTTPS部署（Nginx）
+        
+      </div>
+    </a>
+  
+  
+    <a href="/pc.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">PC主机配件介绍及组装</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Javascript/">Javascript</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Windows/">Windows</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/个人爱好/">个人爱好</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/BTC/">BTC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PC/">PC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PCDN/">PCDN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Torrent/">Torrent</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Windows/">Windows</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/10/">十月 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">七月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">五月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">三月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">二月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">一月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">十二月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">八月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/07/">七月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/06/">六月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/05/">五月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">七月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">九月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/410.html">高通410随身wifi刷机debian</a>
+          </li>
+        
+          <li>
+            <a href="/old-phone.html">旧手机再利用（Android）</a>
+          </li>
+        
+          <li>
+            <a href="/dht.html">DHT</a>
+          </li>
+        
+          <li>
+            <a href="/redroid-root.html">Redroid Root</a>
+          </li>
+        
+          <li>
+            <a href="/redroid.html">通过Redroid搭建自己的云手机</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer" style="display: none;">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2025 zhaoyang<br>
+      Powered by <a href="/archives">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+</nav>
+    
+
+<!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script> -->
+<!-- <script src=""></script> -->
+<script src="/google_resource/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

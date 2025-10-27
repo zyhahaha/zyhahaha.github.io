@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>Linux环境比特币安装（Debian 11 OR Ubuntu18） | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="现在才玩比特币属于高位接盘，但是并不妨碍我们了解它，不求赚钱，只为了满足一下好奇心。 那么怎么玩？首先我们要有个钱包吧，之前国内有各种交易平台，并不需要我们安装钱包就能交易，但是现在基本已经关停，而且钱包攥在别人手里，各位心里不难受吗。 那为什么钱包要安装到Linux系统里呢，因为bitcoin钱包很大，有多大？下面会说。而且要联网同步节点，第一次运行钱包的时候，要开机联网同步数据，具体时间看你电">
+<meta name="keywords" content="BTC">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux环境比特币安装（Debian 11 OR Ubuntu18）">
+<meta property="og:url" content="https://zyhahaha.github.io/bitcoin.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="现在才玩比特币属于高位接盘，但是并不妨碍我们了解它，不求赚钱，只为了满足一下好奇心。 那么怎么玩？首先我们要有个钱包吧，之前国内有各种交易平台，并不需要我们安装钱包就能交易，但是现在基本已经关停，而且钱包攥在别人手里，各位心里不难受吗。 那为什么钱包要安装到Linux系统里呢，因为bitcoin钱包很大，有多大？下面会说。而且要联网同步节点，第一次运行钱包的时候，要开机联网同步数据，具体时间看你电">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2025-10-27T08:35:00.768Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux环境比特币安装（Debian 11 OR Ubuntu18）">
+<meta name="twitter:description" content="现在才玩比特币属于高位接盘，但是并不妨碍我们了解它，不求赚钱，只为了满足一下好奇心。 那么怎么玩？首先我们要有个钱包吧，之前国内有各种交易平台，并不需要我们安装钱包就能交易，但是现在基本已经关停，而且钱包攥在别人手里，各位心里不难受吗。 那为什么钱包要安装到Linux系统里呢，因为bitcoin钱包很大，有多大？下面会说。而且要联网同步节点，第一次运行钱包的时候，要开机联网同步数据，具体时间看你电">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <!-- <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css"> -->
+    <!-- <link href="&lt;link rel=&#34;stylesheet&#34; href=&#34;/google_resource/googleapis.css&#34;&gt;" rel="stylesheet" type="text/css"> -->
+    <link rel="stylesheet" href="/google_resource/googleapis.css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+
+  <!-- 百度统计 -->
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?a29be603d99b4cf7e04aba03fa73b2a7";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header" style="display: none;">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <!-- <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div> -->
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://zyhahaha.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-bitcoin" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/bitcoin.html" class="article-date">
+  <time datetime="2021-07-17T21:28:58.000Z" itemprop="datePublished">2021-07-17</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Linux环境比特币安装（Debian 11 OR Ubuntu18）
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>现在才玩比特币属于<strong>高位接盘</strong>，但是并不妨碍我们了解它，不求赚钱，只为了满足一下好奇心。</p>
+<p>那么怎么玩？首先我们要有个钱包吧，之前国内有各种交易平台，并不需要我们安装钱包就能交易，但是现在基本已经关停，而且钱包攥在别人手里，各位心里不难受吗。</p>
+<p>那为什么钱包要安装到Linux系统里呢，因为bitcoin钱包很大，有多大？下面会说。而且要联网同步节点，第一次运行钱包的时候，要开机联网同步数据，具体时间看你电脑性能。</p>
+<p>以我的<strong>4核4G内存5MB带宽</strong>的云服务器为例：跑了大概有两天多才把数据同步完。如果你安装到你的Windows10上，你电脑要开机两天两夜，而且同步节点时会占用CPU，这两天这台电脑使用起来都不痛快，<br>最最最主要的是会占用你宝贵的硬盘空间o_o …</p>
+<p>话不多说下面开始教一下大家怎么安装钱包：<br><strong>个人观点：</strong> <em>比特币、以太坊、门罗币等虚拟货币我觉得水太深，各位小白别玩，但是它们的区块链技术，我觉得很可能是互联网的未来，至少是未来的一部分</em></p>
+<a id="more"></a>
+<h3 id="安装bitcoin钱包-（v0-21-0）"><a href="#安装bitcoin钱包-（v0-21-0）" class="headerlink" title="安装bitcoin钱包 （v0.21.0）"></a>安装bitcoin钱包 （v0.21.0）</h3><p>安装bitcoincore全节点需要400GB的硬盘空间，如果硬盘空间不足可以安装bitcoincore轻节点，如何选择全节点还是轻节点在后面会说。<br>使用轻节点需要大约7GB的硬盘空间</p>
+<ol>
+<li><p>下载bitcoin<br><a href="https://bitcoincore.org/en/download/" target="_blank" rel="noopener">https://bitcoincore.org/en/download/</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://bitcoincore.org/bin/bitcoin-core-0.21.0/bitcoin-0.21.0-x86_64-linux-gnu.tar.gz</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>下载解压后</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar xzf bitcoin-0.21.0-x86_64-linux-gnu.tar.gz</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用图形界面安装</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo install -m 0755 -o root -g root -t /usr/<span class="built_in">local</span>/bin bitcoin-0.21.0/bin/*</span><br><span class="line"></span><br><span class="line">/usr/<span class="built_in">local</span>/bin/bitcoin-qt</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装完成，开始同步区块（这个时候可以关闭GUI程序，剩下的使用命令行操作）</p>
+</li>
+</ol>
+<h3 id="bitcoin配置"><a href="#bitcoin配置" class="headerlink" title="bitcoin配置"></a>bitcoin配置</h3><ol>
+<li>bitcoin的默认配置目录为 ~/.bitcoin/bitcoin.conf，填写以下配置<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ~/.bitcoin/bitcoin.conf</span></span><br><span class="line">datadir=/opt/btc/datadir</span><br><span class="line"><span class="comment"># 设置数据库缓存大小</span></span><br><span class="line">dbcache=10240</span><br><span class="line"></span><br><span class="line"><span class="comment"># 交易索引 txindex=1就代表全节点 不填写就是轻节点</span></span><br><span class="line"><span class="comment"># txindex=1</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 是否开启修剪模式 (https://bitcoin.org/en/full-node#reduce-storage)</span></span><br><span class="line">prune=10240</span><br><span class="line"></span><br><span class="line"><span class="comment"># rpc访问的user</span></span><br><span class="line">rpcuser=zhaoyang</span><br><span class="line"></span><br><span class="line"><span class="comment"># rpc访问的password</span></span><br><span class="line">rpcpassword=zy980355088</span><br><span class="line"></span><br><span class="line"><span class="comment"># 后台运行</span></span><br><span class="line">daemon=1</span><br><span class="line">server=1</span><br><span class="line">rest=1</span><br><span class="line"></span><br><span class="line">rpcbind=0.0.0.0:8332</span><br><span class="line">rpcallowip=0.0.0.0/0</span><br><span class="line">deprecatedrpc=accounts</span><br><span class="line"></span><br><span class="line"><span class="comment"># 闪电网络需要下面两行配置的支持</span></span><br><span class="line"><span class="comment"># 允许在本机端口28332上广播原始区块信息</span></span><br><span class="line">zmqpubrawblock=tcp://127.0.0.1:28332</span><br><span class="line"><span class="comment"># 允许在本机端口28333上广播原始交易信息</span></span><br><span class="line">zmqpubrawtx=tcp://127.0.0.1:28333</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="命令使用说明"><a href="#命令使用说明" class="headerlink" title="命令使用说明"></a>命令使用说明</h3><p>启动bitcoin<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bitcoind -daemon</span><br></pre></td></tr></table></figure></p>
+<p>关闭bitcoin，一定要用以下命令，否则会有可能导致数据异常，需要重新同步数据<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bitcoin-cli stop</span><br></pre></td></tr></table></figure></p>
+<p>一些其他命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建钱包</span></span><br><span class="line">bitcoin-cli createwallet <span class="string">"zhaoyang"</span></span><br><span class="line"><span class="comment"># 生成钱包地址</span></span><br><span class="line">bitcoin-cli getnewaddress <span class="string">"test"</span>  <span class="comment">#"test"是输入的账号label</span></span><br><span class="line"><span class="comment"># 获取所有钱包地址及其账号名</span></span><br><span class="line">bitcoin-cli listreceivedbyaddress 1 <span class="literal">true</span></span><br><span class="line"><span class="comment"># 查看网络状态：</span></span><br><span class="line">bitcoin-cli getnetworkinfo</span><br><span class="line"><span class="comment"># 查看网络节点：</span></span><br><span class="line">bitcoin-cli getpeerinfo</span><br><span class="line"><span class="comment"># 查看区块链信息：如同步进度、</span></span><br><span class="line">bitcoin-cli getblockchaininfo</span><br><span class="line"><span class="comment"># 查看所有命令</span></span><br><span class="line">bitcoin-cli <span class="built_in">help</span></span><br></pre></td></tr></table></figure></p>
+<p>启动后钱包会自动同步区块，可以打开日志查看具体同步情况<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tail -f nohup.out</span><br></pre></td></tr></table></figure></p>
+<p>进入bitcoin安装目录<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> <span class="variable">$HOME</span>/.bitcoin</span><br><span class="line">ls</span><br><span class="line">banlist.dat  bitcoind.pid  blocks  chainstate  debug.log  peers.dat  wallets</span><br><span class="line">ls wallets/</span><br><span class="line">database  db.log  wallet.dat</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">bitcoind.pid bitcoind   运行的进程文件</span><br><span class="line"> </span><br><span class="line">blocks  区块链数据文件</span><br><span class="line"> </span><br><span class="line">chainstate 区块链状态的数据库使用LevelDB存储</span><br><span class="line"> </span><br><span class="line">db.log 数据库日志文件</span><br><span class="line"> </span><br><span class="line">debug.log 运行时的日志文件</span><br><span class="line"> </span><br><span class="line">wallet.dat 钱包文件（这个要划重点了，此文件保存了我们钱包生成的私钥，特别重要，建议通过编写shell脚本或者使用后台程序每天做个备份）</span><br></pre></td></tr></table></figure>
+<p>钱包命令介绍<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">bitcoin-cli getwalletinfo   查看钱包详情，在0.18版本中，以前的getinfo已经取消</span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">"walletname"</span>: <span class="string">""</span>,</span><br><span class="line">  <span class="string">"walletversion"</span>: 169900,              钱包版本</span><br><span class="line">  <span class="string">"balance"</span>: 0.00000000,                钱包余额</span><br><span class="line">  <span class="string">"unconfirmed_balance"</span>: 0.00000000,    未确认余额</span><br><span class="line">  <span class="string">"immature_balance"</span>: 0.00000000,       这个暂时还不清楚</span><br><span class="line">  <span class="string">"txcount"</span>: 0,                         钱包内交易数量</span><br><span class="line">  <span class="string">"keypoololdest"</span>: 1562826486,          密钥池内最早密钥创建时间</span><br><span class="line">  <span class="string">"keypoolsize"</span>: 1000,                  密钥池大小</span><br><span class="line">  <span class="string">"keypoolsize_hd_internal"</span>: 1000,</span><br><span class="line">  <span class="string">"paytxfee"</span>: 0.00000000,               手续费率（这个比较重要，后面单独讲）</span><br><span class="line">  <span class="string">"hdseedid"</span>: <span class="string">"ed13b2019c2e28e9dc84cf7124ba2e36cebcb656"</span>,</span><br><span class="line">  <span class="string">"private_keys_enabled"</span>: <span class="literal">true</span></span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">bitcoin-cli getblockchaininfo   查看区块详情</span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">"chain"</span>: <span class="string">"main"</span>,</span><br><span class="line">  <span class="string">"blocks"</span>: 238558,                     钱包当前区块（btc安装启动后一般1-2天可以同步到最新区块高度）</span><br><span class="line">  <span class="string">"headers"</span>: 584893,                    当前最新区块高度</span><br><span class="line">  ....  后面还有其他信息，我们暂不关注</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">bitcoin-cli sendtoaddress   转账接口（后面具体介绍）</span><br><span class="line">Response:</span><br><span class="line">1. <span class="string">"address"</span>            (string, required) 接收地址</span><br><span class="line">2. <span class="string">"amount"</span>             (numeric or string, required) 转账金额</span><br><span class="line"> </span><br><span class="line">Result:</span><br><span class="line"><span class="string">"txid"</span>                  (string) 唯一标识tx_id</span><br><span class="line"> </span><br><span class="line">Examples:</span><br><span class="line">&gt; bitcoin-cli sendtoaddress <span class="string">"bc1q7wuvm9q4s0gr9mtqtn2wamjx0462hg43g8h8ak"</span> 0.1</span><br><span class="line">&gt; curl --user myusername --data-binary <span class="string">'&#123;"jsonrpc": "1.0", "id":"curltest", "method": "sendtoaddress", "params": ["bc1q7wuvm9q4s0gr9mtqtn2wamjx0462hg43g8h8ak", 0.1] &#125;'</span> -H <span class="string">'content-type: text/plain;'</span> http://127.0.0.1:8332/</span><br></pre></td></tr></table></figure></p>
+<h3 id="Github地址"><a href="#Github地址" class="headerlink" title="Github地址"></a>Github地址</h3><p><a href="https://github.com/bitcoin/bitcoin" target="_blank" rel="noopener">https://github.com/bitcoin/bitcoin</a></p>
+<h3 id="官网"><a href="#官网" class="headerlink" title="官网"></a>官网</h3><p><a href="https://bitcoincore.org/en/download/" target="_blank" rel="noopener">https://bitcoincore.org/en/download/</a></p>
+<h3 id="下载地址"><a href="#下载地址" class="headerlink" title="下载地址"></a>下载地址</h3><p><a href="https://bitcoincore.org/bin/" target="_blank" rel="noopener">https://bitcoincore.org/bin/</a></p>
+<h3 id="门罗币"><a href="#门罗币" class="headerlink" title="门罗币"></a>门罗币</h3><ol>
+<li>官网（下载钱包）：<a href="https://www.getmonero.org/downloads/" target="_blank" rel="noopener">https://www.getmonero.org/downloads/</a></li>
+<li>下载挖矿程序：<a href="https://github.com/xmrig/xmrig/releases" target="_blank" rel="noopener">https://github.com/xmrig/xmrig/releases</a></li>
+<li>矿池：mine.c3pool.com:13333</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zyhahaha.github.io/bitcoin.html" data-id="cmh8vzvh800077uu87xy7ocq5" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BTC/">BTC</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/qBittorrent.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          qBittorrent安装（Debian 11 OR Ubuntu18）
+        
+      </div>
+    </a>
+  
+  
+    <a href="/ssl.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">网站HTTPS部署（Nginx）</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Javascript/">Javascript</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Windows/">Windows</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/个人爱好/">个人爱好</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/BTC/">BTC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PC/">PC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PCDN/">PCDN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Torrent/">Torrent</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Windows/">Windows</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/10/">十月 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">七月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">五月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">三月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">二月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">一月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">十二月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">八月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/07/">七月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/06/">六月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/05/">五月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">七月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">九月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/410.html">高通410随身wifi刷机debian</a>
+          </li>
+        
+          <li>
+            <a href="/old-phone.html">旧手机再利用（Android）</a>
+          </li>
+        
+          <li>
+            <a href="/dht.html">DHT</a>
+          </li>
+        
+          <li>
+            <a href="/redroid-root.html">Redroid Root</a>
+          </li>
+        
+          <li>
+            <a href="/redroid.html">通过Redroid搭建自己的云手机</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer" style="display: none;">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2025 zhaoyang<br>
+      Powered by <a href="/archives">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+</nav>
+    
+
+<!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script> -->
+<!-- <script src=""></script> -->
+<script src="/google_resource/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

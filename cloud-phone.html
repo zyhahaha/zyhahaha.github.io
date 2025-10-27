@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>云手机 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="现在的手机大多数无法Root，对于有这方面需求的使用者来说有什么可以替代的办法呢。 我在另外一篇文章里介绍了VMOS虚拟机来达到同样的目的。 今天我介绍另一种可能：云手机，它与虚拟机大同小异，都是在ARM硬件之上虚拟化一个操作系统出来。">
+<meta name="keywords" content="Linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="云手机">
+<meta property="og:url" content="https://zyhahaha.github.io/cloud-phone.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="现在的手机大多数无法Root，对于有这方面需求的使用者来说有什么可以替代的办法呢。 我在另外一篇文章里介绍了VMOS虚拟机来达到同样的目的。 今天我介绍另一种可能：云手机，它与虚拟机大同小异，都是在ARM硬件之上虚拟化一个操作系统出来。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/cloud-phone/game.jpg">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/cloud-phone/10086.jpg">
+<meta property="og:updated_time" content="2025-10-27T08:35:00.768Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="云手机">
+<meta name="twitter:description" content="现在的手机大多数无法Root，对于有这方面需求的使用者来说有什么可以替代的办法呢。 我在另外一篇文章里介绍了VMOS虚拟机来达到同样的目的。 今天我介绍另一种可能：云手机，它与虚拟机大同小异，都是在ARM硬件之上虚拟化一个操作系统出来。">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/cloud-phone/game.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <!-- <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css"> -->
+    <!-- <link href="&lt;link rel=&#34;stylesheet&#34; href=&#34;/google_resource/googleapis.css&#34;&gt;" rel="stylesheet" type="text/css"> -->
+    <link rel="stylesheet" href="/google_resource/googleapis.css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+
+  <!-- 百度统计 -->
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?a29be603d99b4cf7e04aba03fa73b2a7";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header" style="display: none;">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <!-- <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div> -->
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://zyhahaha.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-cloud-phone" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/cloud-phone.html" class="article-date">
+  <time datetime="2023-01-26T21:17:26.000Z" itemprop="datePublished">2023-01-26</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/个人爱好/">个人爱好</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      云手机
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>现在的手机大多数<strong>无法Root</strong>，对于有这方面需求的使用者来说有什么可以替代的办法呢。</p>
+<p>我在<strong>另外一篇文章</strong>里介绍了<strong>VMOS虚拟机</strong>来达到同样的目的。</p>
+<p>今天我介绍另一种可能：<br><strong>云手机</strong>，它与虚拟机大同小异，都是在ARM硬件之上虚拟化一个操作系统出来。</p>
+<a id="more"></a>
+<h5 id="云手机与虚拟机的差异："><a href="#云手机与虚拟机的差异：" class="headerlink" title="云手机与虚拟机的差异："></a>云手机与虚拟机的差异：</h5><p>虚拟机需要运行在手机上，手机关机即停止。而云手机类似云服务器一样，运行在别人的服务器之上，我们安装在手机上的实际是客户端，手机关机，云手机还会继续运行。</p>
+<p>相应的因为云手机需要<strong>依赖第三方硬件</strong>，所以它是<strong>收费</strong>的，而虚拟机运行在自己手机上，它只需要你提供<strong>存储空间</strong>和<strong>电量</strong>即可。</p>
+<p>市面上大多数云手机都有Root权限，对于有这方面需求的用户这是一种选择。</p>
+<p>而云手机24小时运行的特性，所以它对标的应用场景大多数都与自动脚本有关：</p>
+<p>比如<strong>游戏辅助脚本</strong>、<strong>自动刷视频</strong>、<strong>自动做任务平台</strong>等。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/cloud-phone/game.jpg" alt="云手机"></p>
+<p>这篇文章主要作为抛砖引玉，更多玩法各位可以自己探索。</p>
+<p>想要使用云手机的可以到百度自行搜索，因为是收费的，所以这里没有软件推荐。</p>
+<p>非要推荐的话我可以推荐一下<strong>移动云手机</strong>、<strong>唔即云云手机</strong>，推荐理由是它们都有免费试用时长。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/cloud-phone/10086.jpg" alt="移动云手机"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zyhahaha.github.io/cloud-phone.html" data-id="cmh8vzvh300037uu8poiifr1r" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/kodbox.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          可道云kodbox私有云网盘（NAS软件）
+        
+      </div>
+    </a>
+  
+  
+    <a href="/vmphone.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">拥有一台Root的安卓手机之虚拟机（VMOS）</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Javascript/">Javascript</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Windows/">Windows</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/个人爱好/">个人爱好</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/BTC/">BTC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PC/">PC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PCDN/">PCDN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Torrent/">Torrent</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Windows/">Windows</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/10/">十月 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">七月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">五月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">三月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">二月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">一月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">十二月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">八月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/07/">七月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/06/">六月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/05/">五月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">七月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">九月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/410.html">高通410随身wifi刷机debian</a>
+          </li>
+        
+          <li>
+            <a href="/old-phone.html">旧手机再利用（Android）</a>
+          </li>
+        
+          <li>
+            <a href="/dht.html">DHT</a>
+          </li>
+        
+          <li>
+            <a href="/redroid-root.html">Redroid Root</a>
+          </li>
+        
+          <li>
+            <a href="/redroid.html">通过Redroid搭建自己的云手机</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer" style="display: none;">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2025 zhaoyang<br>
+      Powered by <a href="/archives">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+</nav>
+    
+
+<!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script> -->
+<!-- <script src=""></script> -->
+<script src="/google_resource/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

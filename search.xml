@@ -1,145 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>云手机</title>
-    <url>/cloud-phone.html</url>
-    <content><![CDATA[<p>现在的手机大多数<strong>无法Root</strong>，对于有这方面需求的使用者来说有什么可以替代的办法呢。</p>
-<p>我在<strong>另外一篇文章</strong>里介绍了<strong>VMOS虚拟机</strong>来达到同样的目的。</p>
-<p>今天我介绍另一种可能：<br><strong>云手机</strong>，它与虚拟机大同小异，都是在ARM硬件之上虚拟化一个操作系统出来。</p>
-<a id="more"></a>
-<h5 id="云手机与虚拟机的差异："><a href="#云手机与虚拟机的差异：" class="headerlink" title="云手机与虚拟机的差异："></a>云手机与虚拟机的差异：</h5><p>虚拟机需要运行在手机上，手机关机即停止。而云手机类似云服务器一样，运行在别人的服务器之上，我们安装在手机上的实际是客户端，手机关机，云手机还会继续运行。</p>
-<p>相应的因为云手机需要<strong>依赖第三方硬件</strong>，所以它是<strong>收费</strong>的，而虚拟机运行在自己手机上，它只需要你提供<strong>存储空间</strong>和<strong>电量</strong>即可。</p>
-<p>市面上大多数云手机都有Root权限，对于有这方面需求的用户这是一种选择。</p>
-<p>而云手机24小时运行的特性，所以它对标的应用场景大多数都与自动脚本有关：</p>
-<p>比如<strong>游戏辅助脚本</strong>、<strong>自动刷视频</strong>、<strong>自动做任务平台</strong>等。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/cloud-phone/game.jpg" alt="云手机"></p>
-<p>这篇文章主要作为抛砖引玉，更多玩法各位可以自己探索。</p>
-<p>想要使用云手机的可以到百度自行搜索，因为是收费的，所以这里没有软件推荐。</p>
-<p>非要推荐的话我可以推荐一下<strong>移动云手机</strong>、<strong>唔即云云手机</strong>，推荐理由是它们都有免费试用时长。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/cloud-phone/10086.jpg" alt="移动云手机"></p>
-]]></content>
-      <categories>
-        <category>个人爱好</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>DHT</title>
-    <url>/dht.html</url>
-    <content><![CDATA[<p>一直很好奇那些资源站、磁力链接网站是怎么做到这么多资源的，经过一番专研，我自建了一个磁力链接网站，这里给大家分享一下它是怎么实现的。<br>经过这篇文章的讲解，大家也可以搭建属于自己的<strong>磁力链接网站</strong>。</p>
-<h3 id="前置条件"><a href="#前置条件" class="headerlink" title="前置条件"></a>前置条件</h3><ol>
-<li>至少一台linux服务器（<em>最好两台</em>）</li>
-<li>Mysql数据库（<em>磁力链接数据库</em>）</li>
-<li>安装Nodejs、Npm（<em>Nodejs &gt;= 10</em>）</li>
-<li>需安装qbittorrent（<em>用于解析磁力链接内容</em>）</li>
-</ol>
-<h3 id="代码已开源"><a href="#代码已开源" class="headerlink" title="代码已开源"></a>代码已开源</h3><ol>
-<li>DHT仓库：<a href="https://github.com/zyhahaha/DHT" target="_blank" rel="noopener">https://github.com/zyhahaha/DHT</a></li>
-<li>磁力链接前端：<a href="https://github.com/zyhahaha/AppMe" target="_blank" rel="noopener">https://github.com/zyhahaha/AppMe</a></li>
-</ol>
-<a id="more"></a>
-<h3 id="简述"><a href="#简述" class="headerlink" title="简述"></a>简述</h3><p>首先简述一下实现磁力链接网站的大概思路：</p>
-<ol>
-<li>加入DHT网络获取磁力链接hash</li>
-<li>把磁力链接hash存入数据库</li>
-<li>解析磁力链接获得BT种子，把磁力链接内容存入数据库</li>
-<li>搭建前端页面提供磁力链接的查询</li>
-</ol>
-<h3 id="加入DHT网络获取磁力链接"><a href="#加入DHT网络获取磁力链接" class="headerlink" title="加入DHT网络获取磁力链接"></a>加入DHT网络获取磁力链接</h3><p>直接下载这个代码，开箱即用：<a href="https://github.com/zyhahaha/DHT" target="_blank" rel="noopener">https://github.com/zyhahaha/DHT</a><br><img src="https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/dht/github.jpg" alt="Github仓库"></p>
-<p>下面说一下调用方式。<br><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> spider = <span class="keyword">new</span> (<span class="built_in">require</span>(<span class="string">'./lib/spider'</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment">// 这里直接把磁力链接打印出来</span></span><br><span class="line">spider.on(<span class="string">'ensureHash'</span>, (hash, addr)=&gt; <span class="built_in">console</span>.log(<span class="string">`magnet:?xt=urn:btih:<span class="subst">$&#123;hash&#125;</span>`</span>))</span><br><span class="line"></span><br><span class="line">spider.listen(<span class="number">6339</span>)</span><br></pre></td></tr></table></figure></p>
-<h3 id="把磁力链接hash存入数据库"><a href="#把磁力链接hash存入数据库" class="headerlink" title="把磁力链接hash存入数据库"></a>把磁力链接hash存入数据库</h3><p>这一步是最简单的一步，因为我的后端代码包含一些敏感信息就没有开源，大家自己搭建一个后端，提供基础的增删改查功能，用于保存磁力链接数据。</p>
-<p>这里我推荐用<strong>Nestjs</strong>作为后端框架，感兴趣的可以看我<strong>另外一篇文章</strong>：<a href="https://zyhahaha.github.io/nestjs.html">https://zyhahaha.github.io/nestjs.html</a></p>
-<p>我们只需要保存<strong>ensureHash</strong>事件返回的hash即可：<br><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">spider.on(<span class="string">'ensureHash'</span>, (hash, addr)=&gt; &#123;</span><br><span class="line">  <span class="comment">// 保存磁力链接到数据库</span></span><br><span class="line">  saveHash(<span class="string">`magnet:?xt=urn:btih:<span class="subst">$&#123;hash&#125;</span>`</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
-<h3 id="通过磁力链接获取种子"><a href="#通过磁力链接获取种子" class="headerlink" title="通过磁力链接获取种子"></a>通过磁力链接获取种子</h3><p>只有磁力链接我们就可以通过一些软件下载资源了，但是如果我们要做一个磁力链接网站，在查询时要知道这个磁力链接的资源内容，资源大小等信息。<br>这个时候我们就需要把磁力链接转为种子，种子内包含这些信息。</p>
-<p>那么如何获取种子呢，这里就需要用到qbittorrent，可以用它通过磁力链接来下载种子。<br><img src="https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/dht/qbittorrent.png" alt="qbittorrent"></p>
-<p>通过qbittorrent下载种子，获取磁力链接内容，实现自动化下载、获取、存入数据库。<br>市面上有这么多磁力链接下载软件，我为啥选择<strong>qbittorrent</strong>呢，因为qbittorrent提供了所有操作的<strong>Web Api</strong>，我们可以用脚本调用Web Api来自动下载资源、获取资源内容、删除已经下好的任务。<br>具体代码在parse-hash-v2文件夹内：<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> parse-hash-v2</span><br><span class="line"></span><br><span class="line">node index.js</span><br></pre></td></tr></table></figure></p>
-<p>简述各脚本的用处：</p>
-<ol>
-<li>query-remote-hash-list.js <em>获取数据库内的磁力链接</em></li>
-<li>add-hash.js <em>把磁力链接添加入qbittorrent任务</em></li>
-<li>query-local-hash-list.js <em>获取qbittorrent内下载完成的任务</em></li>
-<li>update-remote-hash.js <em>把上一步获取的种子内容更新到数据库中</em></li>
-<li>delete-hash.js <em>删除已经处理的磁力链接任务</em></li>
-</ol>
-<h3 id="数据就绪提供客户端用于浏览"><a href="#数据就绪提供客户端用于浏览" class="headerlink" title="数据就绪提供客户端用于浏览"></a>数据就绪提供客户端用于浏览</h3><p>程序跑了一会慢慢数据就来了，我这个程序跑了<strong>10天左右</strong>，总数据已经有<strong>400多万</strong>，已解析的数据也有78万左右（<em>解析比较慢</em>）。</p>
-<p>现在有了数据，我们需要提供一个前端页面来显示我们的成果，可以是一个网页，也可以是一个App。</p>
-<p>这里我用<strong>React Native</strong>写了一个App，<strong>已开源</strong>。感兴趣的开源下载代码改巴改巴自己用。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/dht/frontend-v2.jpg" alt="客户端"></p>
-<h3 id="结束"><a href="#结束" class="headerlink" title="结束"></a>结束</h3>]]></content>
-      <categories>
-        <category>个人爱好</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/hello-world.html</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<a id="more"></a>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-]]></content>
-  </entry>
-  <entry>
-    <title>Debian</title>
-    <url>/debian.html</url>
-    <content><![CDATA[<p>在家里看一些电影，很多片源都是从网上下载的，我一开始是使用windows开启网络共享，然后通过电视网络访问。但是每次看电影都需要先打开我的电脑。<br>于是我想把电影资源都放到一台专门的主机上，不说24小时开机，用的时候开机即可。<br>由于我日常使用的服务器发行版是Debian AND Ubuntu，家里的服务器也就安装该发行版，下面专门对它进行简单的介绍：</p>
-<h3 id="Debian"><a href="#Debian" class="headerlink" title="Debian"></a>Debian</h3><p>官网：<a href="https://www.debian.org/" target="_blank" rel="noopener">https://www.debian.org/</a><br>安装手册：<a href="https://www.debian.org/releases/bullseye/amd64/index.zh-cn.html" target="_blank" rel="noopener">https://www.debian.org/releases/bullseye/amd64/index.zh-cn.html</a></p>
-<a id="more"></a>
-<h3 id="最低硬件要求"><a href="#最低硬件要求" class="headerlink" title="最低硬件要求"></a>最低硬件要求</h3><p>CPU：1核1GHz、21世纪的CPU<br>无桌面系统：内存512MB、硬盘2GB<br>桌面系统：内存1GB、硬盘10GB<br>这配置基本上99%的电脑都可以安装，如果是特殊设备刷机（机顶盒、路由器等）可以自行查看debian安装手册</p>
-<h3 id="制作启动盘"><a href="#制作启动盘" class="headerlink" title="制作启动盘"></a>制作启动盘</h3><p>制作启动盘的软件推荐使用Rufus或UltraISO，然后到Debian官网下载ISO镜像，具体操作网上有很多，我这里就介绍一下关键词。</p>
-<h3 id="更新系统时间"><a href="#更新系统时间" class="headerlink" title="更新系统时间"></a>更新系统时间</h3><p>Debian安装成功后需要校正时间，否则访问网络会有一点点问题。<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">date <span class="comment"># 查看当前的系统时间</span></span><br><span class="line">sudo apt-get update <span class="comment"># 更新源</span></span><br><span class="line">sudo apt-get install ntpdate <span class="comment"># 安装ntpdate</span></span><br><span class="line">sudo ntpdate ntp1.aliyun.com <span class="comment"># 更新系统时间</span></span><br></pre></td></tr></table></figure></p>
-<h3 id="添加sudo"><a href="#添加sudo" class="headerlink" title="添加sudo"></a>添加sudo</h3><p>系统安装后默认是没有sudo的，需要自行安装。<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt-get install sudo</span><br><span class="line">sudo usermod -aG sudo zhaoyang <span class="comment"># zhaoyang为自己的用户名</span></span><br></pre></td></tr></table></figure></p>
-<h3 id="使用手机USB共享网络"><a href="#使用手机USB共享网络" class="headerlink" title="使用手机USB共享网络"></a>使用手机USB共享网络</h3><p>我有一台小主机的电容被弄掉了，导致网口不能用，主板上的无线网卡也有点问题，本来打算放弃的。某天手机给windows电脑共享网络的时候，想起来通过USB应该也可以给Linux主机共享网络。<br>参考博客：<a href="https://blog.csdn.net/ROSEBUD7_K/article/details/126092515" target="_blank" rel="noopener">https://blog.csdn.net/ROSEBUD7_K/article/details/126092515</a><br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 第一步：查看网络配置</span></span><br><span class="line">ip addr <span class="comment"># 输出看看有没有usb相关的网络信息，如：usb0</span></span><br><span class="line"><span class="comment"># 第二步：为网络接口分配IP地址</span></span><br><span class="line">dhclient usb0</span><br><span class="line"><span class="comment"># 第三部：确认网络接口，usb0已分配IP地址代表配置成功</span></span><br></pre></td></tr></table></figure></p>
-<h3 id="限制CPU"><a href="#限制CPU" class="headerlink" title="限制CPU"></a>限制CPU</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt-get update; sudo apt-get install -y cpulimit</span><br><span class="line">sudo cpulimit -e xmrig -l 75 -b</span><br></pre></td></tr></table></figure>
-<h3 id="跑分"><a href="#跑分" class="headerlink" title="跑分"></a>跑分</h3><p>安装必要程序<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt install -y git make automake gcc autoconf time perl</span><br></pre></td></tr></table></figure></p>
-<p>运行脚本<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/kdlucas/byte-unixbench.git</span><br><span class="line"><span class="built_in">cd</span> byte-unixbench/UnixBench</span><br><span class="line">make &amp;&amp; ./Run</span><br></pre></td></tr></table></figure></p>
-<h3 id="性能测试"><a href="#性能测试" class="headerlink" title="性能测试"></a>性能测试</h3><p>Github地址：<a href="https://github.com/FunctionClub/ZBench" target="_blank" rel="noopener">https://github.com/FunctionClub/ZBench</a><br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#中文版：</span></span><br><span class="line">wget -N --no-check-certificate https://raw.githubusercontent.com/FunctionClub/ZBench/master/ZBench-CN.sh &amp;&amp; bash ZBench-CN.sh</span><br><span class="line"></span><br><span class="line"><span class="comment">#英文版：</span></span><br><span class="line">wget -N --no-check-certificate https://raw.githubusercontent.com/FunctionClub/ZBench/master/ZBench.sh &amp;&amp; bash ZBench</span><br></pre></td></tr></table></figure></p>
-]]></content>
-      <categories>
-        <category>个人爱好</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>可道云kodbox私有云网盘（NAS软件）</title>
-    <url>/kodbox.html</url>
-    <content><![CDATA[<p>有些数据存放在第三方网盘里不放心（<em>百度云之类</em>）想用家里的电脑搭建一个自己的私有网盘。<br>或者觉得第三方网盘访问速度太慢（<em>比如百度云</em>）就算开了会员，受带宽限制还是不够快，而家里的局域网理论带宽能达到千兆级。<br>本文介绍<strong>可道云kodbox</strong>作为家庭NAS的一种方案。</p>
-<p>适用场景：</p>
-<ol>
-<li>私有云网盘；</li>
-<li>NAS家庭存储；</li>
-</ol>
-<h3 id="前置条件"><a href="#前置条件" class="headerlink" title="前置条件"></a>前置条件</h3><ul>
-<li>Docker</li>
-<li>DockerHub <a href="https://hub.docker.com/r/kodcloud/kodbox" target="_blank" rel="noopener">https://hub.docker.com/r/kodcloud/kodbox</a></li>
-<li>可运行Docker的计算机一台</li>
-</ul>
-<a id="more"></a>
-<h3 id="安装开始"><a href="#安装开始" class="headerlink" title="安装开始"></a>安装开始</h3><p><strong>可道云kodbox</strong>基于PHP，数据库使用的是Mysql，用户可以自己装安装PHP、Mysql环境来进行安装，也可以通过Docker快速安装。<br>这里介绍Docker的安装流程（Docker安装比较简单，不需要安装环境）：</p>
-<h4 id="安装Docker"><a href="#安装Docker" class="headerlink" title="安装Docker"></a>安装Docker</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">curl -fsSL https://get.docker.com -o get-docker.sh</span><br><span class="line">sudo sh get-docker.sh</span><br></pre></td></tr></table></figure>
-<h4 id="拉取Docker镜像并启动"><a href="#拉取Docker镜像并启动" class="headerlink" title="拉取Docker镜像并启动"></a>拉取Docker镜像并启动</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mkdir /data</span><br><span class="line">docker run -d -p 80:80 -v /data:/var/www/html kodcloud/kodbox</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>个人爱好</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Linux挂载新硬盘</title>
     <url>/hard-disk.html</url>
     <content><![CDATA[<p>现在大多数开发者都会选择把自己的程序部署到云服务器上，用云服务器让我们免去了安装操作系统、增减配置、日常运维等工作。但如果你是一个热爱这个行业，并且喜欢折腾的人，你一定会希望有一台属于自己的<a href="https://zyhahaha.github.io/debian.html">实体服务器</a>。作为一台服务器增加配置是常事，换CPU就不说了，麻烦！加内存就简单一点，插上就行！这里我们重点说说加硬盘怎么弄，直接插上是肯定不行的o_o ….插上之后需要<em>分区、格式化、挂载</em>，我们的程序才能使用这块硬盘。<br>下面我们一步一步来配置：</p>
@@ -165,23 +26,34 @@
       </tags>
   </entry>
   <entry>
-    <title>JavaScript Promise个人理解</title>
-    <url>/javascript-promise.html</url>
-    <content><![CDATA[<p>JavaScript Promise正确用法及其常见的错误用法。</p>
+    <title>云手机</title>
+    <url>/cloud-phone.html</url>
+    <content><![CDATA[<p>现在的手机大多数<strong>无法Root</strong>，对于有这方面需求的使用者来说有什么可以替代的办法呢。</p>
+<p>我在<strong>另外一篇文章</strong>里介绍了<strong>VMOS虚拟机</strong>来达到同样的目的。</p>
+<p>今天我介绍另一种可能：<br><strong>云手机</strong>，它与虚拟机大同小异，都是在ARM硬件之上虚拟化一个操作系统出来。</p>
 <a id="more"></a>
-<p>未完待续，有时间再写</p>
+<h5 id="云手机与虚拟机的差异："><a href="#云手机与虚拟机的差异：" class="headerlink" title="云手机与虚拟机的差异："></a>云手机与虚拟机的差异：</h5><p>虚拟机需要运行在手机上，手机关机即停止。而云手机类似云服务器一样，运行在别人的服务器之上，我们安装在手机上的实际是客户端，手机关机，云手机还会继续运行。</p>
+<p>相应的因为云手机需要<strong>依赖第三方硬件</strong>，所以它是<strong>收费</strong>的，而虚拟机运行在自己手机上，它只需要你提供<strong>存储空间</strong>和<strong>电量</strong>即可。</p>
+<p>市面上大多数云手机都有Root权限，对于有这方面需求的用户这是一种选择。</p>
+<p>而云手机24小时运行的特性，所以它对标的应用场景大多数都与自动脚本有关：</p>
+<p>比如<strong>游戏辅助脚本</strong>、<strong>自动刷视频</strong>、<strong>自动做任务平台</strong>等。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/cloud-phone/game.jpg" alt="云手机"></p>
+<p>这篇文章主要作为抛砖引玉，更多玩法各位可以自己探索。</p>
+<p>想要使用云手机的可以到百度自行搜索，因为是收费的，所以这里没有软件推荐。</p>
+<p>非要推荐的话我可以推荐一下<strong>移动云手机</strong>、<strong>唔即云云手机</strong>，推荐理由是它们都有免费试用时长。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/cloud-phone/10086.jpg" alt="移动云手机"></p>
 ]]></content>
       <categories>
-        <category>Javascript</category>
+        <category>个人爱好</category>
       </categories>
       <tags>
-        <tag>Javascript</tag>
+        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
     <title>高通410随身wifi刷机debian</title>
     <url>/410.html</url>
-    <content><![CDATA[<p>一直对小型Linux机器有需求，用过Mini小主机、电视盒子，手机Termux，发现对性能要求不高的场景高通410的随身wifi就挺合适。<br>于是几块钱薅了几个，捯饬了一下刷机，这里记录一下。</p>
+    <content><![CDATA[<p>一直对小型Linux机器有需求，用过Mini主机、电视盒子，手机Termux，发现对性能要求不高的场景高通410的随身wifi就挺合适。<br>于是几块钱薅了几个，捯饬了一下刷机，这里记录一下。</p>
 <h3 id="前置条件"><a href="#前置条件" class="headerlink" title="前置条件"></a>前置条件</h3><ul>
 <li>高通410随身wifi（JZ02_V10）</li>
 <li>Windows电脑一台</li>
@@ -222,87 +94,6 @@
       <tags>
         <tag>Linux</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>Linux Termux（在手机上运行Linux服务器）</title>
-    <url>/linux-phone.html</url>
-    <content><![CDATA[<h3 id="安装Termux-运行Linux安装脚本"><a href="#安装Termux-运行Linux安装脚本" class="headerlink" title="安装Termux 运行Linux安装脚本"></a>安装Termux 运行Linux安装脚本</h3><p>Termux下载地址：<a href="https://f-droid.org/packages/com.termux/" target="_blank" rel="noopener">https://f-droid.org/packages/com.termux/</a></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 安装ssh</span></span><br><span class="line">apt update</span><br><span class="line">apt install openssh</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看用户名（ssh端口默认8022）</span></span><br><span class="line">whoami</span><br></pre></td></tr></table></figure>
-<a id="more"></a>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 将sshd服务在开启termux时就启动</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"sshd"</span> &gt;&gt; ~/.bashrc</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Termux熄屏仍然保持运行</span></span><br><span class="line">termux-wake-unlock</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">. &lt;(curl -L gitee.com/mo2/linux/raw/2/2)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看Linux发行版</span></span><br><span class="line">lsb_release -a</span><br></pre></td></tr></table></figure>
-<p>剩下的自由发挥<br>注意：<br>1、手机没有root要选择proot容器</p>
-<p>参考博客：<a href="https://blog.dreamfall.cn/post/termux-xmr/" target="_blank" rel="noopener">https://blog.dreamfall.cn/post/termux-xmr/</a></p>
-<h3 id="编译-C3-xmrig"><a href="#编译-C3-xmrig" class="headerlink" title="编译 C3-xmrig"></a>编译 C3-xmrig</h3><p>进入 Ubuntu<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 在Termux终端输入命令，启动Ubuntu</span></span><br><span class="line">debian</span><br></pre></td></tr></table></figure></p>
-<p>安装依赖<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt-get install git build-essential cmake libuv1-dev libssl-dev libhwloc-dev -y</span><br></pre></td></tr></table></figure></p>
-<p>克隆代码<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/C3Pool/xmrig-C3.git</span><br></pre></td></tr></table></figure></p>
-<p>去除抽水率<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vim xmrig-C3/src/donate.h</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 把1改为0</span></span><br><span class="line">constexpr const int kDefaultDonateLevel = 1</span><br><span class="line">constexpr const int kMinimumDonateLevel = 1</span><br></pre></td></tr></table></figure>
-<p>编译安装<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mkdir xmrig-C3/build &amp;&amp; <span class="built_in">cd</span> xmrig-C3/build &amp;&amp; cmake .. &amp;&amp; make -j$(nproc) &amp;&amp; mv xmrig ~ &amp;&amp; <span class="built_in">cd</span> ~ &amp;&amp; rm -rf xmrig-C3</span><br></pre></td></tr></table></figure></p>
-<p>启动Xmrig<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">./xmrig -u 422x5HQKsFpRPi6UF7J9ngESkU1FBVzFVUVTgz4jDm6P6nDezgzMXujW7Wjt6QWWSTMy5sQx63YvG9gWoMCWMrLxBKTx3Qo -o  auto.c3pool.org:19999 -p termuxZ -a cn-pico</span><br><span class="line"></span><br><span class="line"><span class="comment"># 后台运行</span></span><br><span class="line">nohup ./xmrig -u 422x5HQKsFpRPi6UF7J9ngESkU1FBVzFVUVTgz4jDm6P6nDezgzMXujW7Wjt6QWWSTMy5sQx63YvG9gWoMCWMrLxBKTx3Qo -o  auto.c3pool.org:19999 -p termuxZ -a cn-pico &amp;</span><br></pre></td></tr></table></figure></p>
-]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Linux Deploy（在手机上运行Linux服务器）</title>
-    <url>/linux-deploy.html</url>
-    <content><![CDATA[<p>十年来，<strong>智能手机发展极为迅速</strong>，某些手机厂商的旗舰手机<em>一年一迭代</em>，<strong>手机淘汰速度完全跟不上</strong>。现在华为手机都已经发布<strong>P60</strong>了，我还在用<strong>P20</strong>，而我手机才买了不到三年（<em>有点舍不得换，毕竟还没用三年</em>）。这么快的淘汰速度，相应的各位家里应该有不少明明都好好的，但是已经不用的手机吧（<em>我家里有5台不用的手机，还好好的</em>）。这些手机扔了可惜，卖了不值钱，而且还怕被人盗取信息。</p>
-<p>作为一名<strong>勤俭节约</strong>、<strong>充满好奇</strong>、<strong>愿意折腾</strong>的开发者，找到了一个有意思的用途：<strong>把旧手机作为一台低功耗服务器</strong>。</p>
-<p>那要怎么做呢，首先，安装一个软件即可：<a href="https://github.com/meefik/linuxdeploy" target="_blank" rel="noopener">Linux Deploy</a>，这款软件只支持安卓手机，不支持IOS，那IOS用户怎么办：请<strong>以旧换新</strong>，还是很划算的。</p>
-<h3 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h3><p>Github：<a href="https://github.com/meefik/linuxdeploy" target="_blank" rel="noopener">https://github.com/meefik/linuxdeploy</a><br>Android APP下载地址：<a href="https://github.com/meefik/linuxdeploy/releases/tag/2.3.0" target="_blank" rel="noopener">https://github.com/meefik/linuxdeploy/releases/tag/2.3.0</a></p>
-<a id="more"></a>
-<h3 id="前置条件"><a href="#前置条件" class="headerlink" title="前置条件"></a>前置条件</h3><p>一台已Root的安卓手机，<a href="https://termux.dev/en/" target="_blank" rel="noopener">无Root条件，请用Termux</a></p>
-<p>下面就以我这台八年前的手机为例：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/linux-deploy/linux-deploy-phone.jpeg" alt="华为G750"></p>
-<p>通过上面的相关链接下载app，安装打开后页面是这样的</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/linux-deploy/linux-deploy-default.jpeg" alt="软件界面"></p>
-<p>点击<strong>右下角图标</strong>进入以下配置界面，配置需要安装的<strong>Linux发行版、镜像大小、用户名密码</strong>、最下面有个开启<strong>SSH服务</strong>一定要勾选，不然没法远程访问（截图没截到，往下翻就看到了）。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/linux-deploy/linux-deploy-config.jpeg" alt="配置界面"></p>
-<p>通过一系列的配置、安装（<em>安装时间可能要十几分钟到半个小时</em>）后，点击<strong>启动</strong>按钮，出现以下页面代码启动成功</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/linux-deploy/linux-deploy-start.jpeg" alt="启动成功"></p>
-<p>之后可以通过电脑SSH远程访问手机服务器</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/linux-deploy/linux-deploy-ssh.jpg" alt="MobaXterm"><br><img src="https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/linux-deploy/linux-deploy-df.jpg" alt="查看服务器配置"><br><img src="https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/linux-deploy/linux-deploy-cpu.jpg" alt="查看服务器CPU"></p>
-<p>8核、2GB内存、2GB硬盘，硬盘有点小，可以挂载SD卡扩展空间（<em>可以看到df -h后，有一个sdcard1的30GB空间可用</em>），有时间我会细说一下怎么挂载SD卡。</p>
-<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><p>大家安装的时候看好版本，Android版本跟软件版本要对应上，低版本的系统用不了高版本的软件，反之亦然。</p>
-<p>安装这个软件<strong>系统需要ROOT</strong>⊙﹏⊙∥，如果无法ROOT的话，只能用另外一个替代方案了：<a href="https://termux.dev/en/" target="_blank" rel="noopener">Termux</a></p>
-<!-- ![Termux](https://termux.dev/assets/globals/home/htop_framed.png) -->
-<p>有时间我会写一下Termux相关的教程，由于不需要ROOT相对而言Termux肯定在权限方面是不如<strong>Linux Deploy</strong>，不过作为一台Web服务器还是够的。</p>
-]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Nestjs个人理解</title>
-    <url>/nestjs.html</url>
-    <content><![CDATA[<p>作为<strong>前端开发人员</strong>，应该很多人都知道<strong>Nodejs</strong>，也有想用Nodejs写后台项目的，我估计有很多人写着写着最终也就放弃了，然后会说：<em>Nodejs不适合写Web服务端项目</em>。<strong>事实并不是这样</strong>，他们用Nodejs写后台项目，大多数用到框架可能是：<em>Koa、Express、Eggjs、Koa2、Fastify</em>。这一类框架只是提供了最基础的底座，想完成一个成熟的项目，需要在上面添加很多东西，所以写着写着就烦了。</p>
-<p>用<strong>JavaScript</strong>写后端项目有两大难点：<strong>弱类型语言、相关生态不成熟</strong>。弱类型语言会导致编写大型项目时代码难以把控，生态不够成熟会导致项目越写越累，需要到处找轮子，而且各种轮子质量参差不齐，没法像<strong>Java Sprint</strong>一样拿来一把梭。<br>现在我推荐一下<a href="https://docs.nestjs.com/" target="_blank" rel="noopener">Nestjs</a>，它支持<a href="https://www.tslang.cn/index.html" target="_blank" rel="noopener">Typescript</a>编写代码，完美解决JS的弱类型问题，而且生态很健全，项目中需要用到的大多数工具都可以在@nestjs中找到。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm i -g @nestjs/cli</span><br><span class="line">nest new project-name</span><br></pre></td></tr></table></figure>
-<a id="more"></a>
-<p>我目前写的项目也是用的Nestjs，这里我专门把<em>业务代码</em>抽离出去，剩下的作为<a href="https://github.com/zyhahaha/e-shop-backend-nest" target="_blank" rel="noopener">项目模板</a>开源出来，感兴趣的可以看一下。<br>这个模板项目可以让小白了解以下几个知识点：</p>
-<ul>
-<li>Redis连接及基础操作；</li>
-<li>Mysql连接及基础操作；</li>
-<li>Mongodb连接及基础操作；</li>
-<li>Websockets；</li>
-<li>log4js日志处理；</li>
-<li>邮件通知、七牛云对象存储操作；</li>
-<li>通过代码自动生成Swagger接口文档；</li>
-<li>基础的注册登录，JWT跨域认证解决方案（<em>一种基于 Token 的认证授权机制</em>）；</li>
-<li>通过阿里云SDK修改DNS解析地址；</li>
-</ul>
-<h3 id="PM2开机自启"><a href="#PM2开机自启" class="headerlink" title="PM2开机自启"></a>PM2开机自启</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 启动项目</span></span><br><span class="line">pm2 start xxxx</span><br><span class="line"><span class="comment"># 保存pm2程序配置</span></span><br><span class="line">pm2 save</span><br><span class="line"><span class="comment"># 生成开机自启动服务</span></span><br><span class="line">pm2 startup</span><br><span class="line"><span class="comment"># 开机服务</span></span><br><span class="line">systemctl <span class="built_in">enable</span> pm2-root</span><br><span class="line"><span class="comment"># 重启</span></span><br><span class="line">reboot</span><br></pre></td></tr></table></figure>
-<p>未完待续，有时间再写</p>
-]]></content>
   </entry>
   <entry>
     <title>Linux环境比特币安装（Debian 11 OR Ubuntu18）</title>
@@ -349,73 +140,6 @@
 ]]></content>
       <tags>
         <tag>BTC</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>旧手机再利用（Android）</title>
-    <url>/old-phone.html</url>
-    <content><![CDATA[<p>旧手机再利用<br>参考：<a href="https://xiaoyi.vc/phone-diy.html" target="_blank" rel="noopener">https://xiaoyi.vc/phone-diy.html</a></p>
-<p>摄像头：<a href="http://iriun.com/" target="_blank" rel="noopener">http://iriun.com/</a></p>
-<p>第二屏幕：<a href="https://www.spacedesk.net/#download" target="_blank" rel="noopener">https://www.spacedesk.net/#download</a></p>
-]]></content>
-      <categories>
-        <category>个人爱好</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>PCDN</title>
-    <url>/pcdn.html</url>
-    <content><![CDATA[<p><strong>PCDN</strong>（<em>P2P CDN</em>）P2P内容分发网络，看名字大概能猜到是干嘛的。常规的CDN服务主要是大公司在做，使用遍布全国的CDN服务器提供静态资源访问服务。阿里云有提供PCDN这种服务的，感兴趣可以看一下<a href="https://help.aliyun.com/product/54287.html" target="_blank" rel="noopener">阿里云PCDN</a>。</p>
-<p><strong>想象一下这种场景：</strong> 你家邻居在家里看腾讯视频，这个视频一般来说可能是存储在腾讯服务器上的，如果很多人同时看这个视频，腾讯的服务器是不是很有压力（<em>主要是硬盘读取压力和带宽压力</em>）。</p>
-<p>而且如果这个服务器离你家还很远，是不是除了服务器压力之外，带宽传输是不是也是一种浪费。这个时候如果你家里的电脑，做CDN节点，预先把这个视频缓存到你电脑上，当你附近有人访问这个资源，优先从你电脑上访问，是不是就不用浪费厂商的服务器资源了。</p>
-<p>但是我们<strong>为什么要这么做</strong>呢，肯定是要别人给钱，我才愿意做这个CDN节点，我用的是<strong>网心云</strong>（<em>纯属爱好，随便玩玩</em>），下面讲一下它怎么部署：</p>
-<h3 id="前置条件"><a href="#前置条件" class="headerlink" title="前置条件"></a>前置条件</h3><p>首先你要有个服务器（<em>也就是电脑，闲置的云服务器也行</em>）、Docker的基本用法；</p>
-<p><strong>个人观点：</strong> <em>这个也就是玩玩，别指望它赚多少钱。用自己电脑做CDN节点，一方面要24小时开机，费电、费硬盘、占网络</em>；</p>
-<h3 id="声明"><a href="#声明" class="headerlink" title="声明"></a>声明</h3><p>本文不是教你赚钱的教程，我写文章的初衷是分享一些有意思的工具、软件、想法等。欢迎各位志同道合，爱折腾的朋友一起探讨。</p>
-<a id="more"></a>
-<h4 id="安装Docker"><a href="#安装Docker" class="headerlink" title="安装Docker"></a>安装Docker</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">curl -fsSL https://get.docker.com -o get-docker.sh</span><br><span class="line">sudo sh get-docker.sh</span><br></pre></td></tr></table></figure>
-<h4 id="拉取Docker镜像并启动"><a href="#拉取Docker镜像并启动" class="headerlink" title="拉取Docker镜像并启动"></a>拉取Docker镜像并启动</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run -d --name=wxedge \</span><br><span class="line">  --restart=always --privileged --net=host \</span><br><span class="line">  --tmpfs /run --tmpfs /tmp \</span><br><span class="line">  -v /data/wxedge_storage:/storage:rw  \</span><br><span class="line">  onething1/wxedge</span><br></pre></td></tr></table></figure>
-<p>注意：/data/wxedge_storage需要改成自己的本地路径（<em>当然不该也行</em>）</p>
-<h4 id="多实例"><a href="#多实例" class="headerlink" title="多实例"></a>多实例</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run -d -e LISTEN_ADDR=<span class="string">":28888"</span> --name=wxedge2 \</span><br><span class="line">  --restart=always --privileged --net=host \</span><br><span class="line">  --tmpfs /run --tmpfs /tmp \</span><br><span class="line">  -v /home/zyhahaha/wxy:/storage:rw  \</span><br><span class="line">  onething1/wxedge</span><br></pre></td></tr></table></figure>
-<h3 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h3><pre><code>注册网心云：这个是拉新链接，邀请人和被邀请人均可获得优惠券
-https://act.walk-live.com/acts/invite?inviteid=51845cd2
-
-安装网心云：
-可到应用市场下载，也可以通过上面的链接注册下载。
-
-官网：
-https://www.onethingcloud.com/
-</code></pre><h3 id="最后一步"><a href="#最后一步" class="headerlink" title="最后一步"></a>最后一步</h3><p>安装完App后，浏览器访问<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">http://你服务器IP:18888</span><br></pre></td></tr></table></figure></p>
-<p>会出现下面的界面，再通过App扫一扫浏览器的二维码添加设备。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/pcdn/qrcode.jpg" alt="浏览器打开 IP:18888"></p>
-<p><img src="https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/pcdn/scan.jpg" alt="App扫一扫"></p>
-<p><img src="https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/pcdn/device.jpg" alt="设备列表"></p>
-<h3 id="特别提示"><a href="#特别提示" class="headerlink" title="特别提示"></a>特别提示</h3><p>App上推荐的产品统统不要买，包括各种硬件设备，就跟以前的玩客云一样。<br>想玩就玩<strong>X86 Docker</strong>版（<em>官方叫法：容器魔方</em>），也就是本文介绍的这种部署方式，不用买设备，直接用闲置服务器跑。</p>
-<h3 id="Docker-Hub"><a href="#Docker-Hub" class="headerlink" title="Docker Hub"></a>Docker Hub</h3><p><a href="https://hub.docker.com/r/onething1/wxedge" target="_blank" rel="noopener">https://hub.docker.com/r/onething1/wxedge</a></p>
-<h3 id="阮一峰Docker教程"><a href="#阮一峰Docker教程" class="headerlink" title="阮一峰Docker教程"></a>阮一峰Docker教程</h3><p><a href="https://ruanyifeng.com/blog/2018/02/docker-tutorial.html" target="_blank" rel="noopener">https://ruanyifeng.com/blog/2018/02/docker-tutorial.html</a></p>
-]]></content>
-      <categories>
-        <category>个人爱好</category>
-      </categories>
-      <tags>
-        <tag>PCDN</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>PC主机配件介绍及组装</title>
-    <url>/pc.html</url>
-    <content><![CDATA[<p>计算机，既然靠着它挣钱，那我们是不是要对它有所了解，下面简单介绍一下，也是对相关知识的归纳。<br>计算机主要组成部分：电源、主板、CPU、内存、硬盘<br>CPU分为不同平台，各平台不通用：775、1366、1155、1150、1151（<em>按照时间顺序从先到后排序</em>）</p>
-<a id="more"></a>
-<p>未完待续，有时间再写</p>
-]]></content>
-      <categories>
-        <category>个人爱好</category>
-      </categories>
-      <tags>
-        <tag>PC</tag>
       </tags>
   </entry>
   <entry>
@@ -473,6 +197,287 @@ https://www.onethingcloud.com/
 <li>3</li>
 </ol>
 ]]></content>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/hello-world.html</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+<a id="more"></a>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>Debian</title>
+    <url>/debian.html</url>
+    <content><![CDATA[<p>在家里看一些电影，很多片源都是从网上下载的，我一开始是使用windows开启网络共享，然后通过电视网络访问。但是每次看电影都需要先打开我的电脑。<br>于是我想把电影资源都放到一台专门的主机上，不说24小时开机，用的时候开机即可。<br>由于我日常使用的服务器发行版是Debian AND Ubuntu，家里的服务器也就安装该发行版，下面专门对它进行简单的介绍：</p>
+<h3 id="Debian"><a href="#Debian" class="headerlink" title="Debian"></a>Debian</h3><p>官网：<a href="https://www.debian.org/" target="_blank" rel="noopener">https://www.debian.org/</a><br>安装手册：<a href="https://www.debian.org/releases/bullseye/amd64/index.zh-cn.html" target="_blank" rel="noopener">https://www.debian.org/releases/bullseye/amd64/index.zh-cn.html</a></p>
+<a id="more"></a>
+<h3 id="最低硬件要求"><a href="#最低硬件要求" class="headerlink" title="最低硬件要求"></a>最低硬件要求</h3><p>CPU：1核1GHz、21世纪的CPU<br>无桌面系统：内存512MB、硬盘2GB<br>桌面系统：内存1GB、硬盘10GB<br>这配置基本上99%的电脑都可以安装，如果是特殊设备刷机（机顶盒、路由器等）可以自行查看debian安装手册</p>
+<h3 id="制作启动盘"><a href="#制作启动盘" class="headerlink" title="制作启动盘"></a>制作启动盘</h3><p>制作启动盘的软件推荐使用Rufus或UltraISO，然后到Debian官网下载ISO镜像，具体操作网上有很多，我这里就介绍一下关键词。</p>
+<h3 id="更新系统时间"><a href="#更新系统时间" class="headerlink" title="更新系统时间"></a>更新系统时间</h3><p>Debian安装成功后需要校正时间，否则访问网络会有一点点问题。<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">date <span class="comment"># 查看当前的系统时间</span></span><br><span class="line">sudo apt-get update <span class="comment"># 更新源</span></span><br><span class="line">sudo apt-get install ntpdate <span class="comment"># 安装ntpdate</span></span><br><span class="line">sudo ntpdate ntp1.aliyun.com <span class="comment"># 更新系统时间</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="添加sudo"><a href="#添加sudo" class="headerlink" title="添加sudo"></a>添加sudo</h3><p>系统安装后默认是没有sudo的，需要自行安装。<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt-get install sudo</span><br><span class="line">sudo usermod -aG sudo zhaoyang <span class="comment"># zhaoyang为自己的用户名</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="使用手机USB共享网络"><a href="#使用手机USB共享网络" class="headerlink" title="使用手机USB共享网络"></a>使用手机USB共享网络</h3><p>我有一台小主机的电容被弄掉了，导致网口不能用，主板上的无线网卡也有点问题，本来打算放弃的。某天手机给windows电脑共享网络的时候，想起来通过USB应该也可以给Linux主机共享网络。<br>参考博客：<a href="https://blog.csdn.net/ROSEBUD7_K/article/details/126092515" target="_blank" rel="noopener">https://blog.csdn.net/ROSEBUD7_K/article/details/126092515</a><br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 第一步：查看网络配置</span></span><br><span class="line">ip addr <span class="comment"># 输出看看有没有usb相关的网络信息，如：usb0</span></span><br><span class="line"><span class="comment"># 第二步：为网络接口分配IP地址</span></span><br><span class="line">dhclient usb0</span><br><span class="line"><span class="comment"># 第三部：确认网络接口，usb0已分配IP地址代表配置成功</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="限制CPU"><a href="#限制CPU" class="headerlink" title="限制CPU"></a>限制CPU</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt-get update; sudo apt-get install -y cpulimit</span><br><span class="line">sudo cpulimit -e xmrig -l 75 -b</span><br></pre></td></tr></table></figure>
+<h3 id="跑分"><a href="#跑分" class="headerlink" title="跑分"></a>跑分</h3><p>安装必要程序<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt install -y git make automake gcc autoconf time perl</span><br></pre></td></tr></table></figure></p>
+<p>运行脚本<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/kdlucas/byte-unixbench.git</span><br><span class="line"><span class="built_in">cd</span> byte-unixbench/UnixBench</span><br><span class="line">make &amp;&amp; ./Run</span><br></pre></td></tr></table></figure></p>
+<h3 id="性能测试"><a href="#性能测试" class="headerlink" title="性能测试"></a>性能测试</h3><p>Github地址：<a href="https://github.com/FunctionClub/ZBench" target="_blank" rel="noopener">https://github.com/FunctionClub/ZBench</a><br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#中文版：</span></span><br><span class="line">wget -N --no-check-certificate https://raw.githubusercontent.com/FunctionClub/ZBench/master/ZBench-CN.sh &amp;&amp; bash ZBench-CN.sh</span><br><span class="line"></span><br><span class="line"><span class="comment">#英文版：</span></span><br><span class="line">wget -N --no-check-certificate https://raw.githubusercontent.com/FunctionClub/ZBench/master/ZBench.sh &amp;&amp; bash ZBench</span><br></pre></td></tr></table></figure></p>
+]]></content>
+      <categories>
+        <category>个人爱好</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>JavaScript Promise个人理解</title>
+    <url>/javascript-promise.html</url>
+    <content><![CDATA[<p>JavaScript Promise正确用法及其常见的错误用法。</p>
+<a id="more"></a>
+<p>未完待续，有时间再写</p>
+]]></content>
+      <categories>
+        <category>Javascript</category>
+      </categories>
+      <tags>
+        <tag>Javascript</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Linux Termux（在手机上运行Linux服务器）</title>
+    <url>/linux-phone.html</url>
+    <content><![CDATA[<h3 id="安装Termux-运行Linux安装脚本"><a href="#安装Termux-运行Linux安装脚本" class="headerlink" title="安装Termux 运行Linux安装脚本"></a>安装Termux 运行Linux安装脚本</h3><p>Termux下载地址：<a href="https://f-droid.org/packages/com.termux/" target="_blank" rel="noopener">https://f-droid.org/packages/com.termux/</a></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 安装ssh</span></span><br><span class="line">apt update</span><br><span class="line">apt install openssh</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看用户名（ssh端口默认8022）</span></span><br><span class="line">whoami</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 将sshd服务在开启termux时就启动</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"sshd"</span> &gt;&gt; ~/.bashrc</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Termux熄屏仍然保持运行</span></span><br><span class="line">termux-wake-unlock</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">. &lt;(curl -L gitee.com/mo2/linux/raw/2/2)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看Linux发行版</span></span><br><span class="line">lsb_release -a</span><br></pre></td></tr></table></figure>
+<p>剩下的自由发挥<br>注意：<br>1、手机没有root要选择proot容器</p>
+<p>参考博客：<a href="https://blog.dreamfall.cn/post/termux-xmr/" target="_blank" rel="noopener">https://blog.dreamfall.cn/post/termux-xmr/</a></p>
+<h3 id="编译-C3-xmrig"><a href="#编译-C3-xmrig" class="headerlink" title="编译 C3-xmrig"></a>编译 C3-xmrig</h3><p>进入 Ubuntu<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 在Termux终端输入命令，启动Ubuntu</span></span><br><span class="line">debian</span><br></pre></td></tr></table></figure></p>
+<p>安装依赖<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt-get install git build-essential cmake libuv1-dev libssl-dev libhwloc-dev -y</span><br></pre></td></tr></table></figure></p>
+<p>克隆代码<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/C3Pool/xmrig-C3.git</span><br></pre></td></tr></table></figure></p>
+<p>去除抽水率<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vim xmrig-C3/src/donate.h</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 把1改为0</span></span><br><span class="line">constexpr const int kDefaultDonateLevel = 1</span><br><span class="line">constexpr const int kMinimumDonateLevel = 1</span><br></pre></td></tr></table></figure>
+<p>编译安装<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mkdir xmrig-C3/build &amp;&amp; <span class="built_in">cd</span> xmrig-C3/build &amp;&amp; cmake .. &amp;&amp; make -j$(nproc) &amp;&amp; mv xmrig ~ &amp;&amp; <span class="built_in">cd</span> ~ &amp;&amp; rm -rf xmrig-C3</span><br></pre></td></tr></table></figure></p>
+<p>启动Xmrig<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">./xmrig -u 422x5HQKsFpRPi6UF7J9ngESkU1FBVzFVUVTgz4jDm6P6nDezgzMXujW7Wjt6QWWSTMy5sQx63YvG9gWoMCWMrLxBKTx3Qo -o  auto.c3pool.org:19999 -p termuxZ -a cn-pico</span><br><span class="line"></span><br><span class="line"><span class="comment"># 后台运行</span></span><br><span class="line">nohup ./xmrig -u 422x5HQKsFpRPi6UF7J9ngESkU1FBVzFVUVTgz4jDm6P6nDezgzMXujW7Wjt6QWWSTMy5sQx63YvG9gWoMCWMrLxBKTx3Qo -o  auto.c3pool.org:19999 -p termuxZ -a cn-pico &amp;</span><br></pre></td></tr></table></figure></p>
+]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>可道云kodbox私有云网盘（NAS软件）</title>
+    <url>/kodbox.html</url>
+    <content><![CDATA[<p>有些数据存放在第三方网盘里不放心（<em>百度云之类</em>）想用家里的电脑搭建一个自己的私有网盘。<br>或者觉得第三方网盘访问速度太慢（<em>比如百度云</em>）就算开了会员，受带宽限制还是不够快，而家里的局域网理论带宽能达到千兆级。<br>本文介绍<strong>可道云kodbox</strong>作为家庭NAS的一种方案。</p>
+<p>适用场景：</p>
+<ol>
+<li>私有云网盘；</li>
+<li>NAS家庭存储；</li>
+</ol>
+<h3 id="前置条件"><a href="#前置条件" class="headerlink" title="前置条件"></a>前置条件</h3><ul>
+<li>Docker</li>
+<li>DockerHub <a href="https://hub.docker.com/r/kodcloud/kodbox" target="_blank" rel="noopener">https://hub.docker.com/r/kodcloud/kodbox</a></li>
+<li>可运行Docker的计算机一台</li>
+</ul>
+<a id="more"></a>
+<h3 id="安装开始"><a href="#安装开始" class="headerlink" title="安装开始"></a>安装开始</h3><p><strong>可道云kodbox</strong>基于PHP，数据库使用的是Mysql，用户可以自己装安装PHP、Mysql环境来进行安装，也可以通过Docker快速安装。<br>这里介绍Docker的安装流程（Docker安装比较简单，不需要安装环境）：</p>
+<h4 id="安装Docker"><a href="#安装Docker" class="headerlink" title="安装Docker"></a>安装Docker</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">curl -fsSL https://get.docker.com -o get-docker.sh</span><br><span class="line">sudo sh get-docker.sh</span><br></pre></td></tr></table></figure>
+<h4 id="拉取Docker镜像并启动"><a href="#拉取Docker镜像并启动" class="headerlink" title="拉取Docker镜像并启动"></a>拉取Docker镜像并启动</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mkdir /data</span><br><span class="line">docker run -d -p 80:80 -v /data:/var/www/html kodcloud/kodbox</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>个人爱好</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Nestjs个人理解</title>
+    <url>/nestjs.html</url>
+    <content><![CDATA[<p>作为<strong>前端开发人员</strong>，应该很多人都知道<strong>Nodejs</strong>，也有想用Nodejs写后台项目的，我估计有很多人写着写着最终也就放弃了，然后会说：<em>Nodejs不适合写Web服务端项目</em>。<strong>事实并不是这样</strong>，他们用Nodejs写后台项目，大多数用到框架可能是：<em>Koa、Express、Eggjs、Koa2、Fastify</em>。这一类框架只是提供了最基础的底座，想完成一个成熟的项目，需要在上面添加很多东西，所以写着写着就烦了。</p>
+<p>用<strong>JavaScript</strong>写后端项目有两大难点：<strong>弱类型语言、相关生态不成熟</strong>。弱类型语言会导致编写大型项目时代码难以把控，生态不够成熟会导致项目越写越累，需要到处找轮子，而且各种轮子质量参差不齐，没法像<strong>Java Sprint</strong>一样拿来一把梭。<br>现在我推荐一下<a href="https://docs.nestjs.com/" target="_blank" rel="noopener">Nestjs</a>，它支持<a href="https://www.tslang.cn/index.html" target="_blank" rel="noopener">Typescript</a>编写代码，完美解决JS的弱类型问题，而且生态很健全，项目中需要用到的大多数工具都可以在@nestjs中找到。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm i -g @nestjs/cli</span><br><span class="line">nest new project-name</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<p>我目前写的项目也是用的Nestjs，这里我专门把<em>业务代码</em>抽离出去，剩下的作为<a href="https://github.com/zyhahaha/e-shop-backend-nest" target="_blank" rel="noopener">项目模板</a>开源出来，感兴趣的可以看一下。<br>这个模板项目可以让小白了解以下几个知识点：</p>
+<ul>
+<li>Redis连接及基础操作；</li>
+<li>Mysql连接及基础操作；</li>
+<li>Mongodb连接及基础操作；</li>
+<li>Websockets；</li>
+<li>log4js日志处理；</li>
+<li>邮件通知、七牛云对象存储操作；</li>
+<li>通过代码自动生成Swagger接口文档；</li>
+<li>基础的注册登录，JWT跨域认证解决方案（<em>一种基于 Token 的认证授权机制</em>）；</li>
+<li>通过阿里云SDK修改DNS解析地址；</li>
+</ul>
+<h3 id="PM2开机自启"><a href="#PM2开机自启" class="headerlink" title="PM2开机自启"></a>PM2开机自启</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 启动项目</span></span><br><span class="line">pm2 start xxxx</span><br><span class="line"><span class="comment"># 保存pm2程序配置</span></span><br><span class="line">pm2 save</span><br><span class="line"><span class="comment"># 生成开机自启动服务</span></span><br><span class="line">pm2 startup</span><br><span class="line"><span class="comment"># 开机服务</span></span><br><span class="line">systemctl <span class="built_in">enable</span> pm2-root</span><br><span class="line"><span class="comment"># 重启</span></span><br><span class="line">reboot</span><br></pre></td></tr></table></figure>
+<p>未完待续，有时间再写</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>旧手机再利用（Android）</title>
+    <url>/old-phone.html</url>
+    <content><![CDATA[<p>旧手机再利用<br>参考：<a href="https://xiaoyi.vc/phone-diy.html" target="_blank" rel="noopener">https://xiaoyi.vc/phone-diy.html</a></p>
+<p>摄像头：<a href="http://iriun.com/" target="_blank" rel="noopener">http://iriun.com/</a></p>
+<p>第二屏幕：<a href="https://www.spacedesk.net/#download" target="_blank" rel="noopener">https://www.spacedesk.net/#download</a></p>
+]]></content>
+      <categories>
+        <category>个人爱好</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Linux Deploy（在手机上运行Linux服务器）</title>
+    <url>/linux-deploy.html</url>
+    <content><![CDATA[<p>十年来，<strong>智能手机发展极为迅速</strong>，某些手机厂商的旗舰手机<em>一年一迭代</em>，<strong>手机淘汰速度完全跟不上</strong>。现在华为手机都已经发布<strong>P60</strong>了，我还在用<strong>P20</strong>，而我手机才买了不到三年（<em>有点舍不得换，毕竟还没用三年</em>）。这么快的淘汰速度，相应的各位家里应该有不少明明都好好的，但是已经不用的手机吧（<em>我家里有5台不用的手机，还好好的</em>）。这些手机扔了可惜，卖了不值钱，而且还怕被人盗取信息。</p>
+<p>作为一名<strong>勤俭节约</strong>、<strong>充满好奇</strong>、<strong>愿意折腾</strong>的开发者，找到了一个有意思的用途：<strong>把旧手机作为一台低功耗服务器</strong>。</p>
+<p>那要怎么做呢，首先，安装一个软件即可：<a href="https://github.com/meefik/linuxdeploy" target="_blank" rel="noopener">Linux Deploy</a>，这款软件只支持安卓手机，不支持IOS，那IOS用户怎么办：请<strong>以旧换新</strong>，还是很划算的。</p>
+<h3 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h3><p>Github：<a href="https://github.com/meefik/linuxdeploy" target="_blank" rel="noopener">https://github.com/meefik/linuxdeploy</a><br>Android APP下载地址：<a href="https://github.com/meefik/linuxdeploy/releases/tag/2.3.0" target="_blank" rel="noopener">https://github.com/meefik/linuxdeploy/releases/tag/2.3.0</a></p>
+<a id="more"></a>
+<h3 id="前置条件"><a href="#前置条件" class="headerlink" title="前置条件"></a>前置条件</h3><p>一台已Root的安卓手机，<a href="https://termux.dev/en/" target="_blank" rel="noopener">无Root条件，请用Termux</a></p>
+<p>下面就以我这台八年前的手机为例：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/linux-deploy/linux-deploy-phone.jpeg" alt="华为G750"></p>
+<p>通过上面的相关链接下载app，安装打开后页面是这样的</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/linux-deploy/linux-deploy-default.jpeg" alt="软件界面"></p>
+<p>点击<strong>右下角图标</strong>进入以下配置界面，配置需要安装的<strong>Linux发行版、镜像大小、用户名密码</strong>、最下面有个开启<strong>SSH服务</strong>一定要勾选，不然没法远程访问（截图没截到，往下翻就看到了）。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/linux-deploy/linux-deploy-config.jpeg" alt="配置界面"></p>
+<p>通过一系列的配置、安装（<em>安装时间可能要十几分钟到半个小时</em>）后，点击<strong>启动</strong>按钮，出现以下页面代码启动成功</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/linux-deploy/linux-deploy-start.jpeg" alt="启动成功"></p>
+<p>之后可以通过电脑SSH远程访问手机服务器</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/linux-deploy/linux-deploy-ssh.jpg" alt="MobaXterm"><br><img src="https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/linux-deploy/linux-deploy-df.jpg" alt="查看服务器配置"><br><img src="https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/linux-deploy/linux-deploy-cpu.jpg" alt="查看服务器CPU"></p>
+<p>8核、2GB内存、2GB硬盘，硬盘有点小，可以挂载SD卡扩展空间（<em>可以看到df -h后，有一个sdcard1的30GB空间可用</em>），有时间我会细说一下怎么挂载SD卡。</p>
+<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><p>大家安装的时候看好版本，Android版本跟软件版本要对应上，低版本的系统用不了高版本的软件，反之亦然。</p>
+<p>安装这个软件<strong>系统需要ROOT</strong>⊙﹏⊙∥，如果无法ROOT的话，只能用另外一个替代方案了：<a href="https://termux.dev/en/" target="_blank" rel="noopener">Termux</a></p>
+<!-- ![Termux](https://termux.dev/assets/globals/home/htop_framed.png) -->
+<p>有时间我会写一下Termux相关的教程，由于不需要ROOT相对而言Termux肯定在权限方面是不如<strong>Linux Deploy</strong>，不过作为一台Web服务器还是够的。</p>
+]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Nuxt多环境配置</title>
+    <url>/nuxt-env.html</url>
+    <content><![CDATA[<p>Nuxt项目测试、生产<strong>环境变量配置</strong>，首先使用<a href="https://www.cnblogs.com/jiaoshou/p/12187504.html" target="_blank" rel="noopener">cross-env</a>（一款跨平台设置和使用环境变量的脚本）配置环境变量。</p>
+<h4 id="第一步：修改package-json文件（通过cross-env添加环境变量MODE）"><a href="#第一步：修改package-json文件（通过cross-env添加环境变量MODE）" class="headerlink" title="第一步：修改package.json文件（通过cross-env添加环境变量MODE）"></a>第一步：修改package.json文件（通过cross-env添加环境变量MODE）</h4><figure class="highlight"><table><tr><td class="code"><pre><span class="line">"scripts": &#123;</span><br><span class="line">    "test-start": "cross-env MODE=test nuxt start",</span><br><span class="line">    "test": "cross-env MODE=test nuxt build",</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h4 id="第二步：创建env-js文件（各环境配置字典）"><a href="#第二步：创建env-js文件（各环境配置字典）" class="headerlink" title="第二步：创建env.js文件（各环境配置字典）"></a>第二步：创建env.js文件（各环境配置字典）</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    dev: &#123;</span><br><span class="line">        MODE: <span class="string">'dev'</span>,</span><br><span class="line">        ENV_API: <span class="string">'https://api.dev.cn'</span>,</span><br><span class="line">        ENV_OPEN_DOC_URL: <span class="string">'https://qwer.dev.cn'</span></span><br><span class="line">    &#125;,</span><br><span class="line">    test: &#123;</span><br><span class="line">        MODE: <span class="string">'test'</span>,</span><br><span class="line">        ENV_API: <span class="string">'https://api.test.cn'</span>,</span><br><span class="line">        ENV_OPEN_DOC_URL: <span class="string">'https://qwer.test.cn'</span></span><br><span class="line">    &#125;,</span><br><span class="line">    prod: &#123;</span><br><span class="line">        MODE: <span class="string">'prod'</span>,</span><br><span class="line">        ENV_API: <span class="string">'https://api.prod.cn'</span>,</span><br><span class="line">        ENV_OPEN_DOC_URL: <span class="string">'https://qwer.prod.cn'</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="第三步：修改nuxt-config-js文件（通过环境变量MODE，获取当前环境配置）"><a href="#第三步：修改nuxt-config-js文件（通过环境变量MODE，获取当前环境配置）" class="headerlink" title="第三步：修改nuxt.config.js文件（通过环境变量MODE，获取当前环境配置）"></a>第三步：修改nuxt.config.js文件（通过环境变量MODE，获取当前环境配置）</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> env <span class="keyword">from</span> <span class="string">'./env'</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">    env: &#123;</span><br><span class="line">        NUXT_ENV: env[process.env.MODE]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="第四步：如何在项目中使用"><a href="#第四步：如何在项目中使用" class="headerlink" title="第四步：如何在项目中使用"></a>第四步：如何在项目中使用</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">computed: &#123;</span><br><span class="line">    baseApiUrl () &#123;</span><br><span class="line">        <span class="keyword">return</span> process.env.NUXT_ENV.ENV_API</span><br><span class="line">    &#125;</span><br><span class="line">    baseSiteUrl () &#123;</span><br><span class="line">        <span class="keyword">return</span> process.env.NUXT_ENV.ENV_OPEN_DOC_URL</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">:src</span>=<span class="string">"`$&#123;baseSiteUrl&#125;/images/defalut.png`"</span> <span class="attr">alt</span>=<span class="string">""</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="第五步：结束"><a href="#第五步：结束" class="headerlink" title="第五步：结束"></a>第五步：结束</h4>]]></content>
+      <categories>
+        <category>Javascript</category>
+      </categories>
+      <tags>
+        <tag>Javascript</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>PCDN</title>
+    <url>/pcdn.html</url>
+    <content><![CDATA[<p><strong>PCDN</strong>（<em>P2P CDN</em>）P2P内容分发网络，看名字大概能猜到是干嘛的。常规的CDN服务主要是大公司在做，使用遍布全国的CDN服务器提供静态资源访问服务。阿里云有提供PCDN这种服务的，感兴趣可以看一下<a href="https://help.aliyun.com/product/54287.html" target="_blank" rel="noopener">阿里云PCDN</a>。</p>
+<p><strong>想象一下这种场景：</strong> 你家邻居在家里看腾讯视频，这个视频一般来说可能是存储在腾讯服务器上的，如果很多人同时看这个视频，腾讯的服务器是不是很有压力（<em>主要是硬盘读取压力和带宽压力</em>）。</p>
+<p>而且如果这个服务器离你家还很远，是不是除了服务器压力之外，带宽传输是不是也是一种浪费。这个时候如果你家里的电脑，做CDN节点，预先把这个视频缓存到你电脑上，当你附近有人访问这个资源，优先从你电脑上访问，是不是就不用浪费厂商的服务器资源了。</p>
+<p>但是我们<strong>为什么要这么做</strong>呢，肯定是要别人给钱，我才愿意做这个CDN节点，我用的是<strong>网心云</strong>（<em>纯属爱好，随便玩玩</em>），下面讲一下它怎么部署：</p>
+<h3 id="前置条件"><a href="#前置条件" class="headerlink" title="前置条件"></a>前置条件</h3><p>首先你要有个服务器（<em>也就是电脑，闲置的云服务器也行</em>）、Docker的基本用法；</p>
+<p><strong>个人观点：</strong> <em>这个也就是玩玩，别指望它赚多少钱。用自己电脑做CDN节点，一方面要24小时开机，费电、费硬盘、占网络</em>；</p>
+<h3 id="声明"><a href="#声明" class="headerlink" title="声明"></a>声明</h3><p>本文不是教你赚钱的教程，我写文章的初衷是分享一些有意思的工具、软件、想法等。欢迎各位志同道合，爱折腾的朋友一起探讨。</p>
+<a id="more"></a>
+<h4 id="安装Docker"><a href="#安装Docker" class="headerlink" title="安装Docker"></a>安装Docker</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">curl -fsSL https://get.docker.com -o get-docker.sh</span><br><span class="line">sudo sh get-docker.sh</span><br></pre></td></tr></table></figure>
+<h4 id="拉取Docker镜像并启动"><a href="#拉取Docker镜像并启动" class="headerlink" title="拉取Docker镜像并启动"></a>拉取Docker镜像并启动</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run -d --name=wxedge \</span><br><span class="line">  --restart=always --privileged --net=host \</span><br><span class="line">  --tmpfs /run --tmpfs /tmp \</span><br><span class="line">  -v /data/wxedge_storage:/storage:rw  \</span><br><span class="line">  onething1/wxedge</span><br></pre></td></tr></table></figure>
+<p>注意：/data/wxedge_storage需要改成自己的本地路径（<em>当然不该也行</em>）</p>
+<h4 id="多实例"><a href="#多实例" class="headerlink" title="多实例"></a>多实例</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run -d -e LISTEN_ADDR=<span class="string">":28888"</span> --name=wxedge2 \</span><br><span class="line">  --restart=always --privileged --net=host \</span><br><span class="line">  --tmpfs /run --tmpfs /tmp \</span><br><span class="line">  -v /home/zyhahaha/wxy:/storage:rw  \</span><br><span class="line">  onething1/wxedge</span><br></pre></td></tr></table></figure>
+<h3 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h3><pre><code>注册网心云：这个是拉新链接，邀请人和被邀请人均可获得优惠券
+https://act.walk-live.com/acts/invite?inviteid=51845cd2
+
+安装网心云：
+可到应用市场下载，也可以通过上面的链接注册下载。
+
+官网：
+https://www.onethingcloud.com/
+</code></pre><h3 id="最后一步"><a href="#最后一步" class="headerlink" title="最后一步"></a>最后一步</h3><p>安装完App后，浏览器访问<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">http://你服务器IP:18888</span><br></pre></td></tr></table></figure></p>
+<p>会出现下面的界面，再通过App扫一扫浏览器的二维码添加设备。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/pcdn/qrcode.jpg" alt="浏览器打开 IP:18888"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/pcdn/scan.jpg" alt="App扫一扫"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/pcdn/device.jpg" alt="设备列表"></p>
+<h3 id="特别提示"><a href="#特别提示" class="headerlink" title="特别提示"></a>特别提示</h3><p>App上推荐的产品统统不要买，包括各种硬件设备，就跟以前的玩客云一样。<br>想玩就玩<strong>X86 Docker</strong>版（<em>官方叫法：容器魔方</em>），也就是本文介绍的这种部署方式，不用买设备，直接用闲置服务器跑。</p>
+<h3 id="Docker-Hub"><a href="#Docker-Hub" class="headerlink" title="Docker Hub"></a>Docker Hub</h3><p><a href="https://hub.docker.com/r/onething1/wxedge" target="_blank" rel="noopener">https://hub.docker.com/r/onething1/wxedge</a></p>
+<h3 id="阮一峰Docker教程"><a href="#阮一峰Docker教程" class="headerlink" title="阮一峰Docker教程"></a>阮一峰Docker教程</h3><p><a href="https://ruanyifeng.com/blog/2018/02/docker-tutorial.html" target="_blank" rel="noopener">https://ruanyifeng.com/blog/2018/02/docker-tutorial.html</a></p>
+]]></content>
+      <categories>
+        <category>个人爱好</category>
+      </categories>
+      <tags>
+        <tag>PCDN</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>PC主机配件介绍及组装</title>
+    <url>/pc.html</url>
+    <content><![CDATA[<p>计算机，既然靠着它挣钱，那我们是不是要对它有所了解，下面简单介绍一下，也是对相关知识的归纳。<br>计算机主要组成部分：电源、主板、CPU、内存、硬盘<br>CPU分为不同平台，各平台不通用：775、1366、1155、1150、1151（<em>按照时间顺序从先到后排序</em>）</p>
+<a id="more"></a>
+<p>未完待续，有时间再写</p>
+]]></content>
+      <categories>
+        <category>个人爱好</category>
+      </categories>
+      <tags>
+        <tag>PC</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Redroid Root</title>
+    <url>/redroid-root.html</url>
+    <content><![CDATA[<p>使用Redroid在服务器上搭建云手机<br><a href="https://hub.docker.com/r/redroid/redroid" target="_blank" rel="noopener">https://hub.docker.com/r/redroid/redroid</a></p>
+<h3 id="前置条件"><a href="#前置条件" class="headerlink" title="前置条件"></a>前置条件</h3><ul>
+<li>云服务器</li>
+<li>scrcpy的使用方法（<em>见我的另外一篇文章</em>）</li>
+</ul>
+<h3 id="我的环境（不代表其他环境不行）"><a href="#我的环境（不代表其他环境不行）" class="headerlink" title="我的环境（不代表其他环境不行）"></a>我的环境（不代表其他环境不行）</h3><ul>
+<li>Ubuntu 20.04</li>
+<li>4核8G内存云主机</li>
+</ul>
+<a id="more"></a>
+<h3 id="一、安装"><a href="#一、安装" class="headerlink" title="一、安装"></a>一、安装</h3><h5 id="安装docker"><a href="#安装docker" class="headerlink" title="安装docker"></a>安装docker</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt-get install -y docker.io</span><br><span class="line">sudo systemctl start docker</span><br><span class="line">sudo systemctl <span class="built_in">enable</span> docker</span><br></pre></td></tr></table></figure>
+<h5 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt install linux-modules-extra-`uname -r`</span><br><span class="line">sudo modprobe binder_linux devices=<span class="string">"binder,hwbinder,vndbinder"</span></span><br><span class="line">sudo modprobe ashmem_linux</span><br></pre></td></tr></table></figure>
+<h5 id="安装adb"><a href="#安装adb" class="headerlink" title="安装adb"></a>安装adb</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt install adb</span><br></pre></td></tr></table></figure>
+<h3 id="adb连接"><a href="#adb连接" class="headerlink" title="adb连接"></a>adb连接</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 如果是远程机器，localhost改为对应的ip</span></span><br><span class="line">adb connect localhost:5555</span><br></pre></td></tr></table></figure>
+<h3 id="安装scrcpy"><a href="#安装scrcpy" class="headerlink" title="安装scrcpy"></a>安装scrcpy</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># snap方式安装（snap安装比较慢）</span></span><br><span class="line">snap install scrcpy</span><br><span class="line"></span><br><span class="line"><span class="comment"># apt方式安装（版本比较旧）</span></span><br><span class="line">apt install scrcpy</span><br></pre></td></tr></table></figure>
+<h3 id="scrcpy连接设备"><a href="#scrcpy连接设备" class="headerlink" title="scrcpy连接设备"></a>scrcpy连接设备</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 单个设备连接</span></span><br><span class="line">scrcpy</span><br><span class="line"></span><br><span class="line"><span class="comment"># 多设备时通过指定ip连接</span></span><br><span class="line">scrcpy -s localhost:5555</span><br></pre></td></tr></table></figure>
+<h3 id="Redroid安装完成，开始安装Magisk"><a href="#Redroid安装完成，开始安装Magisk" class="headerlink" title="Redroid安装完成，开始安装Magisk"></a>Redroid安装完成，开始安装Magisk</h3><p>参考文档：<a href="https://gist.github.com/assiless/a23fb52e8c6156db0474ee8973c4be66" target="_blank" rel="noopener">https://gist.github.com/assiless/a23fb52e8c6156db0474ee8973c4be66</a></p>
+<h5 id="设置环境变量"><a href="#设置环境变量" class="headerlink" title="设置环境变量"></a>设置环境变量</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span> -e <span class="string">"\n</span></span><br><span class="line"><span class="string">export image=redroid/redroid:11.0.0-latest</span></span><br><span class="line"><span class="string">export image_tar=<span class="variable">$&#123;HOME&#125;</span>/redroid:11.0.0-latest"</span> &gt;&gt; <span class="variable">$&#123;HOME&#125;</span>/.bashrc</span><br><span class="line"><span class="built_in">source</span> <span class="variable">$&#123;HOME&#125;</span>/.bashrc</span><br></pre></td></tr></table></figure>
+<h5 id="使用docker安装"><a href="#使用docker安装" class="headerlink" title="使用docker安装"></a>使用docker安装</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 拉取镜像</span></span><br><span class="line">sudo docker pull <span class="variable">$image</span></span><br><span class="line"><span class="comment"># 导出镜像</span></span><br><span class="line">sudo docker save --output redroidBak.tar <span class="variable">$image</span></span><br><span class="line"><span class="comment"># sudo docker save --output redroidBak.tar redroid/redroid:11.0.0-latest</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 删除已更改的镜像</span></span><br><span class="line">sudo docker image rmi -f <span class="variable">$image</span></span><br><span class="line"><span class="comment"># 加载刚刚备份的镜像</span></span><br><span class="line">sudo docker load -i redroidBak.tar</span><br></pre></td></tr></table></figure>
+<h5 id="Setting-Up"><a href="#Setting-Up" class="headerlink" title="Setting Up"></a>Setting Up</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo mkdir ~/MagiskOnRedroid</span><br><span class="line"><span class="built_in">cd</span> ~/MagiskOnRedroid</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 下载、提取Magisk</span></span><br><span class="line">find -maxdepth 1 -iname <span class="string">"magisk*"</span> -not -name <span class="string">"*.apk"</span> -<span class="built_in">exec</span> rm -r &#123;&#125; \;</span><br><span class="line">magisk_file=<span class="string">"app-debug.apk"</span></span><br><span class="line"><span class="comment"># download Magisk 9b61bdfc(25201) debug as you did i guess</span></span><br><span class="line"><span class="keyword">if</span> [ ! -f <span class="variable">$magisk_file</span> ]; <span class="keyword">then</span></span><br><span class="line">  sudo wget <span class="string">"https://cdn.jsdelivr.net/gh/topjohnwu/magisk-files@1cea72840fbf690f9a95512d03721f6a710fe02e/app-debug.apk"</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"><span class="comment"># because my machine x64 i will choose x86_64</span></span><br><span class="line">sudo unzip -j <span class="variable">$magisk_file</span> <span class="string">"lib/x86_64/libmagisk64.so"</span> -d magisk</span><br><span class="line">sudo unzip -j <span class="variable">$magisk_file</span> <span class="string">"lib/x86_64/libbusybox.so"</span> -d magisk</span><br><span class="line">sudo mv -v magisk/libmagisk64.so magisk/magisk</span><br><span class="line">sudo mv -v magisk/libbusybox.so magisk/busybo</span><br><span class="line"><span class="comment"># $ tree ~/MagiskOnRedroid</span></span><br><span class="line"><span class="comment"># .</span></span><br><span class="line"><span class="comment"># ├── app-debug.apk</span></span><br><span class="line"><span class="comment"># └── magisk</span></span><br><span class="line"><span class="comment">#     ├── busybox</span></span><br><span class="line"><span class="comment">#     └── magisk</span></span><br></pre></td></tr></table></figure>
+<h5 id="compress-magisk（不知道是啥，直接执行）"><a href="#compress-magisk（不知道是啥，直接执行）" class="headerlink" title="compress magisk（不知道是啥，直接执行）"></a>compress magisk（不知道是啥，直接执行）</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">tar --transform <span class="string">'s/.*\///g'</span> -cf ~/magisk.tar --absolute-names $( find ~/MagiskOnRedroid | grep -E <span class="string">"magisk/|app-debug.apk$"</span> )</span><br></pre></td></tr></table></figure>
+<h5 id="remove-rc"><a href="#remove-rc" class="headerlink" title="remove.rc"></a>remove.rc</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">cat &lt;&lt;\EOF &gt; ~/remove.rc</span><br><span class="line">on early-init</span><br><span class="line">	<span class="built_in">export</span> PATH /sbin:/product/bin:/apex/com.android.runtime/bin:/apex/com.android.art/bin:/system_ext/bin:/system/bin:/system/xbin:/odm/bin:/vendor/bin:/vendor/xbin</span><br><span class="line">	chmod 0700 /magisk.tar</span><br><span class="line">	chown root root /magisk.tar</span><br><span class="line">	chmod 0700 /setup.sh</span><br><span class="line">	chown root root /setup.sh</span><br><span class="line">	<span class="built_in">exec</span> root root -- /setup.sh</span><br><span class="line">service magisk<span class="_">-d</span> /sbin/magisk --daemon</span><br><span class="line">	user root</span><br><span class="line">	oneshot</span><br><span class="line">on boot</span><br><span class="line">	start magisk<span class="_">-d</span></span><br><span class="line">on post-fs-data</span><br><span class="line">	start logd</span><br><span class="line">	rm /dev/.magisk-unblock</span><br><span class="line">	start s1</span><br><span class="line">	<span class="built_in">wait</span> /dev/.magisk-unblock 5</span><br><span class="line">	rm /dev/.magisk-unblock</span><br><span class="line">service s1 /sbin/magisk --post-fs-data</span><br><span class="line">	user root</span><br><span class="line">	oneshot</span><br><span class="line">service s2 /sbin/magisk --service</span><br><span class="line">	class late_start</span><br><span class="line">	user root</span><br><span class="line">	oneshot</span><br><span class="line">on property:sys.boot_completed=1</span><br><span class="line">	<span class="built_in">exec</span> /sbin/magisk --boot-complete</span><br><span class="line">on property:init.svc.zygote=restarting</span><br><span class="line">	<span class="built_in">exec</span> /sbin/magisk --zygote-restart</span><br><span class="line">on property:init.svc.zygote=stopped</span><br><span class="line">	<span class="built_in">exec</span> /sbin/magisk --zygote-restart</span><br><span class="line">EOF</span><br><span class="line">sudo chmod 644 ~/remove.rc</span><br><span class="line">sudo chown root:root ~/remove.rc</span><br></pre></td></tr></table></figure>
+<h5 id="setup-sh"><a href="#setup-sh" class="headerlink" title="setup.sh"></a>setup.sh</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">cat &lt;&lt;\EOF &gt; ~/setup.sh</span><br><span class="line"><span class="meta">#!/system/bin/sh</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># rm /system/fonts/NotoColorEmoji.ttf</span></span><br><span class="line">tmpPushed=/magisk</span><br><span class="line">rm -rf <span class="variable">$tmpPushed</span></span><br><span class="line">mkdir <span class="variable">$tmpPushed</span></span><br><span class="line">tar -xvf /magisk.tar --no-same-owner -C <span class="variable">$tmpPushed</span></span><br><span class="line">umount /magisk.tar ; rm -v /magisk.tar</span><br><span class="line">mkdir /sbin</span><br><span class="line">chown root:root /sbin</span><br><span class="line"><span class="comment"># chmod 0700 /sbin</span></span><br><span class="line">chmod 0751 /sbin</span><br><span class="line">cp <span class="variable">$tmpPushed</span>/magisk /sbin/</span><br><span class="line">cp <span class="variable">$tmpPushed</span>/app-debug.apk /sbin/stub.apk</span><br><span class="line">find /sbin -<span class="built_in">type</span> f -<span class="built_in">exec</span> chmod 0755 &#123;&#125; \;</span><br><span class="line">find /sbin -<span class="built_in">type</span> f -<span class="built_in">exec</span> chown root:root &#123;&#125; \;</span><br><span class="line"><span class="comment"># add /sbin</span></span><br><span class="line"><span class="comment"># /sbin/</span></span><br><span class="line"><span class="comment"># ├── magisk</span></span><br><span class="line"><span class="comment"># └── stub.apk</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">ln -f -s /sbin/magisk /system/xbin/su</span><br><span class="line">mkdir /product/bin</span><br><span class="line">chmod 751 /product/bin</span><br><span class="line">ln -f -s /sbin/magisk /product/bin/su</span><br><span class="line"><span class="comment"># add su (override `/system/xbin/su`)</span></span><br><span class="line"><span class="comment"># /product/bin/</span></span><br><span class="line"><span class="comment"># └── su -&gt; /sbin/magisk</span></span><br><span class="line"></span><br><span class="line">mkdir -p /data/adb/magisk</span><br><span class="line">chmod 700 /data/adb</span><br><span class="line">mv <span class="variable">$tmpPushed</span>/busybox /data/adb/magisk/</span><br><span class="line">chmod -R 755 /data/adb/magisk</span><br><span class="line">chmod -R root:root /data/adb/magisk</span><br><span class="line"><span class="comment"># /data/adb/</span></span><br><span class="line"><span class="comment"># ├── magisk</span></span><br><span class="line"><span class="comment"># │   └── busybox</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># rm -rf $tmpPushed</span></span><br><span class="line">EOF</span><br><span class="line">sudo chmod 700 ~/setup.sh</span><br><span class="line">sudo chown root:root ~/setup.sh</span><br></pre></td></tr></table></figure>
+<h5 id="运行Magisk（boot-with-magisk-support）"><a href="#运行Magisk（boot-with-magisk-support）" class="headerlink" title="运行Magisk（boot with magisk support）"></a>运行Magisk（boot with magisk support）</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">(</span><br><span class="line">sudo docker stop a11</span><br><span class="line">clear</span><br><span class="line">sudo docker run -itd --rm --privileged \</span><br><span class="line">  --name a11 \</span><br><span class="line">  -v ~/data:/data \</span><br><span class="line">  -v ~/remove.rc:/vendor/etc/init/remove.rc \</span><br><span class="line">  -v ~/setup.sh:/setup.sh \</span><br><span class="line">  -v ~/magisk.tar:/magisk.tar \</span><br><span class="line">  -p 5555:5555 \</span><br><span class="line">  redroid/redroid:11.0.0-latest \</span><br><span class="line">  androidboot.hardware=mt6891 ro.secure=0 ro.boot.hwc=GLOBAL ro.ril.oem.imei=861503068361145 ro.ril.oem.imei1=861503068361145 ro.ril.oem.imei2=861503068361148 ro.ril.miui.imei0=861503068361148 ro.product.manufacturer=Xiaomi ro.build.product=chopin \</span><br><span class="line">  ro.product.cpu.abilist0=x86_64,arm64-v8a,x86,armeabi-v7a,armeabi \</span><br><span class="line">  ro.product.cpu.abilist64=x86_64,arm64-v8a \</span><br><span class="line">  ro.product.cpu.abilist32=x86,armeabi-v7a,armeabi \</span><br><span class="line">  ro.dalvik.vm.isa.arm=x86 \</span><br><span class="line">  ro.dalvik.vm.isa.arm64=x86_64 \</span><br><span class="line">  ro.enable.native.bridge.exec=1 \</span><br><span class="line">  ro.dalvik.vm.native.bridge=libndk_translation.so \</span><br><span class="line">  ro.ndk_translation.version=0.2.2 \</span><br><span class="line">  redroid.width=720 redroid.height=1280 \</span><br><span class="line">  redroid.gpu.mode=guest</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h3 id="安装应用"><a href="#安装应用" class="headerlink" title="安装应用"></a>安装应用</h3>]]></content>
+      <categories>
+        <category>个人爱好</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
   </entry>
   <entry>
     <title>qBittorrent安装（Debian 11 OR Ubuntu18）</title>
@@ -551,6 +556,56 @@ https://www.onethingcloud.com/
       </tags>
   </entry>
   <entry>
+    <title>DHT</title>
+    <url>/dht.html</url>
+    <content><![CDATA[<p>一直很好奇那些资源站、磁力链接网站是怎么做到这么多资源的，经过一番专研，我自建了一个磁力链接网站，这里给大家分享一下它是怎么实现的。<br>经过这篇文章的讲解，大家也可以搭建属于自己的<strong>磁力链接网站</strong>。</p>
+<h3 id="前置条件"><a href="#前置条件" class="headerlink" title="前置条件"></a>前置条件</h3><ol>
+<li>至少一台linux服务器（<em>最好两台</em>）</li>
+<li>Mysql数据库（<em>磁力链接数据库</em>）</li>
+<li>安装Nodejs、Npm（<em>Nodejs &gt;= 10</em>）</li>
+<li>需安装qbittorrent（<em>用于解析磁力链接内容</em>）</li>
+</ol>
+<h3 id="代码已开源"><a href="#代码已开源" class="headerlink" title="代码已开源"></a>代码已开源</h3><ol>
+<li>DHT仓库：<a href="https://github.com/zyhahaha/DHT" target="_blank" rel="noopener">https://github.com/zyhahaha/DHT</a></li>
+<li>磁力链接前端：<a href="https://github.com/zyhahaha/AppMe" target="_blank" rel="noopener">https://github.com/zyhahaha/AppMe</a></li>
+</ol>
+<a id="more"></a>
+<h3 id="简述"><a href="#简述" class="headerlink" title="简述"></a>简述</h3><p>首先简述一下实现磁力链接网站的大概思路：</p>
+<ol>
+<li>加入DHT网络获取磁力链接hash</li>
+<li>把磁力链接hash存入数据库</li>
+<li>解析磁力链接获得BT种子，把磁力链接内容存入数据库</li>
+<li>搭建前端页面提供磁力链接的查询</li>
+</ol>
+<h3 id="加入DHT网络获取磁力链接"><a href="#加入DHT网络获取磁力链接" class="headerlink" title="加入DHT网络获取磁力链接"></a>加入DHT网络获取磁力链接</h3><p>直接下载这个代码，开箱即用：<a href="https://github.com/zyhahaha/DHT" target="_blank" rel="noopener">https://github.com/zyhahaha/DHT</a><br><img src="https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/dht/github.jpg" alt="Github仓库"></p>
+<p>下面说一下调用方式。<br><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> spider = <span class="keyword">new</span> (<span class="built_in">require</span>(<span class="string">'./lib/spider'</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment">// 这里直接把磁力链接打印出来</span></span><br><span class="line">spider.on(<span class="string">'ensureHash'</span>, (hash, addr)=&gt; <span class="built_in">console</span>.log(<span class="string">`magnet:?xt=urn:btih:<span class="subst">$&#123;hash&#125;</span>`</span>))</span><br><span class="line"></span><br><span class="line">spider.listen(<span class="number">6339</span>)</span><br></pre></td></tr></table></figure></p>
+<h3 id="把磁力链接hash存入数据库"><a href="#把磁力链接hash存入数据库" class="headerlink" title="把磁力链接hash存入数据库"></a>把磁力链接hash存入数据库</h3><p>这一步是最简单的一步，因为我的后端代码包含一些敏感信息就没有开源，大家自己搭建一个后端，提供基础的增删改查功能，用于保存磁力链接数据。</p>
+<p>这里我推荐用<strong>Nestjs</strong>作为后端框架，感兴趣的可以看我<strong>另外一篇文章</strong>：<a href="https://zyhahaha.github.io/nestjs.html">https://zyhahaha.github.io/nestjs.html</a></p>
+<p>我们只需要保存<strong>ensureHash</strong>事件返回的hash即可：<br><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">spider.on(<span class="string">'ensureHash'</span>, (hash, addr)=&gt; &#123;</span><br><span class="line">  <span class="comment">// 保存磁力链接到数据库</span></span><br><span class="line">  saveHash(<span class="string">`magnet:?xt=urn:btih:<span class="subst">$&#123;hash&#125;</span>`</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<h3 id="通过磁力链接获取种子"><a href="#通过磁力链接获取种子" class="headerlink" title="通过磁力链接获取种子"></a>通过磁力链接获取种子</h3><p>只有磁力链接我们就可以通过一些软件下载资源了，但是如果我们要做一个磁力链接网站，在查询时要知道这个磁力链接的资源内容，资源大小等信息。<br>这个时候我们就需要把磁力链接转为种子，种子内包含这些信息。</p>
+<p>那么如何获取种子呢，这里就需要用到qbittorrent，可以用它通过磁力链接来下载种子。<br><img src="https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/dht/qbittorrent.png" alt="qbittorrent"></p>
+<p>通过qbittorrent下载种子，获取磁力链接内容，实现自动化下载、获取、存入数据库。<br>市面上有这么多磁力链接下载软件，我为啥选择<strong>qbittorrent</strong>呢，因为qbittorrent提供了所有操作的<strong>Web Api</strong>，我们可以用脚本调用Web Api来自动下载资源、获取资源内容、删除已经下好的任务。<br>具体代码在parse-hash-v2文件夹内：<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> parse-hash-v2</span><br><span class="line"></span><br><span class="line">node index.js</span><br></pre></td></tr></table></figure></p>
+<p>简述各脚本的用处：</p>
+<ol>
+<li>query-remote-hash-list.js <em>获取数据库内的磁力链接</em></li>
+<li>add-hash.js <em>把磁力链接添加入qbittorrent任务</em></li>
+<li>query-local-hash-list.js <em>获取qbittorrent内下载完成的任务</em></li>
+<li>update-remote-hash.js <em>把上一步获取的种子内容更新到数据库中</em></li>
+<li>delete-hash.js <em>删除已经处理的磁力链接任务</em></li>
+</ol>
+<h3 id="数据就绪提供客户端用于浏览"><a href="#数据就绪提供客户端用于浏览" class="headerlink" title="数据就绪提供客户端用于浏览"></a>数据就绪提供客户端用于浏览</h3><p>程序跑了一会慢慢数据就来了，我这个程序跑了<strong>10天左右</strong>，总数据已经有<strong>400多万</strong>，已解析的数据也有78万左右（<em>解析比较慢</em>）。</p>
+<p>现在有了数据，我们需要提供一个前端页面来显示我们的成果，可以是一个网页，也可以是一个App。</p>
+<p>这里我用<strong>React Native</strong>写了一个App，<strong>已开源</strong>。感兴趣的开源下载代码改巴改巴自己用。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/dht/frontend-v2.jpg" alt="客户端"></p>
+<h3 id="结束"><a href="#结束" class="headerlink" title="结束"></a>结束</h3>]]></content>
+      <categories>
+        <category>个人爱好</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Web项目服务器部署</title>
     <url>/server-deploy.html</url>
     <content><![CDATA[<p>代码写完了如何部署到服务器上？这对于每位开发者而言都是一项必备技能，本文主要对项目部署流程简述一下，也是对所学知识的归纳总结。</p>
@@ -583,173 +638,6 @@ https://www.onethingcloud.com/
 ]]></content>
       <categories>
         <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>拥有一台Root的安卓手机之虚拟机（VMOS）</title>
-    <url>/vmphone.html</url>
-    <content><![CDATA[<p><strong>Root</strong>后的手机有什么好处，解释起来有点颇费口舌，只能用一句话概况：懂的自然懂，能搜到这篇文章的大多数应该是有这方面需求的。</p>
-<p>但是现在的手机基本很难Root了，这里为有这方面需求的使用者介绍一款软件<strong>VMOS</strong>，它是运行在安卓手机上的一款<strong>虚拟机软件</strong>。</p>
-<h3 id="前置条件"><a href="#前置条件" class="headerlink" title="前置条件"></a>前置条件</h3><ol>
-<li>安卓手机（<em>64位处理器</em>）</li>
-<li>虚拟机软件VMOS（公众号输入：<strong>虚拟机</strong>，获取下载链接）</li>
-</ol>
-<a id="more"></a>
-<p>直接安装运行即可，这里说一下它的应用场景：<br>游戏辅助脚本、<strong>虚拟定位</strong>、<strong>谷歌服务</strong>、国外应用等</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/vmphone/desktop.jpg" alt="虚拟机桌面"></p>
-<h5 id="场景一：运行游戏脚本"><a href="#场景一：运行游戏脚本" class="headerlink" title="场景一：运行游戏脚本"></a>场景一：运行游戏脚本</h5><p><img src="https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/vmphone/game.png" alt="运行游戏脚本"></p>
-<p>再举个例子：<br>众所周知国外版抖音（<strong>TikTok</strong>）正常情况下在我们手机上是运行不起来的，运行不起来的原因不言而喻。<br>那运行不起来的原理是什么：</p>
-<ol>
-<li>网络环境不支持</li>
-<li>使用地区不支持</li>
-</ol>
-<p>网络环境如何解决？答案是科学上网。<br>上面说到虚拟机支持<strong>虚拟定位</strong>，第二个使用地区不支持的问题也迎刃而解。</p>
-<p>如何修改定位，点击右侧的悬浮球打开设置 -&gt; 国家 -&gt; 修改</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/vmphone/setting.jpg" alt="设置"><br><img src="https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/vmphone/region.jpg" alt="地区"><br><img src="https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/vmphone/tiktok.jpg" alt="TikTok"></p>
-<p>最后，比如你的位置修改为韩国，网络记得也要一一对应，网络代理也要代理到韩国</p>
-]]></content>
-      <categories>
-        <category>个人爱好</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>网站HTTPS部署（Nginx）</title>
-    <url>/ssl.html</url>
-    <content><![CDATA[<p>目前绝大多数的网站都已使用<strong>HTTPS协议</strong>，如果我们的个人站点还在使用HTTP协议，就不说啥安全性问题，光是浏览器地址栏有个不安全的标志，看起来也让用户觉得很不靠谱的样子。<br>想要部署HTTPS，首先要有一个<strong>SSL证书</strong>，如果网站想要做PWA或者使用HTTP2.0也必须部署SSL，这样看起来未来SSL证书还挺重要的。</p>
-<h3 id="SSL证书类型"><a href="#SSL证书类型" class="headerlink" title="SSL证书类型"></a>SSL证书类型</h3><p>目前SSL证书是需要收费的，如果想要降低成本我们可以试用免费版的SSL证书，我使用的是<a href="https://www.joyssl.com/" target="_blank" rel="noopener">JoySSL</a>。<br>在部署SSL证书之前我们需要了解一下它各个类型的适用范围：<strong>单域名证书</strong>、<strong>通配符证书</strong>、<strong>多域名证书</strong>、<strong>IP地址证书</strong><br>对应的使用范围：<em>只能为单个子域名提供HTTPS服务</em>、<em>可以为一个主域名下的多个子域名提供服务</em>、<em>可以为多个主域名提供服务</em>、<em>IP地址证书没咋用过，不太了解</em><br>这里我使用的是<strong>通配符证书</strong>既：可以为一个主域名下的多个子域名提供HTTPS认证。</p>
-<a id="more"></a>
-<h3 id="通过JoySSL获取SSL证书"><a href="#通过JoySSL获取SSL证书" class="headerlink" title="通过JoySSL获取SSL证书"></a>通过JoySSL获取SSL证书</h3><p>在JoySSL注册登录，填写信息、下载SSL证书这些我就不细说了，没有什么难度，大家记得选择证书类型时要选择<strong>通配符证书</strong>，生成证书的时候需要验证域名的所有权，这个根据提示操作即可。<br>JoySSL会提供多种Web服务器的SSL证书及对应的部署文档，大家也可以按照部署文档操作。下面的操作就跟JoySSL没有关系了，如果是从其他服务商那获取到的证书也可以按照下面步骤操作。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/ssl/sign.jpg" alt="签发证书"></p>
-<h3 id="配置SSL证书（Nginx）"><a href="#配置SSL证书（Nginx）" class="headerlink" title="配置SSL证书（Nginx）"></a>配置SSL证书（Nginx）</h3><p>这里我以Nginx为例，最后会得到两个文件，分别是 <em>.key</em>、<em>.crt</em>格式的。</p>
-<ol>
-<li>将证书文件和 KEY 文件都上传到服务器（推荐放到 etc/nginx/cert/文件夹下）</li>
-<li>修改 nginx 配置文件如下(默认配置文件一般是在/etc/nginx/目录下)：<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># ssl配置</span></span><br><span class="line">server &#123;</span><br><span class="line">    listen 443;</span><br><span class="line">    server_name zyhahaha.github.io; <span class="comment">#修改为您证书绑定的域名。</span></span><br><span class="line">    ssl on; <span class="comment">#设置为 on 启用 SSL 功能。</span></span><br><span class="line">    root html;</span><br><span class="line">    index index.html index.htm;</span><br><span class="line">    ssl_certificate cert/123123_store_integrated.crt; <span class="comment">#替换成您证书的文件名。</span></span><br><span class="line">    ssl_certificate_key cert/123123_store.key; <span class="comment">#替换成您证书的密钥文件名。</span></span><br><span class="line">    ssl_session_timeout 5m;</span><br><span class="line">    ssl_ciphers</span><br><span class="line">    ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4; <span class="comment">#使用此加密套件。</span></span><br><span class="line">    ssl_protocols TLSv1 TLSv1.1 TLSv1.2; <span class="comment">#使用该协议进行配置。</span></span><br><span class="line">    ssl_prefer_server_ciphers on;</span><br><span class="line">    location / &#123;</span><br><span class="line">        root /home/zyhahaha/sites/zyhahaha.github.io; <span class="comment">#站点目录。</span></span><br><span class="line">        index index.html index.htm; <span class="comment">#添加属性。</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>4、保存 nginx.conf 文件后退出。<br>5、重启 Nginx 服务。<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">nginx -s reload</span><br></pre></td></tr></table></figure></p>
-<p>结束，配置完成，打开网站通过HTTPS协议访问，看看吧。</p>
-<h3 id="HTTP重定向HTTPS"><a href="#HTTP重定向HTTPS" class="headerlink" title="HTTP重定向HTTPS"></a>HTTP重定向HTTPS</h3><p>你可能会发现，如果不指定协议浏览器会默认使用以前的协议访问网站，那么我们肯定是想，如果用户通过http协议访问网站，我们要把它重定向到https站点，配置如下：<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen 80;</span><br><span class="line">    server_name zyhahaha.github.io;</span><br><span class="line">    <span class="built_in">return</span> 301 https://<span class="variable">$server_name</span><span class="variable">$request_uri</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="结束"><a href="#结束" class="headerlink" title="结束"></a>结束</h3><p>有问题可以发我邮箱：<a href="mailto:980355088@qq.com" target="_blank" rel="noopener">980355088@qq.com</a><br>或者在我<a href="https://cv.123123.store/message.html" target="_blank" rel="noopener">个人主页</a>留言</p>
-]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Nuxt多环境配置</title>
-    <url>/nuxt-env.html</url>
-    <content><![CDATA[<p>Nuxt项目测试、生产<strong>环境变量配置</strong>，首先使用<a href="https://www.cnblogs.com/jiaoshou/p/12187504.html" target="_blank" rel="noopener">cross-env</a>（一款跨平台设置和使用环境变量的脚本）配置环境变量。</p>
-<h4 id="第一步：修改package-json文件（通过cross-env添加环境变量MODE）"><a href="#第一步：修改package-json文件（通过cross-env添加环境变量MODE）" class="headerlink" title="第一步：修改package.json文件（通过cross-env添加环境变量MODE）"></a>第一步：修改package.json文件（通过cross-env添加环境变量MODE）</h4><figure class="highlight"><table><tr><td class="code"><pre><span class="line">"scripts": &#123;</span><br><span class="line">    "test-start": "cross-env MODE=test nuxt start",</span><br><span class="line">    "test": "cross-env MODE=test nuxt build",</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<a id="more"></a>
-<h4 id="第二步：创建env-js文件（各环境配置字典）"><a href="#第二步：创建env-js文件（各环境配置字典）" class="headerlink" title="第二步：创建env.js文件（各环境配置字典）"></a>第二步：创建env.js文件（各环境配置字典）</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    dev: &#123;</span><br><span class="line">        MODE: <span class="string">'dev'</span>,</span><br><span class="line">        ENV_API: <span class="string">'https://api.dev.cn'</span>,</span><br><span class="line">        ENV_OPEN_DOC_URL: <span class="string">'https://qwer.dev.cn'</span></span><br><span class="line">    &#125;,</span><br><span class="line">    test: &#123;</span><br><span class="line">        MODE: <span class="string">'test'</span>,</span><br><span class="line">        ENV_API: <span class="string">'https://api.test.cn'</span>,</span><br><span class="line">        ENV_OPEN_DOC_URL: <span class="string">'https://qwer.test.cn'</span></span><br><span class="line">    &#125;,</span><br><span class="line">    prod: &#123;</span><br><span class="line">        MODE: <span class="string">'prod'</span>,</span><br><span class="line">        ENV_API: <span class="string">'https://api.prod.cn'</span>,</span><br><span class="line">        ENV_OPEN_DOC_URL: <span class="string">'https://qwer.prod.cn'</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="第三步：修改nuxt-config-js文件（通过环境变量MODE，获取当前环境配置）"><a href="#第三步：修改nuxt-config-js文件（通过环境变量MODE，获取当前环境配置）" class="headerlink" title="第三步：修改nuxt.config.js文件（通过环境变量MODE，获取当前环境配置）"></a>第三步：修改nuxt.config.js文件（通过环境变量MODE，获取当前环境配置）</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> env <span class="keyword">from</span> <span class="string">'./env'</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">    env: &#123;</span><br><span class="line">        NUXT_ENV: env[process.env.MODE]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="第四步：如何在项目中使用"><a href="#第四步：如何在项目中使用" class="headerlink" title="第四步：如何在项目中使用"></a>第四步：如何在项目中使用</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">computed: &#123;</span><br><span class="line">    baseApiUrl () &#123;</span><br><span class="line">        <span class="keyword">return</span> process.env.NUXT_ENV.ENV_API</span><br><span class="line">    &#125;</span><br><span class="line">    baseSiteUrl () &#123;</span><br><span class="line">        <span class="keyword">return</span> process.env.NUXT_ENV.ENV_OPEN_DOC_URL</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">:src</span>=<span class="string">"`$&#123;baseSiteUrl&#125;/images/defalut.png`"</span> <span class="attr">alt</span>=<span class="string">""</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h4 id="第五步：结束"><a href="#第五步：结束" class="headerlink" title="第五步：结束"></a>第五步：结束</h4>]]></content>
-      <categories>
-        <category>Javascript</category>
-      </categories>
-      <tags>
-        <tag>Javascript</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Redroid Root</title>
-    <url>/redroid-root.html</url>
-    <content><![CDATA[<p>使用Redroid在服务器上搭建云手机<br><a href="https://hub.docker.com/r/redroid/redroid" target="_blank" rel="noopener">https://hub.docker.com/r/redroid/redroid</a></p>
-<h3 id="前置条件"><a href="#前置条件" class="headerlink" title="前置条件"></a>前置条件</h3><ul>
-<li>云服务器</li>
-<li>scrcpy的使用方法（<em>见我的另外一篇文章</em>）</li>
-</ul>
-<h3 id="我的环境（不代表其他环境不行）"><a href="#我的环境（不代表其他环境不行）" class="headerlink" title="我的环境（不代表其他环境不行）"></a>我的环境（不代表其他环境不行）</h3><ul>
-<li>Ubuntu 20.04</li>
-<li>4核8G内存云主机</li>
-</ul>
-<a id="more"></a>
-<h3 id="一、安装"><a href="#一、安装" class="headerlink" title="一、安装"></a>一、安装</h3><h5 id="安装docker"><a href="#安装docker" class="headerlink" title="安装docker"></a>安装docker</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt-get install -y docker.io</span><br><span class="line">sudo systemctl start docker</span><br><span class="line">sudo systemctl <span class="built_in">enable</span> docker</span><br></pre></td></tr></table></figure>
-<h5 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt install linux-modules-extra-`uname -r`</span><br><span class="line">sudo modprobe binder_linux devices=<span class="string">"binder,hwbinder,vndbinder"</span></span><br><span class="line">sudo modprobe ashmem_linux</span><br></pre></td></tr></table></figure>
-<h5 id="安装adb"><a href="#安装adb" class="headerlink" title="安装adb"></a>安装adb</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt install adb</span><br></pre></td></tr></table></figure>
-<h3 id="adb连接"><a href="#adb连接" class="headerlink" title="adb连接"></a>adb连接</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 如果是远程机器，localhost改为对应的ip</span></span><br><span class="line">adb connect localhost:5555</span><br></pre></td></tr></table></figure>
-<h3 id="安装scrcpy"><a href="#安装scrcpy" class="headerlink" title="安装scrcpy"></a>安装scrcpy</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># snap方式安装（snap安装比较慢）</span></span><br><span class="line">snap install scrcpy</span><br><span class="line"></span><br><span class="line"><span class="comment"># apt方式安装（版本比较旧）</span></span><br><span class="line">apt install scrcpy</span><br></pre></td></tr></table></figure>
-<h3 id="scrcpy连接设备"><a href="#scrcpy连接设备" class="headerlink" title="scrcpy连接设备"></a>scrcpy连接设备</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 单个设备连接</span></span><br><span class="line">scrcpy</span><br><span class="line"></span><br><span class="line"><span class="comment"># 多设备时通过指定ip连接</span></span><br><span class="line">scrcpy -s localhost:5555</span><br></pre></td></tr></table></figure>
-<h3 id="Redroid安装完成，开始安装Magisk"><a href="#Redroid安装完成，开始安装Magisk" class="headerlink" title="Redroid安装完成，开始安装Magisk"></a>Redroid安装完成，开始安装Magisk</h3><p>参考文档：<a href="https://gist.github.com/assiless/a23fb52e8c6156db0474ee8973c4be66" target="_blank" rel="noopener">https://gist.github.com/assiless/a23fb52e8c6156db0474ee8973c4be66</a></p>
-<h5 id="设置环境变量"><a href="#设置环境变量" class="headerlink" title="设置环境变量"></a>设置环境变量</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span> -e <span class="string">"\n</span></span><br><span class="line"><span class="string">export image=redroid/redroid:11.0.0-latest</span></span><br><span class="line"><span class="string">export image_tar=<span class="variable">$&#123;HOME&#125;</span>/redroid:11.0.0-latest"</span> &gt;&gt; <span class="variable">$&#123;HOME&#125;</span>/.bashrc</span><br><span class="line"><span class="built_in">source</span> <span class="variable">$&#123;HOME&#125;</span>/.bashrc</span><br></pre></td></tr></table></figure>
-<h5 id="使用docker安装"><a href="#使用docker安装" class="headerlink" title="使用docker安装"></a>使用docker安装</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 拉取镜像</span></span><br><span class="line">sudo docker pull <span class="variable">$image</span></span><br><span class="line"><span class="comment"># 导出镜像</span></span><br><span class="line">sudo docker save --output redroidBak.tar <span class="variable">$image</span></span><br><span class="line"><span class="comment"># sudo docker save --output redroidBak.tar redroid/redroid:11.0.0-latest</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 删除已更改的镜像</span></span><br><span class="line">sudo docker image rmi -f <span class="variable">$image</span></span><br><span class="line"><span class="comment"># 加载刚刚备份的镜像</span></span><br><span class="line">sudo docker load -i redroidBak.tar</span><br></pre></td></tr></table></figure>
-<h5 id="Setting-Up"><a href="#Setting-Up" class="headerlink" title="Setting Up"></a>Setting Up</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo mkdir ~/MagiskOnRedroid</span><br><span class="line"><span class="built_in">cd</span> ~/MagiskOnRedroid</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 下载、提取Magisk</span></span><br><span class="line">find -maxdepth 1 -iname <span class="string">"magisk*"</span> -not -name <span class="string">"*.apk"</span> -<span class="built_in">exec</span> rm -r &#123;&#125; \;</span><br><span class="line">magisk_file=<span class="string">"app-debug.apk"</span></span><br><span class="line"><span class="comment"># download Magisk 9b61bdfc(25201) debug as you did i guess</span></span><br><span class="line"><span class="keyword">if</span> [ ! -f <span class="variable">$magisk_file</span> ]; <span class="keyword">then</span></span><br><span class="line">  sudo wget <span class="string">"https://cdn.jsdelivr.net/gh/topjohnwu/magisk-files@1cea72840fbf690f9a95512d03721f6a710fe02e/app-debug.apk"</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"><span class="comment"># because my machine x64 i will choose x86_64</span></span><br><span class="line">sudo unzip -j <span class="variable">$magisk_file</span> <span class="string">"lib/x86_64/libmagisk64.so"</span> -d magisk</span><br><span class="line">sudo unzip -j <span class="variable">$magisk_file</span> <span class="string">"lib/x86_64/libbusybox.so"</span> -d magisk</span><br><span class="line">sudo mv -v magisk/libmagisk64.so magisk/magisk</span><br><span class="line">sudo mv -v magisk/libbusybox.so magisk/busybo</span><br><span class="line"><span class="comment"># $ tree ~/MagiskOnRedroid</span></span><br><span class="line"><span class="comment"># .</span></span><br><span class="line"><span class="comment"># ├── app-debug.apk</span></span><br><span class="line"><span class="comment"># └── magisk</span></span><br><span class="line"><span class="comment">#     ├── busybox</span></span><br><span class="line"><span class="comment">#     └── magisk</span></span><br></pre></td></tr></table></figure>
-<h5 id="compress-magisk（不知道是啥，直接执行）"><a href="#compress-magisk（不知道是啥，直接执行）" class="headerlink" title="compress magisk（不知道是啥，直接执行）"></a>compress magisk（不知道是啥，直接执行）</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">tar --transform <span class="string">'s/.*\///g'</span> -cf ~/magisk.tar --absolute-names $( find ~/MagiskOnRedroid | grep -E <span class="string">"magisk/|app-debug.apk$"</span> )</span><br></pre></td></tr></table></figure>
-<h5 id="remove-rc"><a href="#remove-rc" class="headerlink" title="remove.rc"></a>remove.rc</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">cat &lt;&lt;\EOF &gt; ~/remove.rc</span><br><span class="line">on early-init</span><br><span class="line">	<span class="built_in">export</span> PATH /sbin:/product/bin:/apex/com.android.runtime/bin:/apex/com.android.art/bin:/system_ext/bin:/system/bin:/system/xbin:/odm/bin:/vendor/bin:/vendor/xbin</span><br><span class="line">	chmod 0700 /magisk.tar</span><br><span class="line">	chown root root /magisk.tar</span><br><span class="line">	chmod 0700 /setup.sh</span><br><span class="line">	chown root root /setup.sh</span><br><span class="line">	<span class="built_in">exec</span> root root -- /setup.sh</span><br><span class="line">service magisk<span class="_">-d</span> /sbin/magisk --daemon</span><br><span class="line">	user root</span><br><span class="line">	oneshot</span><br><span class="line">on boot</span><br><span class="line">	start magisk<span class="_">-d</span></span><br><span class="line">on post-fs-data</span><br><span class="line">	start logd</span><br><span class="line">	rm /dev/.magisk-unblock</span><br><span class="line">	start s1</span><br><span class="line">	<span class="built_in">wait</span> /dev/.magisk-unblock 5</span><br><span class="line">	rm /dev/.magisk-unblock</span><br><span class="line">service s1 /sbin/magisk --post-fs-data</span><br><span class="line">	user root</span><br><span class="line">	oneshot</span><br><span class="line">service s2 /sbin/magisk --service</span><br><span class="line">	class late_start</span><br><span class="line">	user root</span><br><span class="line">	oneshot</span><br><span class="line">on property:sys.boot_completed=1</span><br><span class="line">	<span class="built_in">exec</span> /sbin/magisk --boot-complete</span><br><span class="line">on property:init.svc.zygote=restarting</span><br><span class="line">	<span class="built_in">exec</span> /sbin/magisk --zygote-restart</span><br><span class="line">on property:init.svc.zygote=stopped</span><br><span class="line">	<span class="built_in">exec</span> /sbin/magisk --zygote-restart</span><br><span class="line">EOF</span><br><span class="line">sudo chmod 644 ~/remove.rc</span><br><span class="line">sudo chown root:root ~/remove.rc</span><br></pre></td></tr></table></figure>
-<h5 id="setup-sh"><a href="#setup-sh" class="headerlink" title="setup.sh"></a>setup.sh</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">cat &lt;&lt;\EOF &gt; ~/setup.sh</span><br><span class="line"><span class="meta">#!/system/bin/sh</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># rm /system/fonts/NotoColorEmoji.ttf</span></span><br><span class="line">tmpPushed=/magisk</span><br><span class="line">rm -rf <span class="variable">$tmpPushed</span></span><br><span class="line">mkdir <span class="variable">$tmpPushed</span></span><br><span class="line">tar -xvf /magisk.tar --no-same-owner -C <span class="variable">$tmpPushed</span></span><br><span class="line">umount /magisk.tar ; rm -v /magisk.tar</span><br><span class="line">mkdir /sbin</span><br><span class="line">chown root:root /sbin</span><br><span class="line"><span class="comment"># chmod 0700 /sbin</span></span><br><span class="line">chmod 0751 /sbin</span><br><span class="line">cp <span class="variable">$tmpPushed</span>/magisk /sbin/</span><br><span class="line">cp <span class="variable">$tmpPushed</span>/app-debug.apk /sbin/stub.apk</span><br><span class="line">find /sbin -<span class="built_in">type</span> f -<span class="built_in">exec</span> chmod 0755 &#123;&#125; \;</span><br><span class="line">find /sbin -<span class="built_in">type</span> f -<span class="built_in">exec</span> chown root:root &#123;&#125; \;</span><br><span class="line"><span class="comment"># add /sbin</span></span><br><span class="line"><span class="comment"># /sbin/</span></span><br><span class="line"><span class="comment"># ├── magisk</span></span><br><span class="line"><span class="comment"># └── stub.apk</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">ln -f -s /sbin/magisk /system/xbin/su</span><br><span class="line">mkdir /product/bin</span><br><span class="line">chmod 751 /product/bin</span><br><span class="line">ln -f -s /sbin/magisk /product/bin/su</span><br><span class="line"><span class="comment"># add su (override `/system/xbin/su`)</span></span><br><span class="line"><span class="comment"># /product/bin/</span></span><br><span class="line"><span class="comment"># └── su -&gt; /sbin/magisk</span></span><br><span class="line"></span><br><span class="line">mkdir -p /data/adb/magisk</span><br><span class="line">chmod 700 /data/adb</span><br><span class="line">mv <span class="variable">$tmpPushed</span>/busybox /data/adb/magisk/</span><br><span class="line">chmod -R 755 /data/adb/magisk</span><br><span class="line">chmod -R root:root /data/adb/magisk</span><br><span class="line"><span class="comment"># /data/adb/</span></span><br><span class="line"><span class="comment"># ├── magisk</span></span><br><span class="line"><span class="comment"># │   └── busybox</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># rm -rf $tmpPushed</span></span><br><span class="line">EOF</span><br><span class="line">sudo chmod 700 ~/setup.sh</span><br><span class="line">sudo chown root:root ~/setup.sh</span><br></pre></td></tr></table></figure>
-<h5 id="运行Magisk（boot-with-magisk-support）"><a href="#运行Magisk（boot-with-magisk-support）" class="headerlink" title="运行Magisk（boot with magisk support）"></a>运行Magisk（boot with magisk support）</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">(</span><br><span class="line">sudo docker stop a11</span><br><span class="line">clear</span><br><span class="line">sudo docker run -itd --rm --privileged \</span><br><span class="line">  --name a11 \</span><br><span class="line">  -v ~/data:/data \</span><br><span class="line">  -v ~/remove.rc:/vendor/etc/init/remove.rc \</span><br><span class="line">  -v ~/setup.sh:/setup.sh \</span><br><span class="line">  -v ~/magisk.tar:/magisk.tar \</span><br><span class="line">  -p 5555:5555 \</span><br><span class="line">  redroid/redroid:11.0.0-latest \</span><br><span class="line">  androidboot.hardware=mt6891 ro.secure=0 ro.boot.hwc=GLOBAL ro.ril.oem.imei=861503068361145 ro.ril.oem.imei1=861503068361145 ro.ril.oem.imei2=861503068361148 ro.ril.miui.imei0=861503068361148 ro.product.manufacturer=Xiaomi ro.build.product=chopin \</span><br><span class="line">  ro.product.cpu.abilist0=x86_64,arm64-v8a,x86,armeabi-v7a,armeabi \</span><br><span class="line">  ro.product.cpu.abilist64=x86_64,arm64-v8a \</span><br><span class="line">  ro.product.cpu.abilist32=x86,armeabi-v7a,armeabi \</span><br><span class="line">  ro.dalvik.vm.isa.arm=x86 \</span><br><span class="line">  ro.dalvik.vm.isa.arm64=x86_64 \</span><br><span class="line">  ro.enable.native.bridge.exec=1 \</span><br><span class="line">  ro.dalvik.vm.native.bridge=libndk_translation.so \</span><br><span class="line">  ro.ndk_translation.version=0.2.2 \</span><br><span class="line">  redroid.width=720 redroid.height=1280 \</span><br><span class="line">  redroid.gpu.mode=guest</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-<h3 id="安装应用"><a href="#安装应用" class="headerlink" title="安装应用"></a>安装应用</h3>]]></content>
-      <categories>
-        <category>个人爱好</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Windows 拯救手册</title>
-    <url>/windows-help.html</url>
-    <content><![CDATA[<p>Windows常见问题修复方法，本文基于<strong>Win10</strong>出现的问题及其解决办法，其他版本可以作为参考</p>
-<h4 id="误操作关闭资源管理器（explorer-exe）导致桌面崩溃"><a href="#误操作关闭资源管理器（explorer-exe）导致桌面崩溃" class="headerlink" title="误操作关闭资源管理器（explorer.exe）导致桌面崩溃"></a>误操作关闭资源管理器（explorer.exe）导致桌面崩溃</h4><p>打开文件时如果该文件过大、或者当前磁盘繁忙、用户连续点击打开文件、用户误操作关闭进程等行为，都会导致资源管理器无响应，着急的用户可能会直接去强制关闭资源管理器，这个时候可能就会出现桌面崩溃的情况。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/windows-help/windows-help-desktop-crash.jpg" alt="桌面崩溃"></p>
-<a id="more"></a>
-<p>这种情况大多数人可能直接重启电脑，但是如果电脑里正在运行一个不能关闭的程序，我们除了重启还有其他办法吗？下面介绍一下比重启更快、更安全的解决办法：<br>首先打开任务管理器（在没桌面的情况先使用键盘快捷键打开），点击文件 –&gt; 新任务 –&gt; 输入cmd，打开cmd界面 –&gt; 在cmd里输入explorer回车 –&gt; 解决问题，桌面程序重新打开</p>
-<p><img src="https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/windows-help/windows-help-task.jpg" alt="任务管理器"></p>
-<p><img src="https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/windows-help/windows-help-cmd.jpg" alt="CMD"></p>
-]]></content>
-      <categories>
-        <category>Windows</category>
-      </categories>
-      <tags>
-        <tag>Windows</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>VPN</title>
-    <url>/vpn.html</url>
-    <content><![CDATA[<p>vpn搭建</p>
-<p>适用场景：</p>
-<ol>
-<li>局域网</li>
-</ol>
-<h3 id="前置条件"><a href="#前置条件" class="headerlink" title="前置条件"></a>前置条件</h3><ul>
-<li>云服务器</li>
-</ul>
-<a id="more"></a>
-]]></content>
-      <categories>
-        <category>个人爱好</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>使用Github为博客建个图床</title>
-    <url>/%E5%9B%BE%E5%BA%8A.html</url>
-    <content><![CDATA[<p>写博客的时候难免需要插入一些图片，这时候我们就需要一个自己的图床来存放。<br>我是使用Github托管图片资源，再通过cdn.jsdelivr访问。</p>
-<h3 id="前置条件"><a href="#前置条件" class="headerlink" title="前置条件"></a>前置条件</h3><ul>
-<li>Github创建仓库存放图片</li>
-</ul>
-<a id="more"></a>
-<p><img src="https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/图床/创建Github仓库.png" alt="Github创建仓库"></p>
-<h5 id="创建完仓库后上传图片，再通过cdn-jsdelivr-net访问"><a href="#创建完仓库后上传图片，再通过cdn-jsdelivr-net访问" class="headerlink" title="创建完仓库后上传图片，再通过cdn.jsdelivr.net访问"></a>创建完仓库后上传图片，再通过cdn.jsdelivr.net访问</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">https://cdn.jsdelivr.net/gh/你的账号名/你的仓库名@仓库分支/文件路径</span><br><span class="line"></span><br><span class="line">如：我的github账号是zyhahaha，资源仓库为assets，默认分支为master</span><br><span class="line">图片存放路径为：/images/blog/图床/创建Github仓库.png</span><br><span class="line"></span><br><span class="line">https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/图床/创建Github仓库.png</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>个人爱好</category>
       </categories>
       <tags>
         <tag>Linux</tag>
@@ -800,6 +688,118 @@ https://www.onethingcloud.com/
 <p>注册失败的话，可以连接手机网络，切换浏览器（<em>或者打开浏览器的无痕模式</em>）多试几次。</p>
 <p><img src="https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/oracle-cloud/vm.png" alt="Arm主机"></p>
 <p><img src="https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/oracle-cloud/config.png" alt="选择Arm实例"></p>
+]]></content>
+      <categories>
+        <category>个人爱好</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>网站HTTPS部署（Nginx）</title>
+    <url>/ssl.html</url>
+    <content><![CDATA[<p>目前绝大多数的网站都已使用<strong>HTTPS协议</strong>，如果我们的个人站点还在使用HTTP协议，就不说啥安全性问题，光是浏览器地址栏有个不安全的标志，看起来也让用户觉得很不靠谱的样子。<br>想要部署HTTPS，首先要有一个<strong>SSL证书</strong>，如果网站想要做PWA或者使用HTTP2.0也必须部署SSL，这样看起来未来SSL证书还挺重要的。</p>
+<h3 id="SSL证书类型"><a href="#SSL证书类型" class="headerlink" title="SSL证书类型"></a>SSL证书类型</h3><p>目前SSL证书是需要收费的，如果想要降低成本我们可以试用免费版的SSL证书，我使用的是<a href="https://www.joyssl.com/" target="_blank" rel="noopener">JoySSL</a>。<br>在部署SSL证书之前我们需要了解一下它各个类型的适用范围：<strong>单域名证书</strong>、<strong>通配符证书</strong>、<strong>多域名证书</strong>、<strong>IP地址证书</strong><br>对应的使用范围：<em>只能为单个子域名提供HTTPS服务</em>、<em>可以为一个主域名下的多个子域名提供服务</em>、<em>可以为多个主域名提供服务</em>、<em>IP地址证书没咋用过，不太了解</em><br>这里我使用的是<strong>通配符证书</strong>既：可以为一个主域名下的多个子域名提供HTTPS认证。</p>
+<a id="more"></a>
+<h3 id="通过JoySSL获取SSL证书"><a href="#通过JoySSL获取SSL证书" class="headerlink" title="通过JoySSL获取SSL证书"></a>通过JoySSL获取SSL证书</h3><p>在JoySSL注册登录，填写信息、下载SSL证书这些我就不细说了，没有什么难度，大家记得选择证书类型时要选择<strong>通配符证书</strong>，生成证书的时候需要验证域名的所有权，这个根据提示操作即可。<br>JoySSL会提供多种Web服务器的SSL证书及对应的部署文档，大家也可以按照部署文档操作。下面的操作就跟JoySSL没有关系了，如果是从其他服务商那获取到的证书也可以按照下面步骤操作。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/ssl/sign.jpg" alt="签发证书"></p>
+<h3 id="配置SSL证书（Nginx）"><a href="#配置SSL证书（Nginx）" class="headerlink" title="配置SSL证书（Nginx）"></a>配置SSL证书（Nginx）</h3><p>这里我以Nginx为例，最后会得到两个文件，分别是 <em>.key</em>、<em>.crt</em>格式的。</p>
+<ol>
+<li>将证书文件和 KEY 文件都上传到服务器（推荐放到 etc/nginx/cert/文件夹下）</li>
+<li>修改 nginx 配置文件如下(默认配置文件一般是在/etc/nginx/目录下)：<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># ssl配置</span></span><br><span class="line">server &#123;</span><br><span class="line">    listen 443;</span><br><span class="line">    server_name zyhahaha.github.io; <span class="comment">#修改为您证书绑定的域名。</span></span><br><span class="line">    ssl on; <span class="comment">#设置为 on 启用 SSL 功能。</span></span><br><span class="line">    root html;</span><br><span class="line">    index index.html index.htm;</span><br><span class="line">    ssl_certificate cert/123123_store_integrated.crt; <span class="comment">#替换成您证书的文件名。</span></span><br><span class="line">    ssl_certificate_key cert/123123_store.key; <span class="comment">#替换成您证书的密钥文件名。</span></span><br><span class="line">    ssl_session_timeout 5m;</span><br><span class="line">    ssl_ciphers</span><br><span class="line">    ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4; <span class="comment">#使用此加密套件。</span></span><br><span class="line">    ssl_protocols TLSv1 TLSv1.1 TLSv1.2; <span class="comment">#使用该协议进行配置。</span></span><br><span class="line">    ssl_prefer_server_ciphers on;</span><br><span class="line">    location / &#123;</span><br><span class="line">        root /home/zyhahaha/sites/zyhahaha.github.io; <span class="comment">#站点目录。</span></span><br><span class="line">        index index.html index.htm; <span class="comment">#添加属性。</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>4、保存 nginx.conf 文件后退出。<br>5、重启 Nginx 服务。<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">nginx -s reload</span><br></pre></td></tr></table></figure></p>
+<p>结束，配置完成，打开网站通过HTTPS协议访问，看看吧。</p>
+<h3 id="HTTP重定向HTTPS"><a href="#HTTP重定向HTTPS" class="headerlink" title="HTTP重定向HTTPS"></a>HTTP重定向HTTPS</h3><p>你可能会发现，如果不指定协议浏览器会默认使用以前的协议访问网站，那么我们肯定是想，如果用户通过http协议访问网站，我们要把它重定向到https站点，配置如下：<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen 80;</span><br><span class="line">    server_name zyhahaha.github.io;</span><br><span class="line">    <span class="built_in">return</span> 301 https://<span class="variable">$server_name</span><span class="variable">$request_uri</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="结束"><a href="#结束" class="headerlink" title="结束"></a>结束</h3><p>有问题可以发我邮箱：<a href="mailto:980355088@qq.com" target="_blank" rel="noopener">980355088@qq.com</a><br>或者在我<a href="https://cv.123123.store/message.html" target="_blank" rel="noopener">个人主页</a>留言</p>
+]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Windows 拯救手册</title>
+    <url>/windows-help.html</url>
+    <content><![CDATA[<p>Windows常见问题修复方法，本文基于<strong>Win10</strong>出现的问题及其解决办法，其他版本可以作为参考</p>
+<h4 id="误操作关闭资源管理器（explorer-exe）导致桌面崩溃"><a href="#误操作关闭资源管理器（explorer-exe）导致桌面崩溃" class="headerlink" title="误操作关闭资源管理器（explorer.exe）导致桌面崩溃"></a>误操作关闭资源管理器（explorer.exe）导致桌面崩溃</h4><p>打开文件时如果该文件过大、或者当前磁盘繁忙、用户连续点击打开文件、用户误操作关闭进程等行为，都会导致资源管理器无响应，着急的用户可能会直接去强制关闭资源管理器，这个时候可能就会出现桌面崩溃的情况。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/windows-help/windows-help-desktop-crash.jpg" alt="桌面崩溃"></p>
+<a id="more"></a>
+<p>这种情况大多数人可能直接重启电脑，但是如果电脑里正在运行一个不能关闭的程序，我们除了重启还有其他办法吗？下面介绍一下比重启更快、更安全的解决办法：<br>首先打开任务管理器（在没桌面的情况先使用键盘快捷键打开），点击文件 –&gt; 新任务 –&gt; 输入cmd，打开cmd界面 –&gt; 在cmd里输入explorer回车 –&gt; 解决问题，桌面程序重新打开</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/windows-help/windows-help-task.jpg" alt="任务管理器"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/windows-help/windows-help-cmd.jpg" alt="CMD"></p>
+]]></content>
+      <categories>
+        <category>Windows</category>
+      </categories>
+      <tags>
+        <tag>Windows</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>VPN</title>
+    <url>/vpn.html</url>
+    <content><![CDATA[<p>vpn搭建</p>
+<p>适用场景：</p>
+<ol>
+<li>局域网</li>
+</ol>
+<h3 id="前置条件"><a href="#前置条件" class="headerlink" title="前置条件"></a>前置条件</h3><ul>
+<li>云服务器</li>
+</ul>
+<a id="more"></a>
+]]></content>
+      <categories>
+        <category>个人爱好</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>拥有一台Root的安卓手机之虚拟机（VMOS）</title>
+    <url>/vmphone.html</url>
+    <content><![CDATA[<p><strong>Root</strong>后的手机有什么好处，解释起来有点颇费口舌，只能用一句话概况：懂的自然懂，能搜到这篇文章的大多数应该是有这方面需求的。</p>
+<p>但是现在的手机基本很难Root了，这里为有这方面需求的使用者介绍一款软件<strong>VMOS</strong>，它是运行在安卓手机上的一款<strong>虚拟机软件</strong>。</p>
+<h3 id="前置条件"><a href="#前置条件" class="headerlink" title="前置条件"></a>前置条件</h3><ol>
+<li>安卓手机（<em>64位处理器</em>）</li>
+<li>虚拟机软件VMOS（公众号输入：<strong>虚拟机</strong>，获取下载链接）</li>
+</ol>
+<a id="more"></a>
+<p>直接安装运行即可，这里说一下它的应用场景：<br>游戏辅助脚本、<strong>虚拟定位</strong>、<strong>谷歌服务</strong>、国外应用等</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/vmphone/desktop.jpg" alt="虚拟机桌面"></p>
+<h5 id="场景一：运行游戏脚本"><a href="#场景一：运行游戏脚本" class="headerlink" title="场景一：运行游戏脚本"></a>场景一：运行游戏脚本</h5><p><img src="https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/vmphone/game.png" alt="运行游戏脚本"></p>
+<p>再举个例子：<br>众所周知国外版抖音（<strong>TikTok</strong>）正常情况下在我们手机上是运行不起来的，运行不起来的原因不言而喻。<br>那运行不起来的原理是什么：</p>
+<ol>
+<li>网络环境不支持</li>
+<li>使用地区不支持</li>
+</ol>
+<p>网络环境如何解决？答案是科学上网。<br>上面说到虚拟机支持<strong>虚拟定位</strong>，第二个使用地区不支持的问题也迎刃而解。</p>
+<p>如何修改定位，点击右侧的悬浮球打开设置 -&gt; 国家 -&gt; 修改</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/vmphone/setting.jpg" alt="设置"><br><img src="https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/vmphone/region.jpg" alt="地区"><br><img src="https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/vmphone/tiktok.jpg" alt="TikTok"></p>
+<p>最后，比如你的位置修改为韩国，网络记得也要一一对应，网络代理也要代理到韩国</p>
+]]></content>
+      <categories>
+        <category>个人爱好</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>使用Github为博客建个图床</title>
+    <url>/%E5%9B%BE%E5%BA%8A.html</url>
+    <content><![CDATA[<p>写博客的时候难免需要插入一些图片，这时候我们就需要一个自己的图床来存放。<br>我是使用Github托管图片资源，再通过cdn.jsdelivr访问。</p>
+<h3 id="前置条件"><a href="#前置条件" class="headerlink" title="前置条件"></a>前置条件</h3><ul>
+<li>Github创建仓库存放图片</li>
+</ul>
+<a id="more"></a>
+<p><img src="https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/图床/创建Github仓库.png" alt="Github创建仓库"></p>
+<h5 id="创建完仓库后上传图片，再通过cdn-jsdelivr-net访问"><a href="#创建完仓库后上传图片，再通过cdn-jsdelivr-net访问" class="headerlink" title="创建完仓库后上传图片，再通过cdn.jsdelivr.net访问"></a>创建完仓库后上传图片，再通过cdn.jsdelivr.net访问</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">https://cdn.jsdelivr.net/gh/你的账号名/你的仓库名@仓库分支/文件路径</span><br><span class="line"></span><br><span class="line">如：我的github账号是zyhahaha，资源仓库为assets，默认分支为master</span><br><span class="line">图片存放路径为：/images/blog/图床/创建Github仓库.png</span><br><span class="line"></span><br><span class="line">https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/图床/创建Github仓库.png</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>个人爱好</category>

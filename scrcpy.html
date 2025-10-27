@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>scrcpy安卓投屏神器（可电脑操作手机） | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="scrcpy可以通过adb调试的方式把安卓手机屏幕投放到电脑上，并且可以操作手机。它不需要Root权限，不需要在手机安装任何软件，支持Windows、MacOS、Linux操作系统。 连接方式有两种：USB有线连接、Wifi无线连接 适用场景：  手机屏幕坏了看不清，通过电脑连接手机进行备份操作； 上班摸鱼不方便拿手机，通过scrcpy把手机投放到电脑上，装作在电脑上工作其实是在玩手机； 当你有电">
+<meta name="keywords" content="Linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="scrcpy安卓投屏神器（可电脑操作手机）">
+<meta property="og:url" content="https://zyhahaha.github.io/scrcpy.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="scrcpy可以通过adb调试的方式把安卓手机屏幕投放到电脑上，并且可以操作手机。它不需要Root权限，不需要在手机安装任何软件，支持Windows、MacOS、Linux操作系统。 连接方式有两种：USB有线连接、Wifi无线连接 适用场景：  手机屏幕坏了看不清，通过电脑连接手机进行备份操作； 上班摸鱼不方便拿手机，通过scrcpy把手机投放到电脑上，装作在电脑上工作其实是在玩手机； 当你有电">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/scrcpy/github.jpg">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/scrcpy/software.jpg">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/scrcpy/cmd.jpg">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/scrcpy/phone.jpg">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/scrcpy/wifi-connect.jpg">
+<meta property="og:updated_time" content="2025-10-27T08:35:00.771Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="scrcpy安卓投屏神器（可电脑操作手机）">
+<meta name="twitter:description" content="scrcpy可以通过adb调试的方式把安卓手机屏幕投放到电脑上，并且可以操作手机。它不需要Root权限，不需要在手机安装任何软件，支持Windows、MacOS、Linux操作系统。 连接方式有两种：USB有线连接、Wifi无线连接 适用场景：  手机屏幕坏了看不清，通过电脑连接手机进行备份操作； 上班摸鱼不方便拿手机，通过scrcpy把手机投放到电脑上，装作在电脑上工作其实是在玩手机； 当你有电">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/scrcpy/github.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <!-- <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css"> -->
+    <!-- <link href="&lt;link rel=&#34;stylesheet&#34; href=&#34;/google_resource/googleapis.css&#34;&gt;" rel="stylesheet" type="text/css"> -->
+    <link rel="stylesheet" href="/google_resource/googleapis.css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+
+  <!-- 百度统计 -->
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?a29be603d99b4cf7e04aba03fa73b2a7";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header" style="display: none;">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <!-- <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div> -->
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://zyhahaha.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-scrcpy" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/scrcpy.html" class="article-date">
+  <time datetime="2023-03-26T23:27:16.000Z" itemprop="datePublished">2023-03-26</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/个人爱好/">个人爱好</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      scrcpy安卓投屏神器（可电脑操作手机）
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>scrcpy可以通过<strong>adb调试</strong>的方式把安卓手机屏幕投放到电脑上，并且可以<strong>操作手机</strong>。<br>它<strong>不需要Root权限</strong>，不需要在手机安装任何软件，支持Windows、MacOS、Linux操作系统。</p>
+<p>连接方式有两种：<strong>USB有线连接</strong>、<strong>Wifi无线连接</strong></p>
+<p>适用场景：</p>
+<ol>
+<li>手机屏幕坏了看不清，通过电脑连接手机进行备份操作；</li>
+<li>上班摸鱼不方便拿手机，通过scrcpy把手机投放到电脑上，装作在电脑上工作其实是在玩手机；</li>
+<li>当你有电脑操作手机的需求时；</li>
+</ol>
+<h3 id="前置条件"><a href="#前置条件" class="headerlink" title="前置条件"></a>前置条件</h3><ul>
+<li>电脑下载scrcpy软件（<a href="https://github.com/Genymobile/scrcpy）" target="_blank" rel="noopener">https://github.com/Genymobile/scrcpy）</a></li>
+<li>安卓5.0以上，打开<strong>开发者选项</strong>，打开<strong>USB调试</strong></li>
+<li>USB连接电脑，手机同意USB调试，信任此电脑</li>
+</ul>
+<a id="more"></a>
+<h5 id="下载软件"><a href="#下载软件" class="headerlink" title="下载软件"></a>下载软件</h5><p>到Github下载你对应平台的安装包<br><a href="https://github.com/Genymobile/scrcpy" target="_blank" rel="noopener">https://github.com/Genymobile/scrcpy</a></p>
+<p><img src="https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/scrcpy/github.jpg" alt="下载"></p>
+<p>这里我以windows平台为例，解压到本地：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/scrcpy/software.jpg" alt="scrcpy软件"></p>
+<h3 id="配置手机"><a href="#配置手机" class="headerlink" title="配置手机"></a>配置手机</h3><p>首先准备一个安卓5.0以上的手机（<em>现在的手机基本支持</em>），打开<strong>开发者选项</strong>（怎么打开就不细说了，很简单自行百度），打开<strong>USB调试</strong>。<br>如果在后续投屏时电脑无法操作手机，可能是你手机还有个<strong>USB模拟点击</strong>选项，这个选项也要打开。</p>
+<h3 id="开始投屏（有线连接）"><a href="#开始投屏（有线连接）" class="headerlink" title="开始投屏（有线连接）"></a>开始投屏（有线连接）</h3><p>手机usb连接电脑，cmd进入scrcpy文件夹目录<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># adb查看设备</span></span><br><span class="line">adb.exe devices</span><br><span class="line"></span><br><span class="line"><span class="comment"># 开始投屏</span></span><br><span class="line">scrcpy.exe</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/scrcpy/cmd.jpg" alt="cmd"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/scrcpy/phone.jpg" alt="phone"></p>
+<p>快捷键：</p>
+<ol>
+<li>Alt + O 手机息屏，电脑继续控制手机（<em>摸鱼更安心</em>）</li>
+<li>Alt + F 切换全屏</li>
+<li>Alt + 上下键  调节音量</li>
+</ol>
+<h3 id="无线连接（WIFI）"><a href="#无线连接（WIFI）" class="headerlink" title="无线连接（WIFI）"></a>无线连接（WIFI）</h3><p>无线连接的前提是已经有线连接过设备，并且手机与电脑在同一局域网下，以上操作成功后按Ctrl + C结束投屏。<br>下面开始通过WIFI无线操作：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 找到你手机的IP地址，确认在同一局域网下 比如你手机的IP地址为192.168.0.69</span></span><br><span class="line">ping 192.168.0.69</span><br><span class="line"></span><br><span class="line">adb tcpip 5555</span><br><span class="line"></span><br><span class="line">adb connect 192.168.0.69:5555</span><br><span class="line"></span><br><span class="line"><span class="comment"># 拔下数据线，输入以下命令，如果能发现刚刚添加的192.168.0.69设备，说明设备可投屏</span></span><br><span class="line">adb devices</span><br><span class="line"></span><br><span class="line">scrcpy</span><br><span class="line"></span><br><span class="line"><span class="comment"># 当有多个手机时，通过指定ip连接对应的手机</span></span><br><span class="line"><span class="comment"># scrcpy --tcpip=192.168.0.69</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/scrcpy/wifi-connect.jpg" alt="WIFI连接"></p>
+<h3 id="adb玩法"><a href="#adb玩法" class="headerlink" title="adb玩法"></a>adb玩法</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># adb连接后</span></span><br><span class="line">adb shell</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看当前分辨率</span></span><br><span class="line">wm size</span><br><span class="line"></span><br><span class="line"><span class="comment"># 修改分辨率</span></span><br><span class="line">wm size 720x1280</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看当前dpi</span></span><br><span class="line">wm density</span><br><span class="line"></span><br><span class="line"><span class="comment"># 修改dpi</span></span><br><span class="line">wm density 320</span><br><span class="line"></span><br><span class="line"><span class="comment"># 重置回默认值：分辨率、dpi</span></span><br><span class="line">wm size reset</span><br><span class="line">wm density reset</span><br></pre></td></tr></table></figure>
+<h3 id="结束"><a href="#结束" class="headerlink" title="结束"></a>结束</h3><p>更多功能持续探索中</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zyhahaha.github.io/scrcpy.html" data-id="cmh8vzvhs001h7uu8251fqc9x" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/vpn.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          VPN
+        
+      </div>
+    </a>
+  
+  
+    <a href="/kodbox.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">可道云kodbox私有云网盘（NAS软件）</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Javascript/">Javascript</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Windows/">Windows</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/个人爱好/">个人爱好</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/BTC/">BTC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PC/">PC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PCDN/">PCDN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Torrent/">Torrent</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Windows/">Windows</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/10/">十月 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">七月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">五月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">三月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">二月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">一月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">十二月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">八月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/07/">七月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/06/">六月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/05/">五月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">七月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">九月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/410.html">高通410随身wifi刷机debian</a>
+          </li>
+        
+          <li>
+            <a href="/old-phone.html">旧手机再利用（Android）</a>
+          </li>
+        
+          <li>
+            <a href="/dht.html">DHT</a>
+          </li>
+        
+          <li>
+            <a href="/redroid-root.html">Redroid Root</a>
+          </li>
+        
+          <li>
+            <a href="/redroid.html">通过Redroid搭建自己的云手机</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer" style="display: none;">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2025 zhaoyang<br>
+      Powered by <a href="/archives">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+</nav>
+    
+
+<!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script> -->
+<!-- <script src=""></script> -->
+<script src="/google_resource/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
