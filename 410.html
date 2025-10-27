@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>高通410随身wifi刷机debian | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="一直对小型Linux机器有需求，用过Mini小主机、电视盒子，手机Termux，发现对性能要求不高的场景高通410的随身wifi就挺合适。于是几块钱薅了几个，捯饬了一下刷机，这里记录一下。 前置条件 高通410随身wifi（JZ02_V10） Windows电脑一台  刷机软件 Miko工具 9008免签名驱动（部分设备需要）  以上软件可以在我公众号内（赵小福）留言：410刷机工具，来获取。 d">
+<meta name="keywords" content="Linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="高通410随身wifi刷机debian">
+<meta property="og:url" content="https://zyhahaha.github.io/410.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="一直对小型Linux机器有需求，用过Mini小主机、电视盒子，手机Termux，发现对性能要求不高的场景高通410的随身wifi就挺合适。于是几块钱薅了几个，捯饬了一下刷机，这里记录一下。 前置条件 高通410随身wifi（JZ02_V10） Windows电脑一台  刷机软件 Miko工具 9008免签名驱动（部分设备需要）  以上软件可以在我公众号内（赵小福）留言：410刷机工具，来获取。 d">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/410/adb9008.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/410/backup.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/410/flash.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/410/internet.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/410/linux.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/410/wifi.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/410/password.png">
+<meta property="og:updated_time" content="2025-10-27T08:36:15.529Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="高通410随身wifi刷机debian">
+<meta name="twitter:description" content="一直对小型Linux机器有需求，用过Mini小主机、电视盒子，手机Termux，发现对性能要求不高的场景高通410的随身wifi就挺合适。于是几块钱薅了几个，捯饬了一下刷机，这里记录一下。 前置条件 高通410随身wifi（JZ02_V10） Windows电脑一台  刷机软件 Miko工具 9008免签名驱动（部分设备需要）  以上软件可以在我公众号内（赵小福）留言：410刷机工具，来获取。 d">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/410/adb9008.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <!-- <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css"> -->
+    <!-- <link href="&lt;link rel=&#34;stylesheet&#34; href=&#34;/google_resource/googleapis.css&#34;&gt;" rel="stylesheet" type="text/css"> -->
+    <link rel="stylesheet" href="/google_resource/googleapis.css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+
+  <!-- 百度统计 -->
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?a29be603d99b4cf7e04aba03fa73b2a7";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header" style="display: none;">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <!-- <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div> -->
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://zyhahaha.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-410" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/410.html" class="article-date">
+  <time datetime="2025-10-03T02:15:50.000Z" itemprop="datePublished">2025-10-03</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/个人爱好/">个人爱好</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      高通410随身wifi刷机debian
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>一直对小型Linux机器有需求，用过Mini小主机、电视盒子，手机Termux，发现对性能要求不高的场景高通410的随身wifi就挺合适。<br>于是几块钱薅了几个，捯饬了一下刷机，这里记录一下。</p>
+<h3 id="前置条件"><a href="#前置条件" class="headerlink" title="前置条件"></a>前置条件</h3><ul>
+<li>高通410随身wifi（JZ02_V10）</li>
+<li>Windows电脑一台</li>
+</ul>
+<h3 id="刷机软件"><a href="#刷机软件" class="headerlink" title="刷机软件"></a>刷机软件</h3><ul>
+<li>Miko工具</li>
+<li>9008免签名驱动（部分设备需要）</li>
+</ul>
+<p>以上软件可以在我公众号内（赵小福）留言：<strong>410刷机工具</strong>，来获取。</p>
+<h3 id="debian镜像"><a href="#debian镜像" class="headerlink" title="debian镜像"></a>debian镜像</h3><p>在我公众号内（赵小福）留言：<strong>410 debian镜像</strong>，来获取，会给你个移动云盘的地址。</p>
+<a id="more"></a>
+<h3 id="一、原系统备份"><a href="#一、原系统备份" class="headerlink" title="一、原系统备份"></a>一、原系统备份</h3><ol>
+<li>进入高通9008端口模式</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb reboot edl</span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/410/adb9008.png" alt="进入高通9008端口模式"></p>
+<p>用卡针顶住随身wifi的Reset孔不松，插入电脑USB，放开卡针也可进入9008端口模式</p>
+<ol start="2">
+<li>打开Miko（Loader.exe）</li>
+</ol>
+<p><img src="https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/410/backup.png" alt="备份镜像"></p>
+<h3 id="二、开始刷机"><a href="#二、开始刷机" class="headerlink" title="二、开始刷机"></a>二、开始刷机</h3><p>下载debian刷机镜像，开始刷机。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/410/flash.png" alt="刷入镜像"></p>
+<p>进度到100%之后，刷机其实已经好了。但是有个问题，我们的电脑怎么连接到随身wifi的debian系统呢。</p>
+<h3 id="三、配置驱动"><a href="#三、配置驱动" class="headerlink" title="三、配置驱动"></a>三、配置驱动</h3><p>当刷机成功后，设备这里会出现名为HandsomeMod Device的设备。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/410/internet.png" alt="HandsomeMod"></p>
+<p>这里重点是<strong>基于远程 NDIS 的 Internet 共享设备</strong>的驱动，想办法把这个驱动装上后windows会识别到一个网络。<br>使用ipconfig即可知道随身wifi的ip，那么ssh连接！默认账号密码为：user  1</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/410/linux.png" alt="linux"></p>
+<p>这里可以看到机器的配置是：512MB内存，4GB外存</p>
+<h3 id="四、最后"><a href="#四、最后" class="headerlink" title="四、最后"></a>四、最后</h3><p>SSH连接Linux后需要配置wifi后才能连接上互联网，这里使用<strong>nmtui</strong>配置，连接一下无线网。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/410/wifi.png" alt="wifi"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/410/password.png" alt="password"></p>
+<p>配置完成</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zyhahaha.github.io/410.html" data-id="cmgj1jhma000i00u8xyjznjyl" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/old-phone.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">旧手机再利用（Android）</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Javascript/">Javascript</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Windows/">Windows</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/个人爱好/">个人爱好</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/BTC/">BTC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PC/">PC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PCDN/">PCDN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Torrent/">Torrent</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Windows/">Windows</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/10/">十月 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">七月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">五月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">三月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">二月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">一月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">十二月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">八月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/07/">七月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/06/">六月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/05/">五月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">七月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">九月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/410.html">高通410随身wifi刷机debian</a>
+          </li>
+        
+          <li>
+            <a href="/old-phone.html">旧手机再利用（Android）</a>
+          </li>
+        
+          <li>
+            <a href="/dht.html">DHT</a>
+          </li>
+        
+          <li>
+            <a href="/redroid-root.html">Redroid Root</a>
+          </li>
+        
+          <li>
+            <a href="/redroid.html">通过Redroid搭建自己的云手机</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer" style="display: none;">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2025 zhaoyang<br>
+      Powered by <a href="/archives">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+</nav>
+    
+
+<!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script> -->
+<!-- <script src=""></script> -->
+<script src="/google_resource/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
