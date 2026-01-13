@@ -1,5 +1,5 @@
 # zyhahaha.github.io
-  Blog
+Blog
 
 ### Shell 命令
 ``` bash
@@ -14,3 +14,9 @@ Nodejs v12.0
 
 ### 不需要安装全局hexo，使用 npm scripts
 
+
+### Github代理
+```
+vim /etc/hosts
+20.205.243.166  github.com
+```
