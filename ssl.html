@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>网站HTTPS部署（Nginx） | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="目前绝大多数的网站都已使用HTTPS协议，如果我们的个人站点还在使用HTTP协议，就不说啥安全性问题，光是浏览器地址栏有个不安全的标志，看起来也让用户觉得很不靠谱的样子。想要部署HTTPS，首先要有一个SSL证书，如果网站想要做PWA或者使用HTTP2.0也必须部署SSL，这样看起来未来SSL证书还挺重要的。 SSL证书类型目前SSL证书是需要收费的，如果想要降低成本我们可以试用免费版的SSL证书">
+<meta name="keywords" content="Linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="网站HTTPS部署（Nginx）">
+<meta property="og:url" content="https://zyhahaha.github.io/ssl.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="目前绝大多数的网站都已使用HTTPS协议，如果我们的个人站点还在使用HTTP协议，就不说啥安全性问题，光是浏览器地址栏有个不安全的标志，看起来也让用户觉得很不靠谱的样子。想要部署HTTPS，首先要有一个SSL证书，如果网站想要做PWA或者使用HTTP2.0也必须部署SSL，这样看起来未来SSL证书还挺重要的。 SSL证书类型目前SSL证书是需要收费的，如果想要降低成本我们可以试用免费版的SSL证书">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/ssl/sign.jpg">
+<meta property="og:updated_time" content="2026-01-14T08:23:16.401Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="网站HTTPS部署（Nginx）">
+<meta name="twitter:description" content="目前绝大多数的网站都已使用HTTPS协议，如果我们的个人站点还在使用HTTP协议，就不说啥安全性问题，光是浏览器地址栏有个不安全的标志，看起来也让用户觉得很不靠谱的样子。想要部署HTTPS，首先要有一个SSL证书，如果网站想要做PWA或者使用HTTP2.0也必须部署SSL，这样看起来未来SSL证书还挺重要的。 SSL证书类型目前SSL证书是需要收费的，如果想要降低成本我们可以试用免费版的SSL证书">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/ssl/sign.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <!-- <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css"> -->
+    <!-- <link href="&lt;link rel=&#34;stylesheet&#34; href=&#34;/google_resource/googleapis.css&#34;&gt;" rel="stylesheet" type="text/css"> -->
+    <link rel="stylesheet" href="/google_resource/googleapis.css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+
+  <!-- 百度统计 -->
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?a29be603d99b4cf7e04aba03fa73b2a7";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header" style="display: none;">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <!-- <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div> -->
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://zyhahaha.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-ssl" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/ssl.html" class="article-date">
+  <time datetime="2020-09-12T20:21:16.000Z" itemprop="datePublished">2020-09-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Linux/">Linux</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      网站HTTPS部署（Nginx）
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>目前绝大多数的网站都已使用<strong>HTTPS协议</strong>，如果我们的个人站点还在使用HTTP协议，就不说啥安全性问题，光是浏览器地址栏有个不安全的标志，看起来也让用户觉得很不靠谱的样子。<br>想要部署HTTPS，首先要有一个<strong>SSL证书</strong>，如果网站想要做PWA或者使用HTTP2.0也必须部署SSL，这样看起来未来SSL证书还挺重要的。</p>
+<h3 id="SSL证书类型"><a href="#SSL证书类型" class="headerlink" title="SSL证书类型"></a>SSL证书类型</h3><p>目前SSL证书是需要收费的，如果想要降低成本我们可以试用免费版的SSL证书，我使用的是<a href="https://www.joyssl.com/" target="_blank" rel="noopener">JoySSL</a>。<br>在部署SSL证书之前我们需要了解一下它各个类型的适用范围：<strong>单域名证书</strong>、<strong>通配符证书</strong>、<strong>多域名证书</strong>、<strong>IP地址证书</strong><br>对应的使用范围：<em>只能为单个子域名提供HTTPS服务</em>、<em>可以为一个主域名下的多个子域名提供服务</em>、<em>可以为多个主域名提供服务</em>、<em>IP地址证书没咋用过，不太了解</em><br>这里我使用的是<strong>通配符证书</strong>既：可以为一个主域名下的多个子域名提供HTTPS认证。</p>
+<a id="more"></a>
+<h3 id="通过JoySSL获取SSL证书"><a href="#通过JoySSL获取SSL证书" class="headerlink" title="通过JoySSL获取SSL证书"></a>通过JoySSL获取SSL证书</h3><p>在JoySSL注册登录，填写信息、下载SSL证书这些我就不细说了，没有什么难度，大家记得选择证书类型时要选择<strong>通配符证书</strong>，生成证书的时候需要验证域名的所有权，这个根据提示操作即可。<br>JoySSL会提供多种Web服务器的SSL证书及对应的部署文档，大家也可以按照部署文档操作。下面的操作就跟JoySSL没有关系了，如果是从其他服务商那获取到的证书也可以按照下面步骤操作。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/ssl/sign.jpg" alt="签发证书"></p>
+<h3 id="配置SSL证书（Nginx）"><a href="#配置SSL证书（Nginx）" class="headerlink" title="配置SSL证书（Nginx）"></a>配置SSL证书（Nginx）</h3><p>这里我以Nginx为例，最后会得到两个文件，分别是 <em>.key</em>、<em>.crt</em>格式的。</p>
+<ol>
+<li>将证书文件和 KEY 文件都上传到服务器（推荐放到 etc/nginx/cert/文件夹下）</li>
+<li>修改 nginx 配置文件如下(默认配置文件一般是在/etc/nginx/目录下)：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ssl配置</span></span><br><span class="line">server &#123;</span><br><span class="line">    listen 443;</span><br><span class="line">    server_name zyhahaha.github.io; <span class="comment">#修改为您证书绑定的域名。</span></span><br><span class="line">    ssl on; <span class="comment">#设置为 on 启用 SSL 功能。</span></span><br><span class="line">    root html;</span><br><span class="line">    index index.html index.htm;</span><br><span class="line">    ssl_certificate cert/123123_store_integrated.crt; <span class="comment">#替换成您证书的文件名。</span></span><br><span class="line">    ssl_certificate_key cert/123123_store.key; <span class="comment">#替换成您证书的密钥文件名。</span></span><br><span class="line">    ssl_session_timeout 5m;</span><br><span class="line">    ssl_ciphers</span><br><span class="line">    ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4; <span class="comment">#使用此加密套件。</span></span><br><span class="line">    ssl_protocols TLSv1 TLSv1.1 TLSv1.2; <span class="comment">#使用该协议进行配置。</span></span><br><span class="line">    ssl_prefer_server_ciphers on;</span><br><span class="line">    location / &#123;</span><br><span class="line">        root /home/zyhahaha/sites/zyhahaha.github.io; <span class="comment">#站点目录。</span></span><br><span class="line">        index index.html index.htm; <span class="comment">#添加属性。</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>4、保存 nginx.conf 文件后退出。<br>5、重启 Nginx 服务。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nginx -s reload</span><br></pre></td></tr></table></figure></p>
+<p>结束，配置完成，打开网站通过HTTPS协议访问，看看吧。</p>
+<h3 id="HTTP重定向HTTPS"><a href="#HTTP重定向HTTPS" class="headerlink" title="HTTP重定向HTTPS"></a>HTTP重定向HTTPS</h3><p>你可能会发现，如果不指定协议浏览器会默认使用以前的协议访问网站，那么我们肯定是想，如果用户通过http协议访问网站，我们要把它重定向到https站点，配置如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen 80;</span><br><span class="line">    server_name zyhahaha.github.io;</span><br><span class="line">    <span class="built_in">return</span> 301 https://<span class="variable">$server_name</span><span class="variable">$request_uri</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="结束"><a href="#结束" class="headerlink" title="结束"></a>结束</h3><p>有问题可以发我邮箱：<a href="mailto:980355088@qq.com" target="_blank" rel="noopener">980355088@qq.com</a><br>或者在我<a href="https://cv.123123.store/message.html" target="_blank" rel="noopener">个人主页</a>留言</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zyhahaha.github.io/ssl.html" data-id="cmkdr933i001v5lu8xwlagn6t" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/bitcoin.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Linux环境比特币安装（Debian 11 OR Ubuntu18）
+        
+      </div>
+    </a>
+  
+  
+    <a href="/server-deploy.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Web项目服务器部署</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AI应用/">AI应用</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Javascript/">Javascript</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Windows/">Windows</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/个人爱好/">个人爱好</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ADB/">ADB</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BTC/">BTC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Go/">Go</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LADB/">LADB</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PC/">PC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PCDN/">PCDN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Termux/">Termux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Torrent/">Torrent</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Windows/">Windows</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/手机部署/">手机部署</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/视觉模型/">视觉模型</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/10/">十月 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/01/">一月 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">七月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">五月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">三月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">二月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">一月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">十二月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">八月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/07/">七月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/06/">六月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/05/">五月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">七月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">九月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/410.html">高通410随身wifi刷机debian</a>
+          </li>
+        
+          <li>
+            <a href="/termux-phone-agent.html">手机端部署 Go Phone Agent - Termux + LADB 完整指南</a>
+          </li>
+        
+          <li>
+            <a href="/ai-phone-agent.html">Go Phone Agent - 基于视觉模型的手机自动化智能体</a>
+          </li>
+        
+          <li>
+            <a href="/old-phone.html">旧手机再利用（Android）</a>
+          </li>
+        
+          <li>
+            <a href="/dht.html">DHT</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer" style="display: none;">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2026 zhaoyang<br>
+      Powered by <a href="/archives">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+</nav>
+    
+
+<!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script> -->
+<!-- <script src=""></script> -->
+<script src="/google_resource/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
