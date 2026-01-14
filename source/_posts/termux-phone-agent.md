@@ -1,6 +1,6 @@
 ---
 title: 手机端部署 Go Phone Agent - Termux + LADB 完整指南
-date: 2025-01-13
+date: 2025-01-13 22:28:31
 categories:
   - AI应用
 tags:
@@ -165,7 +165,7 @@ chmod +x phone-agent
 cat > ~/phone-agent-config.sh << 'EOF'
 #!/bin/bash
 export BASE_URL="https://open.bigmodel.cn/api/paas/v4"
-export API_KEY="YOUR_API_KEY"
+export API_KEY="ce1cd5c3a99c4c548383b88097294daa.9UC5Lk7RZHCCBiAt"
 export MODEL="autoglm-phone"
 EOF
 
@@ -232,43 +232,6 @@ EOF
 chmod +x ~/check-express.sh
 ```
 
-## 设置定时任务
-
-Termux 提供了 `termux-services` 来管理后台服务。
-
-### 安装 termux-services
-
-```bash
-pkg install termux-services
-```
-
-### 创建 Cron 任务
-
-```bash
-# 编辑 crontab
-crontab -e
-```
-
-添加定时任务（示例）：
-
-```bash
-# 每天早上 8:00 发送消息
-0 8 * * * ~/send-message.sh
-
-# 每小时检查一次快递
-0 * * * * ~/check-express.sh
-
-# 每天 9:00 打卡
-0 9 * * * ~/daily-checkin.sh
-```
-
-### 启动 Cron 服务
-
-```bash
-sv-enable termux-job-scheduler
-sv start termux-job-scheduler
-```
-
 ## 常见问题
 
 ### 1. LADB 连接失败
@@ -324,89 +287,6 @@ termux-setup-storage
 - 将 Termux 添加到电池优化白名单
 - 在系统设置中允许 Termux 后台运行
 - 使用 Termux:Boot 实现开机自启动
-
-## 性能优化
-
-### 1. 减少 CPU 占用
-
-```bash
-# 限制 Go 程序的 CPU 使用
-export GOMAXPROCS=2
-```
-
-### 2. 降低内存占用
-
-```bash
-# 设置 Go 内存限制
-export GOMEMLIMIT=512MB
-```
-
-### 3. 日志管理
-
-```bash
-# 只记录错误日志
-./phone-agent --log-level error "任务"
-
-# 日志轮转
-logrotate ~/phone-agent.log
-```
-
-## 安全建议
-
-### 1. 保护 API Key
-
-```bash
-# 将配置文件权限设置为仅所有者可读
-chmod 600 ~/phone-agent-config.sh
-
-# 不要在日志中输出敏感信息
-./phone-agent --log-level error "任务"
-```
-
-### 2. 定期备份
-
-```bash
-# 备份重要文件
-tar -czf ~/phone-agent-backup-$(date +%Y%m%d).tar.gz \
-  ~/projects/go-phone-agent \
-  ~/phone-agent-config.sh \
-  ~/*.sh
-```
-
-### 3. 网络安全
-
-- 使用 HTTPS 连接模型服务
-- 避免在公共 WiFi 下执行敏感操作
-- 定期更新 Termux 和依赖包
-
-## 进阶应用
-
-### 1. 监控手机状态
-
-```bash
-cat > ~/monitor-phone.sh << 'EOF'
-#!/bin/bash
-while true; do
-  BATTERY=$(adb shell dumpsys battery | grep level | awk '{print $2}')
-  echo "电量: $BATTERY%"
-  if [ "$BATTERY" -lt 20 ]; then
-    echo "电量过低，停止任务"
-    break
-  fi
-  sleep 300
-done
-EOF
-
-chmod +x ~/monitor-phone.sh
-```
-
-### 2. Web 控制界面
-
-使用 Termux:ExtraPackages 安装必要组件，创建简单的 Web 控制面板。
-
-### 3. 多任务队列
-
-创建任务队列，按顺序执行多个自动化任务。
 
 ## 总结
 
