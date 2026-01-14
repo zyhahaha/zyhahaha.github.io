@@ -1,6 +1,6 @@
 ---
 title: 手机端部署 Go Phone Agent - Termux + LADB 完整指南
-date: 2025-01-13 22:28:31
+date: 2025-01-13 22:28:30
 categories:
   - AI应用
 tags:
@@ -98,6 +98,8 @@ adb connect localhost:5555
 adb devices
 ```
 
+![LADB](https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/ai-phone-agent/local-adb.png)
+
 ## 安装 ADB Keyboard
 
 ADB Keyboard 是一个虚拟键盘，通过 ADB 接收文本输入命令。
@@ -154,6 +156,8 @@ chmod +x phone-agent
 ./phone-agent --help
 ```
 
+![Termux Phone Agent](https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/ai-phone-agent/termux-phone-agent.png)
+
 ## 配置智能体
 
 ### 配置模型服务
@@ -185,6 +189,8 @@ cd ~/projects/go-phone-agent
 # 简单测试
 ./phone-agent --base-url $BASE_URL --apikey $API_KEY --model $MODEL "打开设置"
 ```
+
+![Termux Task](https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/ai-phone-agent/termux-task.png)
 
 ## 创建自动化脚本
 
