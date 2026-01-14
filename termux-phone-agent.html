@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>手机端部署 Go Phone Agent - Termux + LADB 完整指南 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Go Phone Agent 不仅可以运行在 PC 端，还能直接部署在 Android 手机上，实现真正的”手机自动化”。通过 Termux（Android 终端模拟器）和 LADB（Local ADB），我们可以让智能体直接在手机上运行，无需依赖电脑连接。 本文将详细介绍如何在 Android 手机上完整部署 Go Phone Agent。 为什么选择手机端部署相比 PC 端运行，手机端部署有以">
+<meta name="keywords" content="Go,Termux,LADB,手机部署">
+<meta property="og:type" content="article">
+<meta property="og:title" content="手机端部署 Go Phone Agent - Termux + LADB 完整指南">
+<meta property="og:url" content="https://zyhahaha.github.io/termux-phone-agent.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Go Phone Agent 不仅可以运行在 PC 端，还能直接部署在 Android 手机上，实现真正的”手机自动化”。通过 Termux（Android 终端模拟器）和 LADB（Local ADB），我们可以让智能体直接在手机上运行，无需依赖电脑连接。 本文将详细介绍如何在 Android 手机上完整部署 Go Phone Agent。 为什么选择手机端部署相比 PC 端运行，手机端部署有以">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/ai-phone-agent/local-adb.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/ai-phone-agent/termux-phone-agent.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/ai-phone-agent/termux-task.png">
+<meta property="og:updated_time" content="2026-01-14T07:42:51.981Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="手机端部署 Go Phone Agent - Termux + LADB 完整指南">
+<meta name="twitter:description" content="Go Phone Agent 不仅可以运行在 PC 端，还能直接部署在 Android 手机上，实现真正的”手机自动化”。通过 Termux（Android 终端模拟器）和 LADB（Local ADB），我们可以让智能体直接在手机上运行，无需依赖电脑连接。 本文将详细介绍如何在 Android 手机上完整部署 Go Phone Agent。 为什么选择手机端部署相比 PC 端运行，手机端部署有以">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/ai-phone-agent/local-adb.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <!-- <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css"> -->
+    <!-- <link href="&lt;link rel=&#34;stylesheet&#34; href=&#34;/google_resource/googleapis.css&#34;&gt;" rel="stylesheet" type="text/css"> -->
+    <link rel="stylesheet" href="/google_resource/googleapis.css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+
+  <!-- 百度统计 -->
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?a29be603d99b4cf7e04aba03fa73b2a7";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header" style="display: none;">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <!-- <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div> -->
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://zyhahaha.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-termux-phone-agent" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/termux-phone-agent.html" class="article-date">
+  <time datetime="2025-01-13T22:28:30.000Z" itemprop="datePublished">2025-01-13</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/AI应用/">AI应用</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      手机端部署 Go Phone Agent - Termux + LADB 完整指南
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Go Phone Agent 不仅可以运行在 PC 端，还能直接部署在 Android 手机上，实现真正的”手机自动化”。通过 Termux（Android 终端模拟器）和 LADB（Local ADB），我们可以让智能体直接在手机上运行，无需依赖电脑连接。</p>
+<p>本文将详细介绍如何在 Android 手机上完整部署 Go Phone Agent。</p>
+<h2 id="为什么选择手机端部署"><a href="#为什么选择手机端部署" class="headerlink" title="为什么选择手机端部署"></a>为什么选择手机端部署</h2><p>相比 PC 端运行，手机端部署有以下优势：</p>
+<ul>
+<li><strong>独立运行</strong>：无需电脑连接，手机即可独立完成自动化任务</li>
+<li><strong>便携性强</strong>：随身携带，随时可用</li>
+<li><strong>隐私安全</strong>：数据不经过第三方设备</li>
+<li><strong>24小时运行</strong>：手机插电即可持续执行任务</li>
+<li><strong>低功耗</strong>：相比 PC 端，手机耗电量更低</li>
+</ul>
+<a id="more"></a>
+<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><h3 id="硬件要求"><a href="#硬件要求" class="headerlink" title="硬件要求"></a>硬件要求</h3><ul>
+<li>Android 7.0+ 设备</li>
+<li>建议 3GB+ 内存</li>
+<li>至少 2GB 可用存储空间</li>
+</ul>
+<h3 id="软件准备"><a href="#软件准备" class="headerlink" title="软件准备"></a>软件准备</h3><ol>
+<li><strong>Termux</strong>：Android 终端模拟器</li>
+<li><strong>LADB</strong>：本地 ADB 服务器（无需 root）</li>
+<li><strong>ADB Keyboard</strong>：虚拟键盘，用于文本输入</li>
+<li><strong>Go 编译环境</strong></li>
+</ol>
+<h2 id="安装-Termux"><a href="#安装-Termux" class="headerlink" title="安装 Termux"></a>安装 Termux</h2><h3 id="方法一：通过-F-Droid-安装（推荐）"><a href="#方法一：通过-F-Droid-安装（推荐）" class="headerlink" title="方法一：通过 F-Droid 安装（推荐）"></a>方法一：通过 F-Droid 安装（推荐）</h3><ol>
+<li>访问 <a href="https://f-droid.org/packages/com.termux/" target="_blank" rel="noopener">https://f-droid.org/packages/com.termux/</a></li>
+<li>下载并安装 Termux</li>
+<li>打开应用，更新系统包：</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pkg update &amp;&amp; pkg upgrade</span><br></pre></td></tr></table></figure>
+<h3 id="方法二：通过-GitHub-安装"><a href="#方法二：通过-GitHub-安装" class="headerlink" title="方法二：通过 GitHub 安装"></a>方法二：通过 GitHub 安装</h3><ol>
+<li>访问 <a href="https://github.com/termux/termux-app/releases" target="_blank" rel="noopener">https://github.com/termux/termux-app/releases</a></li>
+<li>下载最新版本的 APK</li>
+<li>允许安装未知来源应用</li>
+<li>安装 APK</li>
+</ol>
+<h2 id="配置-Termux"><a href="#配置-Termux" class="headerlink" title="配置 Termux"></a>配置 Termux</h2><h3 id="安装必要工具"><a href="#安装必要工具" class="headerlink" title="安装必要工具"></a>安装必要工具</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装 Go 语言</span></span><br><span class="line">pkg install golang</span><br><span class="line"></span><br><span class="line"><span class="comment"># 验证安装</span></span><br><span class="line">go version</span><br></pre></td></tr></table></figure>
+<h2 id="安装-LADB"><a href="#安装-LADB" class="headerlink" title="安装 LADB"></a>安装 LADB</h2><h3 id="什么是-LADB"><a href="#什么是-LADB" class="headerlink" title="什么是 LADB"></a>什么是 LADB</h3><p>LADB（Local ADB）是一个无需 root 即可在本地运行 ADB 的应用。它允许手机内部的程序通过 localhost 与 ADB 服务器通信。</p>
+<h3 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h3><ol>
+<li>下载 LADB APK：<a href="https://github.com/tytydraco/LADB/releases" target="_blank" rel="noopener">https://github.com/tytydraco/LADB/releases</a></li>
+<li>安装 LADB 应用</li>
+<li>打开应用启动 ADB 服务器</li>
+<li>记录显示的端口号（默认为 5555）</li>
+</ol>
+<h3 id="在-Termux-中连接-LADB"><a href="#在-Termux-中连接-LADB" class="headerlink" title="在 Termux 中连接 LADB"></a>在 Termux 中连接 LADB</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装 ADB 工具</span></span><br><span class="line">pkg install android-tools</span><br><span class="line"></span><br><span class="line"><span class="comment"># 连接到本地 ADB 服务器</span></span><br><span class="line">adb connect localhost:5555</span><br><span class="line"></span><br><span class="line"><span class="comment"># 验证连接</span></span><br><span class="line">adb devices</span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/ai-phone-agent/local-adb.png" alt="LADB"></p>
+<h2 id="安装-ADB-Keyboard"><a href="#安装-ADB-Keyboard" class="headerlink" title="安装 ADB Keyboard"></a>安装 ADB Keyboard</h2><p>ADB Keyboard 是一个虚拟键盘，通过 ADB 接收文本输入命令。</p>
+<h3 id="安装步骤-1"><a href="#安装步骤-1" class="headerlink" title="安装步骤"></a>安装步骤</h3><ol>
+<li>下载 ADB Keyboard APK：<a href="https://github.com/senzhk/ADBKeyBoard/blob/master/ADBKeyboard.apk" target="_blank" rel="noopener">https://github.com/senzhk/ADBKeyBoard/blob/master/ADBKeyboard.apk</a></li>
+<li>安装应用</li>
+<li>进入系统设置 → 语言和输入法</li>
+<li>启用 ADB Keyboard</li>
+<li>切换当前输入法为 ADB Keyboard</li>
+</ol>
+<h2 id="部署-Go-Phone-Agent"><a href="#部署-Go-Phone-Agent" class="headerlink" title="部署 Go Phone Agent"></a>部署 Go Phone Agent</h2><h3 id="克隆项目"><a href="#克隆项目" class="headerlink" title="克隆项目"></a>克隆项目</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建项目目录</span></span><br><span class="line">mkdir -p ~/projects</span><br><span class="line"><span class="built_in">cd</span> ~/projects</span><br><span class="line"></span><br><span class="line"><span class="comment"># 克隆仓库</span></span><br><span class="line">git <span class="built_in">clone</span> https://github.com/zyhahaha/go-phone-agent.git</span><br><span class="line"><span class="built_in">cd</span> go-phone-agent</span><br></pre></td></tr></table></figure>
+<h3 id="下载依赖"><a href="#下载依赖" class="headerlink" title="下载依赖"></a>下载依赖</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 设置 Go 代理</span></span><br><span class="line">go env -w GOPROXY=https://goproxy.cn,direct</span><br><span class="line"></span><br><span class="line"><span class="comment"># 下载依赖</span></span><br><span class="line">go mod download</span><br></pre></td></tr></table></figure>
+<h3 id="编译项目"><a href="#编译项目" class="headerlink" title="编译项目"></a>编译项目</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 编译为 Android ARM64 版本</span></span><br><span class="line">GOOS=android GOARCH=arm64 go build -o phone-agent cmd/main.go</span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果是 32 位 ARM 设备</span></span><br><span class="line"><span class="comment"># GOOS=android GOARCH=arm go build -o phone-agent cmd/main.go</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置可执行权限</span></span><br><span class="line">chmod +x phone-agent</span><br></pre></td></tr></table></figure>
+<h3 id="验证编译"><a href="#验证编译" class="headerlink" title="验证编译"></a>验证编译</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看帮助信息</span></span><br><span class="line">./phone-agent --<span class="built_in">help</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/ai-phone-agent/termux-phone-agent.png" alt="Termux Phone Agent"></p>
+<h2 id="配置智能体"><a href="#配置智能体" class="headerlink" title="配置智能体"></a>配置智能体</h2><h3 id="配置模型服务"><a href="#配置模型服务" class="headerlink" title="配置模型服务"></a>配置模型服务</h3><p>编辑配置文件或直接使用命令行参数：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建配置脚本</span></span><br><span class="line">cat &gt; ~/phone-agent-config.sh &lt;&lt; <span class="string">'EOF'</span></span><br><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="built_in">export</span> BASE_URL=<span class="string">"https://open.bigmodel.cn/api/paas/v4"</span></span><br><span class="line"><span class="built_in">export</span> API_KEY=<span class="string">"ce1cd5c3a99c4c548383b88097294daa.9UC5Lk7RZHCCBiAt"</span></span><br><span class="line"><span class="built_in">export</span> MODEL=<span class="string">"autoglm-phone"</span></span><br><span class="line">EOF</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置执行权限</span></span><br><span class="line">chmod +x ~/phone-agent-config.sh</span><br><span class="line"></span><br><span class="line"><span class="comment"># 加载配置</span></span><br><span class="line"><span class="built_in">source</span> ~/phone-agent-config.sh</span><br></pre></td></tr></table></figure>
+<h3 id="测试运行"><a href="#测试运行" class="headerlink" title="测试运行"></a>测试运行</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 进入项目目录</span></span><br><span class="line"><span class="built_in">cd</span> ~/projects/go-phone-agent</span><br><span class="line"></span><br><span class="line"><span class="comment"># 简单测试</span></span><br><span class="line">./phone-agent --base-url <span class="variable">$BASE_URL</span> --apikey <span class="variable">$API_KEY</span> --model <span class="variable">$MODEL</span> <span class="string">"打开设置"</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/ai-phone-agent/termux-task.png" alt="Termux Task"></p>
+<h2 id="创建自动化脚本"><a href="#创建自动化脚本" class="headerlink" title="创建自动化脚本"></a>创建自动化脚本</h2><h3 id="场景一：定时消息"><a href="#场景一：定时消息" class="headerlink" title="场景一：定时消息"></a>场景一：定时消息</h3><p>创建定时发送消息的脚本：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">cat &gt; ~/send-message.sh &lt;&lt; <span class="string">'EOF'</span></span><br><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="built_in">source</span> ~/phone-agent-config.sh</span><br><span class="line"><span class="built_in">cd</span> ~/projects/go-phone-agent</span><br><span class="line">./phone-agent --base-url <span class="variable">$BASE_URL</span> --apikey <span class="variable">$API_KEY</span> --model <span class="variable">$MODEL</span> \</span><br><span class="line">  <span class="string">"打开微信,给小明发消息:早上好,今天天气不错"</span></span><br><span class="line">EOF</span><br><span class="line"></span><br><span class="line">chmod +x ~/send-message.sh</span><br></pre></td></tr></table></figure>
+<h3 id="场景二：每日打卡"><a href="#场景二：每日打卡" class="headerlink" title="场景二：每日打卡"></a>场景二：每日打卡</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">cat &gt; ~/daily-checkin.sh &lt;&lt; <span class="string">'EOF'</span></span><br><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="built_in">source</span> ~/phone-agent-config.sh</span><br><span class="line"><span class="built_in">cd</span> ~/projects/go-phone-agent</span><br><span class="line">./phone-agent --base-url <span class="variable">$BASE_URL</span> --apikey <span class="variable">$API_KEY</span> --model <span class="variable">$MODEL</span> \</span><br><span class="line">  <span class="string">"打开钉钉,点击打卡"</span></span><br><span class="line">EOF</span><br><span class="line"></span><br><span class="line">chmod +x ~/daily-checkin.sh</span><br></pre></td></tr></table></figure>
+<h3 id="场景三：快递监控"><a href="#场景三：快递监控" class="headerlink" title="场景三：快递监控"></a>场景三：快递监控</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">cat &gt; ~/check-express.sh &lt;&lt; <span class="string">'EOF'</span></span><br><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="built_in">source</span> ~/phone-agent-config.sh</span><br><span class="line"><span class="built_in">cd</span> ~/projects/go-phone-agent</span><br><span class="line">./phone-agent --base-url <span class="variable">$BASE_URL</span> --apikey <span class="variable">$API_KEY</span> --model <span class="variable">$MODEL</span> \</span><br><span class="line">  <span class="string">"打开快递100,查询快递SF123456789"</span></span><br><span class="line">EOF</span><br><span class="line"></span><br><span class="line">chmod +x ~/check-express.sh</span><br></pre></td></tr></table></figure>
+<h2 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h2><h3 id="1-LADB-连接失败"><a href="#1-LADB-连接失败" class="headerlink" title="1. LADB 连接失败"></a>1. LADB 连接失败</h3><p><strong>问题</strong>：<code>adb connect localhost:5555</code> 失败</p>
+<p><strong>解决方案</strong>：</p>
+<ul>
+<li>确保先打开 LADB 应用并启动服务</li>
+<li>检查端口号是否正确</li>
+<li>重启 LADB 服务</li>
+</ul>
+<h3 id="2-编译错误"><a href="#2-编译错误" class="headerlink" title="2. 编译错误"></a>2. 编译错误</h3><p><strong>问题</strong>：<code>go build</code> 时出现架构不匹配错误</p>
+<p><strong>解决方案</strong>：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看设备架构</span></span><br><span class="line">uname -m</span><br><span class="line"></span><br><span class="line"><span class="comment"># 根据架构选择编译参数</span></span><br><span class="line"><span class="comment"># aarch64 → GOARCH=arm64</span></span><br><span class="line"><span class="comment"># armv7l → GOARCH=arm</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="3-输入法切换问题"><a href="#3-输入法切换问题" class="headerlink" title="3. 输入法切换问题"></a>3. 输入法切换问题</h3><p><strong>问题</strong>：文本输入不生效</p>
+<p><strong>解决方案</strong>：</p>
+<ul>
+<li>确保已将 ADB Keyboard 设为默认输入法</li>
+<li>检查是否正确安装 ADB Keyboard</li>
+<li>尝试手动切换到 ADB Keyboard</li>
+</ul>
+<h3 id="4-权限问题"><a href="#4-权限问题" class="headerlink" title="4. 权限问题"></a>4. 权限问题</h3><p><strong>问题</strong>：运行脚本提示权限不足</p>
+<p><strong>解决方案</strong>：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 给脚本添加执行权限</span></span><br><span class="line">chmod +x script-name.sh</span><br><span class="line"></span><br><span class="line"><span class="comment"># 检查 Termux 存储权限</span></span><br><span class="line">termux-setup-storage</span><br></pre></td></tr></table></figure></p>
+<h3 id="5-后台任务被系统杀死"><a href="#5-后台任务被系统杀死" class="headerlink" title="5. 后台任务被系统杀死"></a>5. 后台任务被系统杀死</h3><p><strong>问题</strong>：Termux 在后台被系统杀死</p>
+<p><strong>解决方案</strong>：</p>
+<ul>
+<li>将 Termux 添加到电池优化白名单</li>
+<li>在系统设置中允许 Termux 后台运行</li>
+<li>使用 Termux:Boot 实现开机自启动</li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>通过 Termux 和 LADB，我们成功将 Go Phone Agent 部署到了 Android 手机上。这种部署方式的优势包括：</p>
+<ul>
+<li>✅ <strong>完全独立</strong>：无需电脑，手机自主运行</li>
+<li>✅ <strong>低功耗</strong>：相比 PC，耗电量更少</li>
+<li>✅ <strong>便携性强</strong>：随身携带，随时可用</li>
+<li>✅ <strong>隐私安全</strong>：数据不经过第三方设备</li>
+<li>✅ <strong>24小时运行</strong>：插电即可持续工作</li>
+</ul>
+<p>无论是定时消息、自动打卡，还是快递监控，手机端部署都能提供更灵活的自动化解决方案。</p>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><ul>
+<li><a href="https://wiki.termux.com/" target="_blank" rel="noopener">Termux 官方文档</a></li>
+<li><a href="https://github.com/tytydraco/LADB" target="_blank" rel="noopener">LADB GitHub</a></li>
+<li><a href="https://github.com/senzhk/ADBKeyBoard" target="_blank" rel="noopener">ADB Keyboard GitHub</a></li>
+<li><a href="https://github.com/zyhahaha/go-phone-agent" target="_blank" rel="noopener">Go Phone Agent 项目</a></li>
+</ul>
+<hr>
+<p>如有问题或建议，欢迎交流讨论。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zyhahaha.github.io/termux-phone-agent.html" data-id="cmkdpkp97001swgu8slyi5z7m" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Go/">Go</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LADB/">LADB</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Termux/">Termux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/手机部署/">手机部署</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/410.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          高通410随身wifi刷机debian
+        
+      </div>
+    </a>
+  
+  
+    <a href="/ai-phone-agent.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Go Phone Agent - 基于视觉模型的手机自动化智能体</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AI应用/">AI应用</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Javascript/">Javascript</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Windows/">Windows</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/个人爱好/">个人爱好</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ADB/">ADB</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BTC/">BTC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Go/">Go</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LADB/">LADB</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PC/">PC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PCDN/">PCDN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Termux/">Termux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Torrent/">Torrent</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Windows/">Windows</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/手机部署/">手机部署</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/视觉模型/">视觉模型</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/10/">十月 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/01/">一月 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">七月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">五月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">三月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">二月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">一月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">十二月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">八月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/07/">七月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/06/">六月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/05/">五月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">七月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">九月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/410.html">高通410随身wifi刷机debian</a>
+          </li>
+        
+          <li>
+            <a href="/termux-phone-agent.html">手机端部署 Go Phone Agent - Termux + LADB 完整指南</a>
+          </li>
+        
+          <li>
+            <a href="/ai-phone-agent.html">Go Phone Agent - 基于视觉模型的手机自动化智能体</a>
+          </li>
+        
+          <li>
+            <a href="/old-phone.html">旧手机再利用（Android）</a>
+          </li>
+        
+          <li>
+            <a href="/dht.html">DHT</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer" style="display: none;">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2026 zhaoyang<br>
+      Powered by <a href="/archives">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+</nav>
+    
+
+<!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script> -->
+<!-- <script src=""></script> -->
+<script src="/google_resource/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

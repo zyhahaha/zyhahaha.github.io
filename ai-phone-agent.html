@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>Go Phone Agent - 基于视觉模型的手机自动化智能体 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Go Phone Agent 是一个基于视觉语言模型的开源手机自动化框架。它让 AI 能够”看懂”手机屏幕，像人类一样自然地操作设备——你只需要用自然语言描述任务，智能体就能自动分析屏幕、思考决策、执行操作，直到任务完成。 与传统基于坐标或元素定位的自动化方案不同，Go Phone Agent 通过视觉理解实现真正的智能操作，无需编写复杂的规则脚本，界面布局变化也不会影响运行。 快速开始前置条件">
+<meta name="keywords" content="Go,ADB,视觉模型">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Go Phone Agent - 基于视觉模型的手机自动化智能体">
+<meta property="og:url" content="https://zyhahaha.github.io/ai-phone-agent.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Go Phone Agent 是一个基于视觉语言模型的开源手机自动化框架。它让 AI 能够”看懂”手机屏幕，像人类一样自然地操作设备——你只需要用自然语言描述任务，智能体就能自动分析屏幕、思考决策、执行操作，直到任务完成。 与传统基于坐标或元素定位的自动化方案不同，Go Phone Agent 通过视觉理解实现真正的智能操作，无需编写复杂的规则脚本，界面布局变化也不会影响运行。 快速开始前置条件">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/ai-phone-agent/adb-connect.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/ai-phone-agent/run-task.png">
+<meta property="og:updated_time" content="2026-01-14T07:42:20.807Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Go Phone Agent - 基于视觉模型的手机自动化智能体">
+<meta name="twitter:description" content="Go Phone Agent 是一个基于视觉语言模型的开源手机自动化框架。它让 AI 能够”看懂”手机屏幕，像人类一样自然地操作设备——你只需要用自然语言描述任务，智能体就能自动分析屏幕、思考决策、执行操作，直到任务完成。 与传统基于坐标或元素定位的自动化方案不同，Go Phone Agent 通过视觉理解实现真正的智能操作，无需编写复杂的规则脚本，界面布局变化也不会影响运行。 快速开始前置条件">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/ai-phone-agent/adb-connect.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <!-- <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css"> -->
+    <!-- <link href="&lt;link rel=&#34;stylesheet&#34; href=&#34;/google_resource/googleapis.css&#34;&gt;" rel="stylesheet" type="text/css"> -->
+    <link rel="stylesheet" href="/google_resource/googleapis.css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+
+  <!-- 百度统计 -->
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?a29be603d99b4cf7e04aba03fa73b2a7";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header" style="display: none;">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <!-- <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div> -->
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://zyhahaha.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-ai-phone-agent" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/ai-phone-agent.html" class="article-date">
+  <time datetime="2025-01-10T22:28:30.000Z" itemprop="datePublished">2025-01-10</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/AI应用/">AI应用</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Go Phone Agent - 基于视觉模型的手机自动化智能体
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Go Phone Agent 是一个基于视觉语言模型的开源手机自动化框架。它让 AI 能够”看懂”手机屏幕，像人类一样自然地操作设备——你只需要用自然语言描述任务，智能体就能自动分析屏幕、思考决策、执行操作，直到任务完成。</p>
+<p>与传统基于坐标或元素定位的自动化方案不同，Go Phone Agent 通过视觉理解实现真正的智能操作，无需编写复杂的规则脚本，界面布局变化也不会影响运行。</p>
+<h2 id="快速开始"><a href="#快速开始" class="headerlink" title="快速开始"></a>快速开始</h2><h3 id="前置条件"><a href="#前置条件" class="headerlink" title="前置条件"></a>前置条件</h3><ul>
+<li>Go 1.21+ 环境</li>
+<li>ADB (Android Debug Bridge)</li>
+<li>AutoGLM-Phone 模型服务或兼容的视觉模型</li>
+<li>ADB Keyboard(仅 Android 设备需要，用于文本输入)</li>
+</ul>
+<a id="more"></a>
+<h3 id="手机环境准备"><a href="#手机环境准备" class="headerlink" title="手机环境准备"></a>手机环境准备</h3><p>确保设备已启用开发者选项和USB调试。<br>安装ADB Keyboard。</p>
+<ol>
+<li><p>下载ADB Keyboard APK: <a href="https://github.com/senzhk/ADBKeyBoard/blob/master/ADBKeyboard.apk" target="_blank" rel="noopener">https://github.com/senzhk/ADBKeyBoard/blob/master/ADBKeyboard.apk</a></p>
+</li>
+<li><p>将下载的APK安装到安卓设备中</p>
+</li>
+<li><p>在设置-输入法中启用ADB Keyboard</p>
+</li>
+</ol>
+<h3 id="安装-ADB"><a href="#安装-ADB" class="headerlink" title="安装 ADB"></a>安装 ADB</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># macOS</span></span><br><span class="line">brew install android-platform-tools</span><br><span class="line"></span><br><span class="line"><span class="comment"># Linux</span></span><br><span class="line">sudo apt install android-tools-adb</span><br><span class="line"></span><br><span class="line"><span class="comment"># Windows</span></span><br><span class="line"><span class="comment"># 下载并添加到 PATH: https://developer.android.com/tools/releases/platform-tools</span></span><br></pre></td></tr></table></figure>
+<p>连接设备:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb devices</span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/ai-phone-agent/adb-connect.png" alt="scrcpy连接手机"></p>
+<h3 id="编译项目"><a href="#编译项目" class="headerlink" title="编译项目"></a>编译项目</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> go-phone-agent</span><br><span class="line">go env -w GOPROXY=https://goproxy.cn,direct</span><br><span class="line">go mod download</span><br><span class="line">go build -o phone-agent cmd/main.go</span><br></pre></td></tr></table></figure>
+<h3 id="运行示例"><a href="#运行示例" class="headerlink" title="运行示例"></a>运行示例</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 单次任务</span></span><br><span class="line">./phone-agent --base-url https://open.bigmodel.cn/api/paas/v4 --apikey YOUR_API_KEY --model autoglm-phone <span class="string">"打开微信发消息给文件传输助手:测试"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 交互模式</span></span><br><span class="line">./phone-agent --base-url https://open.bigmodel.cn/api/paas/v4 --apikey YOUR_API_KEY --model autoglm-phone</span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/ai-phone-agent/run-task.png" alt="交互模式"></p>
+<h2 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h2><p>智能体通过以下循环流程完成任务：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">用户指令 → ADB 截图 → 视觉模型分析 → 输出动作指令 → ADB 执行操作 → 循环直到任务完成</span><br></pre></td></tr></table></figure>
+<h2 id="核心特性"><a href="#核心特性" class="headerlink" title="核心特性"></a>核心特性</h2><h3 id="1-真正的视觉理解"><a href="#1-真正的视觉理解" class="headerlink" title="1. 真正的视觉理解"></a>1. 真正的视觉理解</h3><p>传统自动化工具依赖坐标或元素定位，界面布局变化就会失效。本方案采用视觉语言模型，能够真正”看”懂屏幕内容，无论界面如何变化都能准确识别操作目标。</p>
+<h3 id="2-自然语言交互"><a href="#2-自然语言交互" class="headerlink" title="2. 自然语言交互"></a>2. 自然语言交互</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./phone-agent --base-url https://open.bigmodel.cn/api/paas/v4 --apikey YOUR_API_KEY --model autoglm-phone <span class="string">"打开微信,搜索小明,发消息说你好"</span></span><br></pre></td></tr></table></figure>
+<p>无需编写代码或配置复杂规则，直接使用自然语言描述任务即可。</p>
+<h3 id="3-轻量级高效"><a href="#3-轻量级高效" class="headerlink" title="3. 轻量级高效"></a>3. 轻量级高效</h3><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>数值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>内存占用</td>
+<td>20-30MB</td>
+</tr>
+<tr>
+<td>启动速度</td>
+<td>&lt; 100ms</td>
+</tr>
+<tr>
+<td>单步执行</td>
+<td>&lt; 1s（不含模型推理）</td>
+</tr>
+<tr>
+<td>编译体积</td>
+<td>~10MB</td>
+</tr>
+</tbody>
+</table>
+<p>得益于 Go 语言的高性能，即便在随身 WiFi 这类小设备上也能流畅运行。</p>
+<h3 id="4-跨平台支持"><a href="#4-跨平台支持" class="headerlink" title="4. 跨平台支持"></a>4. 跨平台支持</h3><p>支持 Windows、Linux、macOS，甚至可以在 Android 手机上独立运行（Termux + LADB）。</p>
+<h2 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h2><h3 id="场景一：自动化测试"><a href="#场景一：自动化测试" class="headerlink" title="场景一：自动化测试"></a>场景一：自动化测试</h3><p>自动测试 App 的各项功能流程：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./phone-agent <span class="string">"打开淘宝,搜索iPhone,进入商品详情,加入购物车"</span></span><br></pre></td></tr></table></figure>
+<h3 id="场景二：批量操作"><a href="#场景二：批量操作" class="headerlink" title="场景二：批量操作"></a>场景二：批量操作</h3><p>批量执行重复性操作，如给好友发消息、点赞、打卡等：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./phone-agent <span class="string">"打开微信,给张三发消息:早上好"</span></span><br></pre></td></tr></table></figure>
+<p>结合脚本循环执行，彻底解放双手。</p>
+<h3 id="场景三：辅助特殊人群"><a href="#场景三：辅助特殊人群" class="headerlink" title="场景三：辅助特殊人群"></a>场景三：辅助特殊人群</h3><p>帮助老年人或技术不熟练的用户完成复杂操作：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./phone-agent <span class="string">"打开设置,连接WiFi,输入密码123456"</span></span><br></pre></td></tr></table></figure>
+<h3 id="场景四：定时监控"><a href="#场景四：定时监控" class="headerlink" title="场景四：定时监控"></a>场景四：定时监控</h3><p>结合定时任务，实现对特定应用或页面的自动化监控：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 每小时检查一次快递状态</span></span><br><span class="line">*/60 * * * * /root/phone-agent <span class="string">"打开快递100,查询快递123456"</span></span><br></pre></td></tr></table></figure>
+<h2 id="原子操作"><a href="#原子操作" class="headerlink" title="原子操作"></a>原子操作</h2><p>智能体通过以下原子操作组合完成复杂任务：</p>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Launch</td>
+<td>启动应用</td>
+</tr>
+<tr>
+<td>Tap</td>
+<td>点击屏幕</td>
+</tr>
+<tr>
+<td>Type</td>
+<td>输入文本</td>
+</tr>
+<tr>
+<td>Swipe</td>
+<td>滑动屏幕</td>
+</tr>
+<tr>
+<td>Back</td>
+<td>返回上一页</td>
+</tr>
+<tr>
+<td>Home</td>
+<td>返回桌面</td>
+</tr>
+<tr>
+<td>Double Tap</td>
+<td>双击</td>
+</tr>
+<tr>
+<td>Long Press</td>
+<td>长按</td>
+</tr>
+<tr>
+<td>Wait</td>
+<td>等待</td>
+</tr>
+</tbody>
+</table>
+<h2 id="多设备支持"><a href="#多设备支持" class="headerlink" title="多设备支持"></a>多设备支持</h2><p>支持同时连接多个手机，通过 WiFi 或 USB 都可以：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 连接远程设备</span></span><br><span class="line">adb connect 192.168.1.100:5555</span><br><span class="line"></span><br><span class="line"><span class="comment"># 指定设备运行</span></span><br><span class="line">./phone-agent --device-id 192.168.1.100:5555 <span class="string">"打开抖音"</span></span><br></pre></td></tr></table></figure>
+<h2 id="高级功能"><a href="#高级功能" class="headerlink" title="高级功能"></a>高级功能</h2><h3 id="自定义回调"><a href="#自定义回调" class="headerlink" title="自定义回调"></a>自定义回调</h3><p>添加确认和接管逻辑，实现人工干预：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">confirmationCallback := <span class="function"><span class="keyword">func</span><span class="params">(message <span class="keyword">string</span>)</span> <span class="title">bool</span></span> &#123;</span><br><span class="line">    fmt.Printf(<span class="string">"确认操作: %s (Y/N): "</span>, message)</span><br><span class="line">    <span class="keyword">var</span> response <span class="keyword">string</span></span><br><span class="line">    fmt.Scanln(&amp;response)</span><br><span class="line">    <span class="keyword">return</span> strings.ToUpper(response) == <span class="string">"Y"</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">takeoverCallback := <span class="function"><span class="keyword">func</span><span class="params">(message <span class="keyword">string</span>)</span></span> &#123;</span><br><span class="line">    fmt.Printf(<span class="string">"需要人工干预: %s\n"</span>, message)</span><br><span class="line">    fmt.Println(<span class="string">"完成后按回车继续..."</span>)</span><br><span class="line">    fmt.Scanln(<span class="built_in">new</span>(<span class="keyword">string</span>))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">phoneAgent := agent.NewPhoneAgent(config, &amp;agent.AgentConfig&#123;&#125;, confirmationCallback, takeoverCallback)</span><br></pre></td></tr></table></figure>
+<h3 id="步进模式"><a href="#步进模式" class="headerlink" title="步进模式"></a>步进模式</h3><p>单步执行，观察每一步的决策过程：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 执行第一步</span></span><br><span class="line">result := phoneAgent.Step(<span class="string">"打开微信"</span>)</span><br><span class="line">fmt.Printf(<span class="string">"思考: %s\n动作: %v\n"</span>, result.Thinking, result.Action)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 继续执行</span></span><br><span class="line">result = phoneAgent.Step(<span class="string">""</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">go-phone-agent/</span><br><span class="line">├── cmd/main.go          # 命令行入口</span><br><span class="line">├── agent/               # Agent 核心逻辑</span><br><span class="line">├── adb/                 # ADB 操作封装</span><br><span class="line">├── model/               # 模型客户端</span><br><span class="line">├── actions/             # 动作处理器</span><br><span class="line">├── config/              # 配置文件</span><br><span class="line">└── examples/            # 使用示例</span><br></pre></td></tr></table></figure>
+<p>代码结构清晰，易于扩展和定制。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>Go Phone Agent 将视觉理解能力和手机自动化完美结合：</p>
+<ul>
+<li>✅ <strong>智能</strong>：基于视觉模型，真正”看”懂屏幕</li>
+<li>✅ <strong>轻量</strong>：Go 实现，低资源占用</li>
+<li>✅ <strong>易用</strong>：自然语言指令，无需编程</li>
+<li>✅ <strong>灵活</strong>：支持多设备、自定义回调</li>
+<li>✅ <strong>独立</strong>：可在手机上独立运行</li>
+</ul>
+<p>无论是自动化测试、批量操作，还是辅助特殊需求，都很实用。</p>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><ul>
+<li>项目地址：<a href="https://github.com/zyhahaha/go-phone-agent" target="_blank" rel="noopener">https://github.com/zyhahaha/go-phone-agent</a></li>
+<li>欢迎提交 issue 和 PR，一起把这个工具做得更好</li>
+</ul>
+<hr>
+<p>如果有更好的视觉模型推荐，或者想分享使用心得，欢迎交流。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zyhahaha.github.io/ai-phone-agent.html" data-id="cmkdpkp7z0000wgu87lbomst2" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ADB/">ADB</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Go/">Go</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/视觉模型/">视觉模型</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/termux-phone-agent.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          手机端部署 Go Phone Agent - Termux + LADB 完整指南
+        
+      </div>
+    </a>
+  
+  
+    <a href="/old-phone.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">旧手机再利用（Android）</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AI应用/">AI应用</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Javascript/">Javascript</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Windows/">Windows</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/个人爱好/">个人爱好</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ADB/">ADB</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BTC/">BTC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Go/">Go</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LADB/">LADB</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PC/">PC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PCDN/">PCDN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Termux/">Termux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Torrent/">Torrent</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Windows/">Windows</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/手机部署/">手机部署</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/视觉模型/">视觉模型</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/10/">十月 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/01/">一月 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">七月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">五月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">三月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">二月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">一月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">十二月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">八月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/07/">七月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/06/">六月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/05/">五月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">七月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">九月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/410.html">高通410随身wifi刷机debian</a>
+          </li>
+        
+          <li>
+            <a href="/termux-phone-agent.html">手机端部署 Go Phone Agent - Termux + LADB 完整指南</a>
+          </li>
+        
+          <li>
+            <a href="/ai-phone-agent.html">Go Phone Agent - 基于视觉模型的手机自动化智能体</a>
+          </li>
+        
+          <li>
+            <a href="/old-phone.html">旧手机再利用（Android）</a>
+          </li>
+        
+          <li>
+            <a href="/dht.html">DHT</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer" style="display: none;">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2026 zhaoyang<br>
+      Powered by <a href="/archives">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+</nav>
+    
+
+<!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script> -->
+<!-- <script src=""></script> -->
+<script src="/google_resource/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
