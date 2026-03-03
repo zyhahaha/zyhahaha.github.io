@@ -38,6 +38,10 @@ LangChain 提供了成熟的 Agent 开发框架：
 - **消息管理**：LangChain 的消息系统让对话历史管理更规范
 - **结构化输出**：使用 Zod 定义工具参数，类型安全
 
+配置界面支持自定义 API 端点、模型选择和参数调整：
+
+![AI 模型配置](https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/droidpilot/config.png)
+
 ### 2. Skills 系统
 
 引入了 **技能（Skills）** 的概念，支持特定场景的优化脚本：
@@ -58,7 +62,9 @@ description: 《部落冲突》自动战斗脚本
 
 ### 3. 桌面端支持
 
-加入了 Electron 桌面端，方便调试和可视化操作流程。
+加入了 Electron 桌面端，方便调试和可视化操作流程。主界面分为设备屏幕展示区、控制面板和执行日志区：
+
+![主界面](https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/droidpilot/home.png)
 
 ### 4. 多平台支持
 
@@ -73,6 +79,10 @@ description: 《部落冲突》自动战斗脚本
 ```
 
 现在有了 LangChain 的加持，工具调用、消息管理、错误处理都更加规范。
+
+执行过程中可以实时查看 AI 的思考过程和工具调用：
+
+![任务执行中](https://cdn.jsdelivr.net/gh/zyhahaha/assets@master/images/blog/droidpilot/run.png)
 
 ## 技术栈
 
