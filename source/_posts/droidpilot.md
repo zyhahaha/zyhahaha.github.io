@@ -60,6 +60,10 @@ description: 《部落冲突》自动战斗脚本
 
 加入了 Electron 桌面端，方便调试和可视化操作流程。
 
+### 4. 多平台支持
+
+除了桌面端，项目还提供了 CLI 版本，可以在手机上直接运行。只需安装 **Termux** 和 **LADB**（Local ADB），就能让手机自己控制自己，实现真正的"自动化神器"。
+
 ## 工作原理
 
 整个流程依然是经典的 Agent 循环：
@@ -79,6 +83,11 @@ description: 《部落冲突》自动战斗脚本
 ## 效果演示
 
 微信视频号链接：[待补充]
+
+## 项目地址
+
+- 客户端版本（Electron）: https://github.com/zyhahaha/droidpilot
+- CLI 版本: https://github.com/zyhahaha/droidpilot-cli
 
 ---
 
